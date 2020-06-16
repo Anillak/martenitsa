@@ -4,6 +4,8 @@ function love.load()
   love.window.setMode(gridX, gridY)
   cellSize = 30
 
+  anim8 = require('anim8-master/anim8')
+  require('sprites')
   require('player')
   require('knot')
 
@@ -18,6 +20,8 @@ function love.load()
 end
 
 function love.update(dt)
+  updateKnots(dt)
+
   timer = timer + dt
   local timerLimit = 0.15
   if timer >= timerLimit then

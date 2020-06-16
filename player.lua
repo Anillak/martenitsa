@@ -6,9 +6,9 @@ function loadPlayer()
   player.direction = {"right"}
 
   player.segments = {
-    {x = 3, y = 1},
-    {x = 2, y = 1},
-    {x = 1, y = 1}
+    {x = 3, y = 1, sprite = "horizontal-head"},
+    {x = 2, y = 1, sprite = "horizontal-mid"},
+    {x = 1, y = 1, sprite = "horizontal-tail"}
   }
 end
 
@@ -33,7 +33,7 @@ function updatePlayer(dt)
 
   player.bound = isBound(newX, newY)
 
-  table.insert(player.segments, 1, {x = newX, y = newY})
+  table.insert(player.segments, 1, {x = newX, y = newY, sprite = "horizontal-head"})
 end
 
 function isBound(x, y)
@@ -48,14 +48,20 @@ end
 
 
 function drawPlayer()
-  for i,part in ipairs(player.segments) do
-    love.graphics.setColor(1, 0, 0)
-    love.graphics.rectangle(
-      'fill',
-      (part.x-1) * cellSize,
-      (part.y-1) * cellSize,
-      cellSize,
-      cellSize
+  for i,segment in ipairs(player.segments) do
+    sprite = sprites.player_head
+    if segment.sprite == "horizontal_head" then
+      sprite = sprites.player_head
+    elseif segment.sprite == "horizontal_mid" then
+      sprite = sprites.player_mid
+    elseif segment.sprite == "horizontal_tail" then
+      sprite = sprites.player_tail
+    end
+
+    love.graphics.draw(
+      sprite,
+      (segment.x-1) * cellSize,
+      (segment.y-1) * cellSize
     )
   end
 end
