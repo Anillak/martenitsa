@@ -22,7 +22,7 @@ end
 function drawKnots()
   for i,knot in ipairs(knots) do
     knot.animation:draw(
-      sprites.coin_sheet,
+      sprites.knotsSheet,
       (knot.x - 1) * cellSize,
       (knot.y - 1) * cellSize)
   end

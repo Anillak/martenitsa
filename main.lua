@@ -52,8 +52,15 @@ function love.update(dt)
   end
 end
 
-
 function love.draw()
   drawPlayer()
   drawKnots()
+end
+
+function love.keypressed(key)
+  if key == "escape" then
+   love.event.quit()
+  end
+
+  keyPressPlayer(key)
 end
