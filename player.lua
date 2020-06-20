@@ -71,13 +71,13 @@ function drawPlayer()
 
     segment.animation:draw(
       image.sprite,
-      (segment.x-1) * cellSize + 15,
-      (segment.y-1) * cellSize + 15,
+      (segment.x-1) * cellSize + cellSize/2,
+      (segment.y-1) * cellSize + cellSize/2,
       math.rad(image.rotation),
       1,
       1,
-      15,
-      15
+      cellSize/2,
+      cellSize/2
     )
   end
 end
