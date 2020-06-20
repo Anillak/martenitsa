@@ -2,6 +2,7 @@ function love.load()
   gridX = 960
   gridY = 540
   love.window.setMode(gridX, gridY)
+  love.graphics.setBackgroundColor(1, 1, 1)
   cellSize = 30
 
   anim8 = require('anim8-master/anim8')
@@ -21,6 +22,7 @@ end
 
 function love.update(dt)
   updateKnots(dt)
+  updatePlayerAnimation(dt)
 
   timer = timer + dt
   local timerLimit = 0.15

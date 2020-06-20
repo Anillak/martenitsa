@@ -6,12 +6,12 @@ function loadPlayer()
   player.direction = {"right"}
 
   player.segments = {
-    {x = 6, y = 1},
-    {x = 5, y = 1},
-    {x = 4, y = 1},
-    {x = 3, y = 1},
-    {x = 2, y = 1},
-    {x = 1, y = 1}
+    createSegment(6, 1),
+    createSegment(5, 1),
+    createSegment(4, 1),
+    createSegment(3, 1),
+    createSegment(2, 1),
+    createSegment(1, 1),
   }
 end
 
@@ -36,7 +36,22 @@ function updatePlayer(dt)
 
   player.bound = isBound(newX, newY)
 
-  table.insert(player.segments, 1, {x = newX, y = newY})
+  table.insert(player.segments, 1, createSegment(newX, newY))
+end
+
+function updatePlayerAnimation(dt)
+  for i,segment in ipairs(player.segments) do
+    segment.animation:update(dt)
+  end
+end
+
+function createSegment(x, y)
+  segment = {}
+  segment.x = x
+  segment.y = y
+  segment.grid = anim8.newGrid(30, 30, 90, 30)
+  segment.animation = anim8.newAnimation(segment.grid('1-3', 1), 0.1)
+  return segment
 end
 
 function isBound(x, y)
@@ -54,7 +69,7 @@ function drawPlayer()
     local neighbours = findNeighbours(i, segment)
     local image = getSpriteAccordingToNeighbors(i, neighbours)
 
-    love.graphics.draw(
+    segment.animation:draw(
       image.sprite,
       (segment.x-1) * cellSize + 15,
       (segment.y-1) * cellSize + 15,
@@ -99,7 +114,7 @@ function getSpriteAccordingToNeighbors(i, neighbours)
   local image = {}
 
   if i == 1 then
-    image.sprite = sprites.horizontalHead
+    image.sprite = sprites.playerHead
     if neighbours["left"] then
       image.rotation = 0
     elseif neighbours["right"] then
@@ -110,7 +125,7 @@ function getSpriteAccordingToNeighbors(i, neighbours)
       image.rotation = 270
     end
   elseif i == #player.segments then
-    image.sprite = sprites.horizontalTail
+    image.sprite = sprites.playerTail
     if neighbours["right"] then
       image.rotation = 0
     elseif neighbours["left"] then
@@ -121,22 +136,22 @@ function getSpriteAccordingToNeighbors(i, neighbours)
       image.rotation = 270
     end
   elseif neighbours["left"] and neighbours["right"] then
-    image.sprite = sprites.horizontalMid
+    image.sprite = sprites.playerMid
     image.rotation = 0
   elseif neighbours["up"] and neighbours["down"] then
-    image.sprite = sprites.horizontalMid
+    image.sprite = sprites.playerMid
     image.rotation = 90
   elseif neighbours["left"] and neighbours["down"] then
-    image.sprite = sprites.curve
+    image.sprite = sprites.playerCurve
     image.rotation = 0
   elseif neighbours["left"] and neighbours["up"] then
-    image.sprite = sprites.curve
+    image.sprite = sprites.playerCurve
     image.rotation = 90
   elseif neighbours["right"] and neighbours["up"] then
-    image.sprite = sprites.curve
+    image.sprite = sprites.playerCurve
     image.rotation = 180
   elseif neighbours["right"] and neighbours["down"] then
-    image.sprite = sprites.curve
+    image.sprite = sprites.playerCurve
     image.rotation = 270
   end
 
