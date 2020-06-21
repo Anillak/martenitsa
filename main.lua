@@ -10,6 +10,7 @@ function love.load()
 --]]
 
   anim8 = require('anim8-master/anim8')
+  Timer = require('hump-master/timer')
   require('sprites')
   require('player')
   require('knot')
@@ -17,11 +18,12 @@ function love.load()
   require('scissors')
 
   function start()
+    Timer.clear()
     loadKnots()
     loadDoor(10, 10)
     loadScissors(20, 10)
     loadPlayer()
-    timer = 0
+    loadGame()
   end
 
   start()
@@ -33,41 +35,58 @@ function love.update(dt)
   updateDoor(dt)
   updateScissors(dt)
   updatePlayerAnimation(dt)
+  Timer.update(dt)
+end
 
-  timer = timer + dt
-  local timerLimit = 0.15
-  if timer >= timerLimit then
-    timer = timer - timerLimit
+function love.draw()
+  drawKnots()
+  drawDoor()
+  drawScissors()
+  ---[[
+  drawConsole()
+  --]]
+  drawPlayer()
+end
+
+function loadGame()
+  Timer.every(0.15, function()
     updatePlayer(dt)
 
-    if player.bound then
+    if player.bound or player.dead then
       start()
     else
+      ---[[
       for i,key in ipairs(door.keys) do
         if player.segments[1].x == key.x
         and player.segments[1].y == key.y then
           pressKey(key)
         end
       end
+      --]]
 
-      --[[
+      ---[[
       cutTail = -1
       for i,segment in ipairs(player.segments) do
         if segment.x == scissors.x + 1 and
         segment.y == scissors.y and
         scissors.cutting then
+          if i == 1 or i == 2 then
+            player.dead = true
+          end
+          scissors.cutting = false
           console = console .. "cutting at " .. i
           cutTail = #player.segments - i
+          break
         end
       end
-      if cutTail ~= -1 and #player.segments > 2 then
-        scissors.cutting = false
+      if cutTail ~= -1 and player.dead == false then
         for i=0,cutTail do
           table.remove(player.segments)
         end
       end
       --]]
 
+      ---[[
       collected = -1
       for i,knot in ipairs(knots) do
         if player.segments[1].x == knot.x
@@ -80,20 +99,12 @@ function love.update(dt)
       else
         table.remove(knots, collected)
       end
+      --]]
+
     end
-
-  end
+  end)
 end
 
-function love.draw()
-  drawKnots()
-  drawDoor()
-  drawScissors()
-  ---[[
-  drawConsole()
-  --]]
-  drawPlayer()
-end
 
 function drawConsole()
   love.graphics.setFont(font)

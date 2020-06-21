@@ -1,8 +1,8 @@
-player = {}
-player.segments = {}
-
 function loadPlayer()
+  player = {}
+  player.segments = {}
   player.bound = false
+  player.dead = false
   player.direction = {"right"}
 
   player.segments = {
