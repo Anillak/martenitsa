@@ -12,8 +12,10 @@ function love.load()
   Anim8 = require('anim8-master/anim8')
   Timer = require('hump-master/timer')
   require('sprites')
+  require('utils')
   require('player')
   require('knot')
+  require('checkpoint')
   require('door')
   require('scissors')
 
@@ -22,6 +24,7 @@ function love.load()
     loadKnots()
     loadDoor(10, 10)
     loadScissors(20, 10)
+    loadCheckpoints()
     loadPlayer()
     loadGame()
   end
@@ -32,6 +35,7 @@ end
 
 function love.update(dt)
   updateKnots(dt)
+  updateCheckpoints(dt)
   updateDoor(dt)
   updateScissors(dt)
   updatePlayerAnimation(dt)
@@ -40,6 +44,7 @@ end
 
 function love.draw()
   drawKnots()
+  drawCheckpoints()
   drawDoor()
   drawScissors()
   ---[[
@@ -52,15 +57,35 @@ function loadGame()
   Timer.every(0.2, function()
     updatePlayer(dt)
 
-    if player.bound or player.dead then
+    if player.dead then
+      console = console .. "Player died :("
       start()
+    elseif player.bound and complete then
+      console = console .. "Woohoo won!"
     else
       ---[[
-      for i,key in ipairs(door.keys) do
-        if player.segments[1].x == key.x
-        and player.segments[1].y == key.y then
-          pressKey(key)
+      for _,key in ipairs(door.keys) do
+        local pressed = false
+        for _,segment in ipairs(player.segments) do
+          if hit(segment, key) then
+            pressed = true
+          end
         end
+        if pressed then pressKey(key)
+        else releaseKey(key) end
+      end
+      --]]
+
+      ---[[
+      for _,checkpoint in ipairs(checkpoints) do
+        local pressed = false
+        for _,segment in ipairs(player.segments) do
+          if hit(segment, checkpoint) then
+            pressed = true
+          end
+        end
+        if pressed then check(checkpoint)
+        else uncheck(checkpoint) end
       end
       --]]
 
@@ -89,8 +114,7 @@ function loadGame()
       ---[[
       collected = -1
       for i,knot in ipairs(knots) do
-        if player.segments[1].x == knot.x
-        and player.segments[1].y == knot.y then
+        if hit(player.segments[1], knot) then
           collected = i
         end
       end

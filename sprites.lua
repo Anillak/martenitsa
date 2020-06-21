@@ -1,4 +1,5 @@
 sprites = {}
+sprites.checkpoint = love.graphics.newImage('sprites/checkpoint.png')
 sprites.knot = love.graphics.newImage('sprites/knot.png')
 sprites.key = love.graphics.newImage('sprites/key.png')
 sprites.door = love.graphics.newImage('sprites/door.png')
