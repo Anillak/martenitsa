@@ -4,8 +4,8 @@ function loadScissors(x, y)
   scissors.y = y
   scissors.cutting = false
 
-  scissors.grid = anim8.newGrid(60, 60, 240, 60)
-  scissors.animation = anim8.newAnimation(scissors.grid('1-4',1), 0.25)
+  scissors.grid = Anim8.newGrid(60, 60, 240, 60)
+  scissors.animation = Anim8.newAnimation(scissors.grid('1-4',1), 0.25)
   scissors.animation:pause()
 
   Timer.every(5, function()

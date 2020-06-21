@@ -9,7 +9,7 @@ function love.load()
   console = ""
 --]]
 
-  anim8 = require('anim8-master/anim8')
+  Anim8 = require('anim8-master/anim8')
   Timer = require('hump-master/timer')
   require('sprites')
   require('player')

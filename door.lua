@@ -4,8 +4,8 @@ function loadDoor(x, y)
   door.x = x
   door.y = y
   door.open = false
-  door.grid = anim8.newGrid(30, 30, 120, 30)
-  door.animation = anim8.newAnimation(door.grid('1-3', 1), 0.1)
+  door.grid = Anim8.newGrid(30, 30, 120, 30)
+  door.animation = Anim8.newAnimation(door.grid('1-3', 1), 0.1)
   door.animation:pause()
 
   door.keys = {}
@@ -49,8 +49,8 @@ function spawnKeys(x, y)
   key.y = y
   key.pressed = false
 
-  key.grid = anim8.newGrid(30, 30, 120, 30)
-  key.animation = anim8.newAnimation(key.grid('1-3',1), 0.1)
+  key.grid = Anim8.newGrid(30, 30, 120, 30)
+  key.animation = Anim8.newAnimation(key.grid('1-3',1), 0.1)
   key.animation:pause()
 
   table.insert(door.keys, key)

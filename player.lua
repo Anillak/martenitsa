@@ -49,8 +49,8 @@ function createSegment(x, y)
   segment = {}
   segment.x = x
   segment.y = y
-  segment.grid = anim8.newGrid(30, 30, 90, 30)
-  segment.animation = anim8.newAnimation(segment.grid('1-3', 1), 0.1)
+  segment.grid = Anim8.newGrid(30, 30, 90, 30)
+  segment.animation = Anim8.newAnimation(segment.grid('1-3', 1), 0.1)
   return segment
 end
 
