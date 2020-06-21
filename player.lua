@@ -40,7 +40,7 @@ function updatePlayer(dt)
 end
 
 function updatePlayerAnimation(dt)
-  for i,segment in ipairs(player.segments) do
+  for _,segment in ipairs(player.segments) do
     segment.animation:update(dt)
   end
 end

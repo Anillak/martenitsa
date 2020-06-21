@@ -17,7 +17,7 @@ end
 function updateDoor(dt)
   door.animation:update(dt)
   door.open = true
-  for i,key in ipairs(door.keys) do
+  for _,key in ipairs(door.keys) do
     key.animation:update(dt)
     if key.pressed ~= true then
       door.open = false
@@ -31,7 +31,7 @@ function updateDoor(dt)
 end
 
 function drawDoor()
-  for i,key in ipairs(door.keys) do
+  for _,key in ipairs(door.keys) do
     key.animation:draw(
       sprites.key,
       (key.x - 1) * cellSize,

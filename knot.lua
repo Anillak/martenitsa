@@ -14,13 +14,13 @@ function loadKnots()
 end
 
 function updateKnots(dt)
-  for i,knot in ipairs(knots) do
+  for _,knot in ipairs(knots) do
     knot.animation:update(dt)
   end
 end
 
 function drawKnots()
-  for i,knot in ipairs(knots) do
+  for _,knot in ipairs(knots) do
     knot.animation:draw(
       sprites.knot,
       (knot.x - 1) * cellSize,

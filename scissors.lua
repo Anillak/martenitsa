@@ -45,7 +45,7 @@ function drawScissors()
     (scissors.x - 1) * cellSize,
     (scissors.y - 1) * cellSize)
 
-  for i,segment in ipairs(scissors.deadSegments) do
+  for _,segment in ipairs(scissors.deadSegments) do
     segment.animation:draw(
       segment.sprite,
       (segment.x-1) * cellSize + cellSize/2,

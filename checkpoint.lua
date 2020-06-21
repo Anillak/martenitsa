@@ -9,13 +9,13 @@ function loadCheckpoints()
 end
 
 function updateCheckpoints(dt)
-  for i,checkpoint in ipairs(checkpoints) do
+  for _,checkpoint in ipairs(checkpoints) do
     checkpoint.animation:update(dt)
   end
 
   completed = 0
-  for i,c in ipairs(checkpoints) do
-    if checkpoint.covered == true then
+  for _,checkpoint in ipairs(checkpoints) do
+    if checkpoint.covered then
       completed = completed + 1
     end
   end
@@ -27,7 +27,7 @@ function updateCheckpoints(dt)
 end
 
 function drawCheckpoints()
-  for i,checkpoint in ipairs(checkpoints) do
+  for _,checkpoint in ipairs(checkpoints) do
     checkpoint.animation:draw(
       sprites.checkpoint,
       (checkpoint.x - 1) * cellSize,
