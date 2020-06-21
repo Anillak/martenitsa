@@ -74,18 +74,15 @@ function loadGame()
             player.dead = true
           end
           scissors.cutting = false
-          console = console .. "l: " .. #player.segments
           console = console .. "cutting at " .. i
           cutTail = #player.segments - i
-          console = console .. "will remove: " .. cutTail
           break
         end
       end
       if cutTail ~= -1 and player.dead == false then
         for i=1,cutTail do
-          table.remove(player.segments)
+          table.insert(scissors.deadSegments, table.remove(player.segments))
         end
-        console = console .. "l: " .. #player.segments
       end
       --]]
 

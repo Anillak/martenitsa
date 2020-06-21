@@ -68,6 +68,8 @@ function drawPlayer()
   for i,segment in ipairs(player.segments) do
     local neighbours = findNeighbours(i, segment)
     local image = getSpriteAccordingToNeighbors(i, neighbours)
+    segment.sprite = image.sprite
+    segment.rotation = image.rotation
 
     segment.animation:draw(
       image.sprite,
