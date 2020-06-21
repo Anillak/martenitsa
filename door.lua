@@ -1,6 +1,6 @@
-door = {}
-
 function loadDoor(x, y)
+  door = {}
+
   door.x = x
   door.y = y
   door.open = false

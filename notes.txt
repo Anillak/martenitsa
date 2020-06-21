@@ -1,1 +1,2 @@
 - figure out resolution
+- fix one segment player case

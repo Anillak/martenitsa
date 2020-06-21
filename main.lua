@@ -14,11 +14,13 @@ function love.load()
   require('player')
   require('knot')
   require('door')
+  require('scissors')
 
   function start()
-    loadPlayer()
     loadKnots()
     loadDoor(10, 10)
+    loadScissors(20, 10)
+    loadPlayer()
     timer = 0
   end
 
@@ -29,6 +31,7 @@ end
 function love.update(dt)
   updateKnots(dt)
   updateDoor(dt)
+  updateScissors(dt)
   updatePlayerAnimation(dt)
 
   timer = timer + dt
@@ -42,20 +45,36 @@ function love.update(dt)
     else
       for i,key in ipairs(door.keys) do
         if player.segments[1].x == key.x
-          and player.segments[1].y == key.y then
-            pressKey(key)
+        and player.segments[1].y == key.y then
+          pressKey(key)
         end
       end
+
+      --[[
+      cutTail = -1
+      for i,segment in ipairs(player.segments) do
+        if segment.x == scissors.x + 1 and
+        segment.y == scissors.y and
+        scissors.cutting then
+          console = console .. "cutting at " .. i
+          cutTail = #player.segments - i
+        end
+      end
+      if cutTail ~= -1 and #player.segments > 2 then
+        scissors.cutting = false
+        for i=0,cutTail do
+          table.remove(player.segments)
+        end
+      end
+      --]]
 
       collected = -1
-
       for i,knot in ipairs(knots) do
         if player.segments[1].x == knot.x
-          and player.segments[1].y == knot.y then
-            collected = i
+        and player.segments[1].y == knot.y then
+          collected = i
         end
       end
-
       if collected == -1 then
         table.remove(player.segments)
       else
@@ -67,10 +86,13 @@ function love.update(dt)
 end
 
 function love.draw()
-  drawPlayer()
   drawKnots()
   drawDoor()
+  drawScissors()
+  ---[[
   drawConsole()
+  --]]
+  drawPlayer()
 end
 
 function drawConsole()
@@ -79,6 +101,7 @@ function drawConsole()
   love.graphics.rectangle("fill", 0, 500, 960, 40)
   love.graphics.setColor(1, 1, 1)
   love.graphics.print("Console: " .. console, 10, 500)
+  love.graphics.print("PFS: " .. love.timer.getFPS(), 10, 520)
 end
 
 function love.keypressed(key)
