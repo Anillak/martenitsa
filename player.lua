@@ -49,7 +49,7 @@ function createSegment(x, y)
   segment = {}
   segment.x = x
   segment.y = y
-  segment.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*2, CELL_SIZE)
+  segment.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE)
   segment.animation = Anim8.newAnimation(segment.grid('1-2', 1), 0.1)
   return segment
 end
