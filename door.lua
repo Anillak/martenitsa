@@ -4,7 +4,7 @@ function loadDoor(x, y)
   door.x = x
   door.y = y
   door.open = false
-  door.grid = Anim8.newGrid(30, 30, 120, 30)
+  door.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
   door.animation = Anim8.newAnimation(door.grid('1-4', 1), 1)
   door.animation:pause()
 
@@ -34,14 +34,14 @@ function drawDoor()
   for _,key in ipairs(door.keys) do
     key.animation:draw(
       sprites.key,
-      (key.x - 1) * cellSize,
-      (key.y - 1) * cellSize)
+      (key.x - 1) * CELL_SIZE,
+      (key.y - 1) * CELL_SIZE)
   end
 
   door.animation:draw(
     sprites.door,
-    (door.x - 1) * cellSize,
-    (door.y - 1) * cellSize)
+    (door.x - 1) * CELL_SIZE,
+    (door.y - 1) * CELL_SIZE)
 end
 
 function spawnKeys(x, y)
@@ -50,7 +50,7 @@ function spawnKeys(x, y)
   key.y = y
   key.pressed = false
 
-  key.grid = Anim8.newGrid(30, 30, 120, 30)
+  key.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
   key.animation = Anim8.newAnimation(key.grid('1-4',1), 0.3)
   key.animation:pause()
 

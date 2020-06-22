@@ -1,8 +1,8 @@
 function love.load()
   gridX = 960
-  gridY = 540
+  gridY = 512
   love.graphics.setBackgroundColor(1, 1, 1)
-  cellSize = 30
+  CELL_SIZE = 32
 
 ---[[
   font = love.graphics.newFont(15)
@@ -133,10 +133,10 @@ end
 function drawConsole()
   love.graphics.setFont(font)
   love.graphics.setColor(0, 0, 0)
-  love.graphics.rectangle("fill", 0, 500, 960, 40)
+  love.graphics.rectangle("fill", 0, 470, 960, 42)
   love.graphics.setColor(1, 1, 1)
-  love.graphics.print("Console: " .. console, 10, 500)
-  love.graphics.print("PFS: " .. love.timer.getFPS(), 10, 520)
+  love.graphics.print("Console: " .. console, 10, 470)
+  love.graphics.print("PFS: " .. love.timer.getFPS(), 10, 490)
 end
 
 function love.keypressed(key)

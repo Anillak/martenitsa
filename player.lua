@@ -49,7 +49,7 @@ function createSegment(x, y)
   segment = {}
   segment.x = x
   segment.y = y
-  segment.grid = Anim8.newGrid(30, 30, 60, 30)
+  segment.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*2, CELL_SIZE)
   segment.animation = Anim8.newAnimation(segment.grid('1-2', 1), 0.1)
   return segment
 end
@@ -73,13 +73,13 @@ function drawPlayer()
 
     segment.animation:draw(
       image.sprite,
-      (segment.x-1) * cellSize + cellSize/2,
-      (segment.y-1) * cellSize + cellSize/2,
+      (segment.x-1) * CELL_SIZE + CELL_SIZE/2,
+      (segment.y-1) * CELL_SIZE + CELL_SIZE/2,
       math.rad(image.rotation),
       1,
       1,
-      cellSize/2,
-      cellSize/2
+      CELL_SIZE/2,
+      CELL_SIZE/2
     )
   end
 end

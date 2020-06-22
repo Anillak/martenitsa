@@ -30,8 +30,8 @@ function drawCheckpoints()
   for _,checkpoint in ipairs(checkpoints) do
     checkpoint.animation:draw(
       sprites.checkpoint,
-      (checkpoint.x - 1) * cellSize,
-      (checkpoint.y - 1) * cellSize)
+      (checkpoint.x - 1) * CELL_SIZE,
+      (checkpoint.y - 1) * CELL_SIZE)
   end
 end
 
@@ -41,7 +41,7 @@ function createCheckpoint(x, y)
   checkpoint.y = y
   checkpoint.covered = false
 
-  checkpoint.grid = Anim8.newGrid(30, 30, 90, 90)
+  checkpoint.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE*3)
   checkpoint.animation = Anim8.newAnimation(checkpoint.grid('1-3',1, '1-3',2, '1-2',3), 0.05)
 
   table.insert(checkpoints, checkpoint)

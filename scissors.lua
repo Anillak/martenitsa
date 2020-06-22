@@ -5,7 +5,8 @@ function loadScissors(x, y)
   scissors.cutting = false
   scissors.deadSegments = {}
 
-  scissors.grid = Anim8.newGrid(60, 60, 240, 60)
+  local size = CELL_SIZE*2
+  scissors.grid = Anim8.newGrid(size, size, size*4, size)
   scissors.animation = Anim8.newAnimation(scissors.grid('1-4',1), 0.25)
   scissors.animation:pause()
 
@@ -42,19 +43,19 @@ end
 function drawScissors()
   scissors.animation:draw(
     sprites.scissors,
-    (scissors.x - 1) * cellSize,
-    (scissors.y - 1) * cellSize)
+    (scissors.x - 1) * CELL_SIZE,
+    (scissors.y - 1) * CELL_SIZE)
 
   for _,segment in ipairs(scissors.deadSegments) do
     segment.animation:draw(
       segment.sprite,
-      (segment.x-1) * cellSize + cellSize/2,
-      (segment.y-1) * cellSize + cellSize/2,
+      (segment.x-1) * CELL_SIZE + CELL_SIZE/2,
+      (segment.y-1) * CELL_SIZE + CELL_SIZE/2,
       math.rad(segment.rotation),
       1,
       1,
-      cellSize/2,
-      cellSize/2
+      CELL_SIZE/2,
+      CELL_SIZE/2
     )
   end
 end
