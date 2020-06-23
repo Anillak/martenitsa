@@ -42,7 +42,7 @@ function createCheckpoint(x, y)
   checkpoint.covered = false
 
   checkpoint.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE*3)
-  checkpoint.animation = Anim8.newAnimation(checkpoint.grid('1-3',1, '1-3',2, '1-2',3), 0.05)
+  checkpoint.animation = Anim8.newAnimation(checkpoint.grid('1-3',1, '1-3',2, '1-3',3), {1, 0.1, 0.1, 0.2, 0.7, 0.2, 0.1, 0.1, 1})
 
   table.insert(checkpoints, checkpoint)
 end

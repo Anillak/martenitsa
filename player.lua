@@ -139,18 +139,10 @@ function getSpriteAccordingToNeighbors(i, neighbours)
     end
   elseif neighbours["left"] and neighbours["right"] then
     image.sprite = sprites.playerMid
-    if player.direction[1] == "right" then
-      image.rotation = 0
-    else
-      image.rotation = 180
-    end
+    image.rotation = 0
   elseif neighbours["up"] and neighbours["down"] then
     image.sprite = sprites.playerMid
-    if player.direction[1] == "down" then
-      image.rotation = 90
-    else
-      image.rotation = 270
-    end
+    image.rotation = 270
   elseif neighbours["left"] and neighbours["down"] then
     image.sprite = sprites.playerCurve
     image.rotation = 0

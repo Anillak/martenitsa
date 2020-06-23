@@ -54,7 +54,7 @@ function love.draw()
 end
 
 function loadGame()
-  Timer.every(0.2, function()
+  Timer.every(0.3, function()
     updatePlayer(dt)
 
     if player.dead then
