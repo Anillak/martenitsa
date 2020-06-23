@@ -30,8 +30,8 @@ end
 
 function spawnKnot()
   knot = {}
-  knot.x = love.math.random(1, gridX/CELL_SIZE)
-  knot.y = love.math.random(1, gridY/CELL_SIZE)
+  knot.x = love.math.random(2, gridX/CELL_SIZE - 1)
+  knot.y = love.math.random(2, gridY/CELL_SIZE - 1)
 
   knot.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE*3)
   knot.animation = Anim8.newAnimation(knot.grid('1-3',1, '1-3',2, '1-2',3), 0.05)

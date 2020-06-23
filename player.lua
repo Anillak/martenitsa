@@ -6,12 +6,11 @@ function loadPlayer()
   player.direction = {"right"}
 
   player.segments = {
-    createSegment(6, 1),
-    createSegment(5, 1),
-    createSegment(4, 1),
-    createSegment(3, 1),
-    createSegment(2, 1),
-    createSegment(1, 1),
+    createSegment(6, 3),
+    createSegment(5, 3),
+    createSegment(4, 3),
+    createSegment(3, 3),
+    createSegment(2, 3),
   }
 end
 
@@ -20,6 +19,14 @@ function updatePlayer(dt)
     table.remove(player.direction, 1)
   end
 
+  local newX, newY = nextPosition()
+
+  player.bound = isBound(newX, newY)
+
+  table.insert(player.segments, 1, createSegment(newX, newY))
+end
+
+function nextPosition()
   local newX = player.segments[1].x
   local newY = player.segments[1].y
 
@@ -33,10 +40,7 @@ function updatePlayer(dt)
     newY = newY - 1
   end
 
-
-  player.bound = isBound(newX, newY)
-
-  table.insert(player.segments, 1, createSegment(newX, newY))
+  return newX, newY
 end
 
 function updatePlayerAnimation(dt)
