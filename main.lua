@@ -26,7 +26,7 @@ function love.load()
     loadKnots()
     loadDoor(10, 10)
     loadScissors(20, 10)
-    loadCheckpoints()
+    loadGoal()
     loadPlayer()
     loadGame()
   end
@@ -38,7 +38,7 @@ end
 function love.update(dt)
   updateWalls(dt)
   updateKnots(dt)
-  updateCheckpoints(dt)
+  goal:update(dt)
   updateDoor(dt)
   updateScissors(dt)
   updatePlayerAnimation(dt)
@@ -48,7 +48,7 @@ end
 function love.draw()
   drawWalls()
   drawKnots()
-  drawCheckpoints()
+  goal:draw()
   drawDoor()
   drawScissors()
   ---[[
@@ -64,7 +64,7 @@ function loadGame()
     if player.dead then
       console = console .. "Player died :("
       start()
-    elseif player.bound and complete then
+    elseif player.bound and goal.complete then
       console = console .. "Woohoo won!"
     else
       newX, newY = nextPosition()
@@ -86,16 +86,7 @@ function loadGame()
       --]]
 
       ---[[
-      for _,checkpoint in ipairs(checkpoints) do
-        local pressed = false
-        for _,segment in ipairs(player.segments) do
-          if hit(segment, checkpoint) then
-            pressed = true
-          end
-        end
-        if pressed then check(checkpoint)
-        else uncheck(checkpoint) end
-      end
+      goal:checkForComplete(player)
       --]]
 
       ---[[
@@ -120,19 +111,7 @@ function loadGame()
       end
       --]]
 
-      ---[[
-      collected = -1
-      for i,knot in ipairs(knots) do
-        if hit(player.segments[1], knot) then
-          collected = i
-        end
-      end
-      if collected == -1 then
-        table.remove(player.segments)
-      else
-        table.remove(knots, collected)
-      end
-      --]]
+      eatKnots()
 
     end
   end)
