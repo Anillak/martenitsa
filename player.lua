@@ -31,13 +31,13 @@ function nextPosition()
   local newY = player.segments[1].y
 
   if player.direction[1] == "right" then
-    newX = newX + 1
+    newX = nextXPosition(newX)
   elseif player.direction[1] == "left" then
-    newX = newX - 1
+    newX = previousXPosition(newX)
   elseif player.direction[1] == "down" then
-    newY = newY + 1
+    newY = nextYPosition(newY)
   elseif player.direction[1] == "up" then
-    newY = newY - 1
+    newY = previousYPosition(newY)
   end
 
   return newX, newY
@@ -102,16 +102,16 @@ function findNeighbours(i, segment)
 end
 
 function checkNeighbour(segment, neighbour)
-  if neighbour.y == segment.y and neighbour.x == segment.x-1 then
+  if neighbour.y == segment.y and neighbour.x == previousXPosition(segment.x) then
     return "left"
   end
-  if neighbour.y == segment.y and neighbour.x == segment.x+1 then
+  if neighbour.y == segment.y and neighbour.x == nextXPosition(segment.x) then
     return "right"
   end
-  if neighbour.x == segment.x and neighbour.y == segment.y-1 then
+  if neighbour.x == segment.x and neighbour.y == previousYPosition(segment.y) then
     return "up"
   end
-  if neighbour.x == segment.x and neighbour.y == segment.y+1 then
+  if neighbour.x == segment.x and neighbour.y == nextYPosition(segment.y) then
     return "down"
   end
 end
@@ -182,4 +182,36 @@ function keyPressPlayer(key)
     and player.direction[#player.direction] ~= "down" then
       table.insert(player.direction, "up")
   end
+end
+
+function nextXPosition(x)
+  return nextPos(x, gridX)
+end
+
+function previousXPosition(x)
+  return previousPos(x, gridX)
+end
+
+function nextYPosition(y)
+  return nextPos(y, gridY)
+end
+
+function previousYPosition(y)
+  return previousPos(y, gridY)
+end
+
+function nextPos(pos, gridSize)
+  pos = pos + 1
+  if pos > gridSize/CELL_SIZE then
+    pos = 1
+  end
+  return pos
+end
+
+function previousPos(pos, gridSize)
+  pos = pos - 1
+  if pos < 1 then
+    pos = gridSize/CELL_SIZE
+  end
+  return pos
 end

@@ -11,15 +11,10 @@ function loadWalls()
     end
   end
 
-
-  for i=1,30 do
-    createWall(i, 1)
-    createWall(i, 16)
-  end
-  for j=1,16 do
-    createWall(1, j)
-    createWall(30, j)
-  end
+  createWall(18, 5)
+  createWall(18, 6)
+  createWall(18, 7)
+  createWall(19, 8)
 end
 
 function updateWalls(dt)
