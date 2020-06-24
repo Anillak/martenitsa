@@ -59,12 +59,11 @@ function createSegment(x, y)
 end
 
 function isBound(x, y)
-  for i, segment in ipairs(player.segments) do
-    if i ~= #player.segments
-      and x == segment.x
-      and y == segment.y then
-        return true
-    end
+  if (x == player.segments[#player.segments-1].x
+  and y == player.segments[#player.segments-1].y)
+  or (x == player.segments[#player.segments-2].x
+  and y == player.segments[#player.segments-1].y) then
+    return true
   end
 end
 
