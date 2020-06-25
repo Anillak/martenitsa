@@ -11,6 +11,7 @@ function love.load()
 
   Anim8 = require('anim8-master/anim8')
   Timer = require('hump-master/timer')
+  Signal = require('hump-master/signal')
   require('wall')
   require('sprites')
   require('utils')
@@ -24,7 +25,7 @@ function love.load()
     Timer.clear()
     loadWalls()
     loadKnots()
-    loadDoor(10, 10)
+    loadDoors()
     loadScissors()
     loadGoal()
     loadPlayer()
@@ -36,10 +37,9 @@ function love.load()
 end
 
 function love.update(dt)
-  updateWalls(dt)
-  updateKnots(dt)
   goal:update(dt)
-  updateDoor(dt)
+  updateKnots(dt)
+  updateDoors(dt)
   updateScissors(dt)
   updatePlayerAnimation(dt)
   Timer.update(dt)
@@ -49,7 +49,7 @@ function love.draw()
   drawWalls()
   drawKnots()
   goal:draw()
-  drawDoor()
+  drawDoors()
   drawScissors()
   ---[[
   drawConsole()
@@ -68,13 +68,13 @@ function loadGame()
       console = console .. "Woohoo won!"
     else
       newX, newY = nextPosition()
-      
+
       if walls.indices[newX][newY] then
         player.dead = true
       end
 
-      door:checkForOpen(player)
       goal:checkForComplete(player)
+      openDoors()
       getCutByScissors()
       eatKnots()
 

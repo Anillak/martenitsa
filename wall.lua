@@ -1,4 +1,22 @@
 
+Wall = {}
+
+function Wall:new(o, x, y)
+   o = o or {}
+   setmetatable(o, self)
+   self.__index = self
+   o.x = x
+   o.y = y
+
+   return o
+end
+
+function Wall:draw()
+  love.graphics.draw(sprites.wall,
+    (self.x - 1) * CELL_SIZE,
+    (self.y - 1) * CELL_SIZE)
+end
+
 function loadWalls()
   walls = {}
   walls.indices = {}
@@ -11,29 +29,22 @@ function loadWalls()
     end
   end
 
+  Signal.register('open door', function(x,y) walls.indices[x][y] = false end)
+
   createWall(18, 5)
   createWall(18, 6)
   createWall(18, 7)
   createWall(19, 8)
 end
 
-function updateWalls(dt)
-
-end
-
 function drawWalls()
-  for i,wall in ipairs(walls) do
-    love.graphics.draw(sprites.wall,
-      (wall.x - 1) * CELL_SIZE,
-      (wall.y - 1) * CELL_SIZE)
+  for _,wall in ipairs(walls) do
+    wall:draw()
   end
 end
 
 function createWall(x, y)
-  wall = {}
-  wall.x = x
-  wall.y = y
-
+  wall = Wall:new({}, x, y)
   walls.indices[x][y] = true
   table.insert(walls, wall)
 end

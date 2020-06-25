@@ -59,13 +59,16 @@ end
 
 function Door:update(dt)
   self.animation:update(dt)
-  self.open = true
-  for _,key in ipairs(self) do
-    key:update(dt)
-  end
-  if self.open then
-    self.animation:resume()
-    self.animation:pauseAtEnd()
+  if self.open ~= true then
+    self.open = true
+    for _,key in ipairs(self) do
+      key:update(dt)
+    end
+    if self.open then
+      Signal.emit('open door', self.x, self.y)
+      self.animation:resume()
+      self.animation:pauseAtEnd()
+    end
   end
 end
 
@@ -98,16 +101,21 @@ function Door:addKey(x, y)
   table.insert(self, k)
 end
 
-function loadDoor(x, y)
-  door = Door:new({}, x, y)
+function loadDoors()
+  door = Door:new({}, 10, 10)
+  walls.indices[10][10] = true
   door:addKey(15, 11)
   door:addKey(15, 14)
 end
 
-function updateDoor(dt)
+function updateDoors(dt)
   door:update(dt)
 end
 
-function drawDoor()
+function drawDoors()
   door:draw()
+end
+
+function openDoors()
+  door:checkForOpen(player)
 end
