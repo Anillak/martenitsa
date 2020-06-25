@@ -1,76 +1,59 @@
-function loadPlayer()
-  player = {}
-  player.segments = {}
-  player.bound = false
-  player.dead = false
-  player.direction = {"right"}
+Player = {}
 
-  player.segments = {
-    createSegment(6, 3),
-    createSegment(5, 3),
-    createSegment(4, 3),
-    createSegment(3, 3),
-    createSegment(2, 3),
-  }
+function Player:new(o, x, y, length, direction)
+   o = o or {}
+   setmetatable(o, self)
+   self.__index = self
+   o.x = x
+   o.y = y
+   o.segments = {}
+   o.bound = false
+   o.dead = false
+   o.direction = {direction}
+
+   for i=0,length-1 do
+     table.insert(o.segments, self:createSegment(x-i, y))
+   end
+   return o
 end
 
-function updatePlayer(dt)
-  if #player.direction > 1 then
-    table.remove(player.direction, 1)
-  end
-
-  local newX, newY = nextPosition()
-
-  player.bound = isBound(newX, newY)
-
-  table.insert(player.segments, 1, createSegment(newX, newY))
-end
-
-function nextPosition()
-  local newX = player.segments[1].x
-  local newY = player.segments[1].y
-
-  if player.direction[1] == "right" then
-    newX = nextXPosition(newX)
-  elseif player.direction[1] == "left" then
-    newX = previousXPosition(newX)
-  elseif player.direction[1] == "down" then
-    newY = nextYPosition(newY)
-  elseif player.direction[1] == "up" then
-    newY = previousYPosition(newY)
-  end
-
-  return newX, newY
-end
-
-function updatePlayerAnimation(dt)
-  for _,segment in ipairs(player.segments) do
-    segment.animation:update(dt)
-  end
-end
-
-function createSegment(x, y)
+function Player:createSegment(x, y)
   segment = {}
   segment.x = x
   segment.y = y
   segment.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE)
-  segment.animation = Anim8.newAnimation(segment.grid('1-2', 1), 0.1)
+  segment.animation = Anim8.newAnimation(segment.grid('1-3', 1), 0.1)
   return segment
 end
 
-function isBound(x, y)
-  if (x == player.segments[#player.segments-1].x
-  and y == player.segments[#player.segments-1].y)
-  or (x == player.segments[#player.segments-2].x
-  and y == player.segments[#player.segments-1].y) then
+function Player:updateAnimation(dt)
+  for _,segment in ipairs(self.segments) do
+    segment.animation:update(dt)
+  end
+end
+
+function Player:update(dt)
+  if #self.direction > 1 then
+    table.remove(self.direction, 1)
+  end
+  local newX, newY = self:next()
+  self.bound = self:isBound(newX, newY)
+  table.insert(self.segments, 1, self:createSegment(newX, newY))
+end
+
+function Player:isBound(x, y)
+  if (x == self.segments[#self.segments-1].x
+  and y == self.segments[#self.segments-1].y)
+  or (x == self.segments[#self.segments-2].x
+  and y == self.segments[#self.segments-2].y) then
     return true
   end
 end
 
-function drawPlayer()
-  for i,segment in ipairs(player.segments) do
-    local neighbours = findNeighbours(i, segment)
-    local image = getSpriteAccordingToNeighbors(i, neighbours)
+function Player:draw()
+  for i,segment in ipairs(self.segments) do
+    local neighbours = self:findNeighbours(i, segment)
+    local image = self:getSpriteAccordingToNeighbors(i, neighbours)
     segment.sprite = image.sprite
     segment.rotation = image.rotation
 
@@ -87,20 +70,20 @@ function drawPlayer()
   end
 end
 
-function findNeighbours(i, segment)
+function Player:findNeighbours(i, segment)
   local neighbours = {}
   if i == 1 then
-    neighbours[checkNeighbour(segment, player.segments[i+1])] = true
-  elseif i == #player.segments then
-    neighbours[checkNeighbour(segment, player.segments[i-1])] = true
+    neighbours[self:checkNeighbour(segment, self.segments[i+1])] = true
+  elseif i == #self.segments then
+    neighbours[self:checkNeighbour(segment, self.segments[i-1])] = true
   else
-    neighbours[checkNeighbour(segment, player.segments[i-1])] = true
-    neighbours[checkNeighbour(segment, player.segments[i+1])] = true
+    neighbours[self:checkNeighbour(segment, self.segments[i-1])] = true
+    neighbours[self:checkNeighbour(segment, self.segments[i+1])] = true
   end
   return neighbours
 end
 
-function checkNeighbour(segment, neighbour)
+function Player:checkNeighbour(segment, neighbour)
   if neighbour.y == segment.y and neighbour.x == previousXPosition(segment.x) then
     return "left"
   end
@@ -115,7 +98,7 @@ function checkNeighbour(segment, neighbour)
   end
 end
 
-function getSpriteAccordingToNeighbors(i, neighbours)
+function Player:getSpriteAccordingToNeighbors(i, neighbours)
   local image = {}
 
   if i == 1 then
@@ -129,7 +112,7 @@ function getSpriteAccordingToNeighbors(i, neighbours)
     elseif neighbours["down"] then
       image.rotation = 270
     end
-  elseif i == #player.segments then
+  elseif i == #self.segments then
     image.sprite = sprites.playerTail
     if neighbours["right"] then
       image.rotation = 0
@@ -163,24 +146,41 @@ function getSpriteAccordingToNeighbors(i, neighbours)
   return image
 end
 
-function keyPressPlayer(key)
+function Player:keyPress(key)
   if key == "right"
-    and player.direction[#player.direction] ~= "right"
-    and player.direction[#player.direction] ~= "left" then
-      table.insert(player.direction, "right")
+    and self.direction[#self.direction] ~= "right"
+    and self.direction[#self.direction] ~= "left" then
+      table.insert(self.direction, "right")
   elseif key == "left"
-    and player.direction[#player.direction] ~= "left"
-    and player.direction[#player.direction] ~= "right" then
-      table.insert(player.direction, "left")
+    and self.direction[#self.direction] ~= "left"
+    and self.direction[#self.direction] ~= "right" then
+      table.insert(self.direction, "left")
   elseif key == "down"
-    and player.direction[#player.direction] ~= "down"
-    and player.direction[#player.direction] ~= "up" then
-      table.insert(player.direction, "down")
+    and self.direction[#self.direction] ~= "down"
+    and self.direction[#self.direction] ~= "up" then
+      table.insert(self.direction, "down")
   elseif key == "up"
-    and player.direction[#player.direction] ~= "up"
-    and player.direction[#player.direction] ~= "down" then
-      table.insert(player.direction, "up")
+    and self.direction[#self.direction] ~= "up"
+    and self.direction[#self.direction] ~= "down" then
+      table.insert(self.direction, "up")
   end
+end
+
+function Player:next()
+  local newX = self.segments[1].x
+  local newY = self.segments[1].y
+
+  if self.direction[1] == "right" then
+    newX = nextXPosition(newX)
+  elseif self.direction[1] == "left" then
+    newX = previousXPosition(newX)
+  elseif self.direction[1] == "down" then
+    newY = nextYPosition(newY)
+  elseif self.direction[1] == "up" then
+    newY = previousYPosition(newY)
+  end
+
+  return newX, newY
 end
 
 function nextXPosition(x)

@@ -28,7 +28,7 @@ function love.load()
     loadDoors()
     loadScissors()
     loadGoal()
-    loadPlayer()
+    player = Player:new({}, 6, 3, 5, "right")
     loadGame()
   end
 
@@ -41,7 +41,7 @@ function love.update(dt)
   updateKnots(dt)
   updateDoors(dt)
   updateScissors(dt)
-  updatePlayerAnimation(dt)
+  player:updateAnimation(dt)
   Timer.update(dt)
 end
 
@@ -54,12 +54,12 @@ function love.draw()
   ---[[
   drawConsole()
   --]]
-  drawPlayer()
+  player:draw()
 end
 
 function loadGame()
   Timer.every(0.3, function()
-    updatePlayer(dt)
+    player:update(dt)
 
     if player.dead then
       console = console .. "Player died :("
@@ -67,7 +67,7 @@ function loadGame()
     elseif player.bound and goal.complete then
       console = console .. "Woohoo won!"
     else
-      newX, newY = nextPosition()
+      newX, newY = player:next()
 
       if walls.indices[newX][newY] then
         player.dead = true
@@ -97,5 +97,5 @@ function love.keypressed(key)
    love.event.quit()
   end
 
-  keyPressPlayer(key)
+  player:keyPress(key)
 end
