@@ -1,72 +1,113 @@
+Key = {}
+
+function Key:new(o, x, y, door)
+   o = o or {}
+   setmetatable(o, self)
+   self.__index = self
+   o.x = x
+   o.y = y
+   o.pressed = false
+   o.door = door
+
+   o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
+   o.animation = Anim8.newAnimation(o.grid('1-4',1), 0.3)
+   o.animation:pause()
+
+   return o
+end
+
+function Key:update(dt)
+  self.animation:update(dt)
+  if self.pressed ~= true then
+    self.door.open = false
+  end
+end
+function Key:draw()
+  self.animation:draw(
+    sprites.key,
+    (self.x - 1) * CELL_SIZE,
+    (self.y - 1) * CELL_SIZE)
+end
+function Key:print() return " " .. self.x .. " " .. self.y end
+function Key:press()
+  self.animation:resume()
+  self.animation:pauseAtEnd()
+  self.pressed = true
+end
+function Key:release()
+  if self.door.open == false then
+    -- animation for key release
+    self.pressed = false
+  end
+end
+
+Door = {}
+
+function Door:new(o, x, y)
+   o = o or {}
+   setmetatable(o, self)
+   self.__index = self
+   o.x = x
+   o.y = y
+   o.open = false
+   o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
+   o.animation = Anim8.newAnimation(o.grid('1-4', 1), 1)
+   o.animation:pause()
+
+   return o
+end
+
+function Door:update(dt)
+  self.animation:update(dt)
+  self.open = true
+  for _,key in ipairs(self) do
+    key:update(dt)
+  end
+  if self.open then
+    self.animation:resume()
+    self.animation:pauseAtEnd()
+  end
+end
+
+function Door:draw()
+  for _,key in ipairs(self) do
+    key:draw()
+  end
+
+  self.animation:draw(
+    sprites.door,
+    (self.x - 1) * CELL_SIZE,
+    (self.y - 1) * CELL_SIZE)
+end
+
+function Door:checkForOpen(p)
+  for _,key in ipairs(self) do
+    local pressed = false
+    for _,segment in ipairs(p.segments) do
+      if hit(segment, key) then
+        pressed = true
+      end
+    end
+    if pressed then key:press()
+    else key:release() end
+  end
+end
+
+function Door:addKey(x, y)
+  k = Key:new({}, x, y, self)
+  table.insert(self, k)
+end
+
 function loadDoor(x, y)
-  door = {}
-
-  door.x = x
-  door.y = y
-  door.open = false
-  door.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
-  door.animation = Anim8.newAnimation(door.grid('1-4', 1), 1)
-  door.animation:pause()
-
-  door.keys = {}
-  spawnKeys(15, 11)
-  spawnKeys(15, 14)
-
+  door = Door:new({}, x, y)
+  door:addKey(15, 11)
+  door:addKey(15, 14)
 end
 
 function updateDoor(dt)
-  door.animation:update(dt)
-  door.open = true
-  for _,key in ipairs(door.keys) do
-    key.animation:update(dt)
-    if key.pressed ~= true then
-      door.open = false
-    end
-  end
-  if door.open then
-    door.animation:resume()
-    door.animation:pauseAtEnd()
-  end
-
+  door:update(dt)
 end
 
 function drawDoor()
-  for _,key in ipairs(door.keys) do
-    key.animation:draw(
-      sprites.key,
-      (key.x - 1) * CELL_SIZE,
-      (key.y - 1) * CELL_SIZE)
-  end
-
-  door.animation:draw(
-    sprites.door,
-    (door.x - 1) * CELL_SIZE,
-    (door.y - 1) * CELL_SIZE)
-end
-
-function spawnKeys(x, y)
-  key = {}
-  key.x = x
-  key.y = y
-  key.pressed = false
-
-  key.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
-  key.animation = Anim8.newAnimation(key.grid('1-4',1), 0.3)
-  key.animation:pause()
-
-  table.insert(door.keys, key)
-end
-
-function pressKey(key)
-  key.animation:resume()
-  key.animation:pauseAtEnd()
-  key.pressed = true
-end
-
-function releaseKey(key)
-  if door.open == false then
-    -- animation for key release
-    key.pressed = false
-  end
-
+  door:draw()
 end

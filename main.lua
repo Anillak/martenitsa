@@ -68,27 +68,13 @@ function loadGame()
       console = console .. "Woohoo won!"
     else
       newX, newY = nextPosition()
+      
       if walls.indices[newX][newY] then
         player.dead = true
       end
 
-      ---[[
-      for _,key in ipairs(door.keys) do
-        local pressed = false
-        for _,segment in ipairs(player.segments) do
-          if hit(segment, key) then
-            pressed = true
-          end
-        end
-        if pressed then pressKey(key)
-        else releaseKey(key) end
-      end
-      --]]
-
-      ---[[
+      door:checkForOpen(player)
       goal:checkForComplete(player)
-      --]]
-
       getCutByScissors()
       eatKnots()
 
