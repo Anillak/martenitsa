@@ -50,6 +50,7 @@ end
 
 function love.draw()
   map:drawLayer(map.layers["tiles"])
+  map:drawLayer(map.layers["elements"])
   drawWalls()
   drawKnots()
   goal:draw()
