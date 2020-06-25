@@ -31,10 +31,9 @@ function loadWalls()
 
   Signal.register('open door', function(x,y) walls.indices[x][y] = false end)
 
-  createWall(18, 5)
-  createWall(18, 6)
-  createWall(18, 7)
-  createWall(19, 8)
+  for i,o in ipairs(map.layers["walls"].objects) do
+    createWall(o.x/CELL_SIZE, o.y/CELL_SIZE)
+  end
 end
 
 function drawWalls()

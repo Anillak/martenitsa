@@ -25,14 +25,9 @@ function Knot:print() return " " .. self.x .. " " .. self.y end
 function loadKnots()
   knots = {}
 
-  createKnot(10, 10)
-  createKnot(1, 2)
-  createKnot(1, 3)
-  createKnot(4, 4)
-  createKnot(20, 20)
-  createKnot(5, 5)
-  createKnot(6, 7)
-  createKnot(7, 7)
+  for i,o in ipairs(map.layers["knots"].objects) do
+    createKnot(o.x/CELL_SIZE, o.y/CELL_SIZE)
+  end
 end
 
 function createKnot(x, y)
