@@ -25,7 +25,7 @@ function love.load()
     loadWalls()
     loadKnots()
     loadDoor(10, 10)
-    loadScissors(20, 10)
+    loadScissors()
     loadGoal()
     loadPlayer()
     loadGame()
@@ -89,28 +89,7 @@ function loadGame()
       goal:checkForComplete(player)
       --]]
 
-      ---[[
-      cutTail = -1
-      for i,segment in ipairs(player.segments) do
-        if segment.x == scissors.x + 1 and
-        segment.y == scissors.y and
-        scissors.cutting then
-          if i == 1 or i == 2 then
-            player.dead = true
-          end
-          scissors.cutting = false
-          console = console .. "cutting at " .. i
-          cutTail = #player.segments - i
-          break
-        end
-      end
-      if cutTail ~= -1 and player.dead == false then
-        for i=1,cutTail do
-          table.insert(scissors.deadSegments, table.remove(player.segments))
-        end
-      end
-      --]]
-
+      getCutByScissors()
       eatKnots()
 
     end
