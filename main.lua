@@ -19,7 +19,7 @@ function love.load()
   Player = require 'player'
   knots = require 'knots'
   Goal = require 'goal'
-  require('door')
+  doors = require 'doors'
   scissors = require 'scissors'
 
   function start()
@@ -27,10 +27,10 @@ function love.load()
     map = Sti("maps/level1.lua")
     walls.load(map)
     knots.load(map)
-    loadDoors()
+    doors.load(map)
     scissors.load(map)
     goal = Goal:new(map)
-    player = Player:new({}, 6, 3, 5, "right")
+    player = Player:new({}, 6, 6, 5, "right")
     loadGame()
   end
 
@@ -42,7 +42,7 @@ function love.update(dt)
   map:update(dt)
   goal:update(dt)
   knots.update(dt)
-  updateDoors(dt)
+  doors.update(dt)
   scissors.update(dt)
   player:updateAnimation(dt)
   Timer.update(dt)
@@ -54,7 +54,7 @@ function love.draw()
   walls.draw()
   knots.draw()
   goal:draw()
-  drawDoors()
+  doors.draw()
   scissors.draw()
   ---[[
   drawConsole()
@@ -79,7 +79,7 @@ function loadGame()
       end
 
       goal:check(player)
-      openDoors()
+      player:open(doors.get())
       player:getCutBy(scissors.get())
       player:eat(knots.get())
 

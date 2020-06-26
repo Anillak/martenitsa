@@ -174,6 +174,12 @@ function Player:getCutBy(scissors)
   end
 end
 
+function Player:open(doors)
+  for _,d in ipairs(doors) do
+    d:checkIfOpenBy(self)
+  end
+end
+
 function Player:keyPress(key)
   if key == "right"
     and self.direction[#self.direction] ~= "right"

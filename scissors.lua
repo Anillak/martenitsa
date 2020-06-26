@@ -1,4 +1,4 @@
-Scissors = {}
+local Scissors = {}
 
 function Scissors:new(o, x, y)
    o = o or {}

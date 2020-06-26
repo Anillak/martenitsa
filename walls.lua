@@ -39,6 +39,7 @@ function W.load(map)
     end
   end
 
+  Signal.register('create door', function(x,y) W.walls.indices[x][y] = true end)
   Signal.register('open door', function(x,y) W.walls.indices[x][y] = false end)
 
   for i,o in ipairs(map.layers["walls"].objects) do

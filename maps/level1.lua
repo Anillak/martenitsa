@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 9,
-  nextobjectid = 22,
+  nextlayerid = 12,
+  nextobjectid = 28,
   properties = {},
   tilesets = {
     {
@@ -354,6 +354,77 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 9,
+      name = "doors",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 22,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 512,
+          y = 192,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Number"] = 1
+          }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 11,
+      name = "keys",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 24,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 288,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Door"] = 1
+          }
+        },
+        {
+          id = 26,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 224,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Door"] = 1
+          }
         }
       }
     }

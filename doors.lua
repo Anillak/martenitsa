@@ -1,4 +1,4 @@
-Key = {}
+local Key = {}
 
 function Key:new(o, x, y, door)
    o = o or {}
@@ -41,7 +41,7 @@ function Key:release()
   end
 end
 
-Door = {}
+local Door = {}
 
 function Door:new(o, x, y)
    o = o or {}
@@ -83,7 +83,7 @@ function Door:draw()
     (self.y - 1) * CELL_SIZE)
 end
 
-function Door:checkForOpen(p)
+function Door:checkIfOpenBy(p)
   for _,key in ipairs(self) do
     local pressed = false
     for _,segment in ipairs(p.segments) do
@@ -101,21 +101,44 @@ function Door:addKey(x, y)
   table.insert(self, k)
 end
 
-function loadDoors()
-  door = Door:new({}, 10, 10)
-  -- fix this walls.indices[10][10] = true
-  door:addKey(15, 11)
-  door:addKey(15, 14)
+D = {}
+
+function D.load(map)
+  assert(map, "Doors needs a map to load.")
+  assert(map.layers["doors"].objects, "No doors defined in the map")
+  assert(map.layers["keys"].objects, "No keys defined in the map")
+  D.doors = {}
+
+  for _,o in ipairs(map.layers["doors"].objects) do
+    local door = Door:new({}, o.x/CELL_SIZE, o.y/CELL_SIZE)
+    local n = o.properties["Number"]
+    assert(n, "Door doesn't have a number")
+    Signal.emit('create door', door.x, door.y)
+    for _,k in ipairs(map.layers["keys"].objects) do
+      local d = k.properties["Door"]
+      assert(d, "Key is not assigned to a door")
+      if n == d then
+        door:addKey(k.x/CELL_SIZE, k.y/CELL_SIZE)
+      end
+    end
+    table.insert(D.doors, door)
+  end
 end
 
-function updateDoors(dt)
-  door:update(dt)
+function D.update(dt)
+  for _,d in ipairs(D.doors) do
+    d:update(dt)
+  end
 end
 
-function drawDoors()
-  door:draw()
+function D.draw()
+  for _,d in ipairs(D.doors) do
+    d:draw()
+  end
 end
 
-function openDoors()
-  door:checkForOpen(player)
+function D.get()
+  return D.doors
 end
+
+return D
