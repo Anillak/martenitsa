@@ -13,20 +13,20 @@ function love.load()
   Timer = require 'lib/hump-master/timer'
   Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
-  require('wall')
-  require('sprites')
-  require('utils')
+  require 'sprites'
+  require 'utils'
+  walls = require 'walls'
   Player = require 'player'
-  require('knot')
-  Goal = require 'checkpoint'
+  knots = require 'knots'
+  Goal = require 'goal'
   require('door')
   require('scissors')
 
   function start()
     Timer.clear()
     map = Sti("maps/level1.lua")
-    loadWalls()
-    loadKnots()
+    walls.load(map)
+    knots.load(map)
     loadDoors()
     loadScissors()
     goal = Goal:new(map)
@@ -41,7 +41,7 @@ end
 function love.update(dt)
   goal:update(dt)
   map:update(dt)
-  updateKnots(dt)
+  knots.update(dt)
   updateDoors(dt)
   updateScissors(dt)
   player:updateAnimation(dt)
@@ -51,8 +51,8 @@ end
 function love.draw()
   map:drawLayer(map.layers["tiles"])
   map:drawLayer(map.layers["elements"])
-  drawWalls()
-  drawKnots()
+  walls.draw()
+  knots.draw()
   goal:draw()
   drawDoors()
   drawScissors()
@@ -74,14 +74,14 @@ function loadGame()
     else
       newX, newY = player:next()
 
-      if walls.indices[newX][newY] then
+      if walls.isWall(newX, newY) then
         player.dead = true
       end
 
       goal:check(player)
       openDoors()
       getCutByScissors()
-      eatKnots()
+      player:eat(knots.toEat())
 
     end
   end)

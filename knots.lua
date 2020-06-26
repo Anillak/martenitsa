@@ -1,4 +1,4 @@
-Knot = {}
+local Knot = {}
 
 function Knot:new(o, x, y)
    o = o or {}
@@ -22,41 +22,37 @@ function Knot:draw()
 end
 function Knot:print() return " " .. self.x .. " " .. self.y end
 
-function loadKnots()
-  knots = {}
+K = {}
+
+local function create(x, y)
+  local k = Knot:new({}, x, y)
+  table.insert(K.knots, k)
+end
+
+function K.load(map)
+  assert(map, "Knots needs a map to load.")
+  assert(map.layers["knots"].objects, "No knots defined in the map")
+  K.knots = {}
 
   for i,o in ipairs(map.layers["knots"].objects) do
-    createKnot(o.x/CELL_SIZE, o.y/CELL_SIZE)
+    create(o.x/CELL_SIZE, o.y/CELL_SIZE)
   end
 end
 
-function createKnot(x, y)
-  local k = Knot:new({}, x, y)
-  table.insert(knots, k)
-end
-
-function updateKnots(dt)
-  for _,k in ipairs(knots) do
+function K.update(dt)
+  for _,k in ipairs(K.knots) do
     k:update(dt)
   end
 end
 
-function drawKnots()
-  for _,k in ipairs(knots) do
+function K.draw()
+  for _,k in ipairs(K.knots) do
     k:draw()
   end
 end
 
-function eatKnots()
-  collected = -1
-  for i,knot in ipairs(knots) do
-    if hit(player.segments[1], knot) then
-      collected = i
-    end
-  end
-  if collected == -1 then
-    table.remove(player.segments)
-  else
-    table.remove(knots, collected)
-  end
+function K.toEat()
+  return K.knots
 end
+
+return K

@@ -103,7 +103,7 @@ end
 
 function loadDoors()
   door = Door:new({}, 10, 10)
-  walls.indices[10][10] = true
+  -- fix this walls.indices[10][10] = true
   door:addKey(15, 11)
   door:addKey(15, 14)
 end

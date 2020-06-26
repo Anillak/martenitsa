@@ -154,6 +154,20 @@ function Player:getSpriteAccordingToNeighbors(i, neighbours)
   return image
 end
 
+function Player:eat(knots)
+  collected = -1
+  for i,knot in ipairs(knots) do
+    if hit(self.segments[1], knot) then
+      collected = i
+    end
+  end
+  if collected == -1 then
+    table.remove(self.segments)
+  else
+    table.remove(knots, collected)
+  end
+end
+
 function Player:keyPress(key)
   if key == "right"
     and self.direction[#self.direction] ~= "right"
