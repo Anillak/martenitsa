@@ -9,16 +9,16 @@ function love.load()
   console = ""
 --]]
 
-  Anim8 = require('anim8-master/anim8')
-  Timer = require('hump-master/timer')
-  Signal = require('hump-master/signal')
-  Sti = require('sti-master/sti')
+  Anim8 = require 'lib/anim8-master/anim8'
+  Timer = require 'lib/hump-master/timer'
+  Signal = require 'lib/hump-master/signal'
+  Sti = require 'lib/sti-master/sti'
   require('wall')
   require('sprites')
   require('utils')
-  require('player')
+  Player = require 'player'
   require('knot')
-  require('checkpoint')
+  Goal = require 'checkpoint'
   require('door')
   require('scissors')
 
@@ -29,7 +29,7 @@ function love.load()
     loadKnots()
     loadDoors()
     loadScissors()
-    loadGoal()
+    goal = Goal:new(map)
     player = Player:new({}, 6, 3, 5, "right")
     loadGame()
   end
@@ -69,7 +69,7 @@ function loadGame()
     if player.dead then
       console = console .. "Player died :("
       start()
-    elseif player.bound and goal.complete then
+    elseif player.bound and goal:isComplete() then
       console = console .. "Woohoo won!"
     else
       newX, newY = player:next()
@@ -78,7 +78,7 @@ function loadGame()
         player.dead = true
       end
 
-      goal:checkForComplete(player)
+      goal:check(player)
       openDoors()
       getCutByScissors()
       eatKnots()
@@ -86,7 +86,6 @@ function loadGame()
     end
   end)
 end
-
 
 function drawConsole()
   love.graphics.setFont(font)

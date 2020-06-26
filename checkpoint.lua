@@ -1,4 +1,4 @@
-Checkpoint = {}
+local Checkpoint = {}
 
 function Checkpoint:new(o, x, y)
   o = o or {}
@@ -24,13 +24,24 @@ function Checkpoint:print() return " " .. self.x .. " " .. self.y end
 function Checkpoint:check() self.covered = true end
 function Checkpoint:uncheck() self.covered = false end
 
-Goal = {}
+local Goal = {}
 
-function Goal:new()
+local function createCheckpoint(goal, x, y)
+  c = Checkpoint:new({}, x, y)
+  table.insert(goal, c)
+end
+
+function Goal:new(map)
+  assert(map, "The goal needs a map.")
+  assert(map.layers["checkpoints"].objects, "No checkpoints defined in the map")
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   o.complete = false
+
+  for i,c in ipairs(map.layers["checkpoints"].objects) do
+    createCheckpoint(o, c.x/CELL_SIZE, c.y/CELL_SIZE)
+  end
 
   return o
 end
@@ -58,7 +69,12 @@ function Goal:draw()
   end
 end
 
-function Goal:checkForComplete(player)
+function Goal:isComplete()
+  return self.complete
+end
+
+function Goal:check(player)
+  assert(player, "No Player trying to win!")
   for _,checkpoint in ipairs(self) do
     local pressed = false
     for _,segment in ipairs(player.segments) do
@@ -71,15 +87,4 @@ function Goal:checkForComplete(player)
   end
 end
 
-function loadGoal()
-  goal = Goal:new()
-
-  createCheckpoint(6, 10)
-  createCheckpoint(8, 11)
-  createCheckpoint(8, 12)
-end
-
-function createCheckpoint(x, y)
-  c = Checkpoint:new({}, x, y)
-  table.insert(goal, c)
-end
+return Goal

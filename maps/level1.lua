@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 7,
-  nextobjectid = 16,
+  nextlayerid = 8,
+  nextobjectid = 20,
   properties = {},
   tilesets = {
     {
@@ -271,6 +271,58 @@ return {
           shape = "rectangle",
           x = 512,
           y = 160,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 7,
+      name = "checkpoints",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 16,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 416,
+          y = 384,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 17,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 416,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 18,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 448,
+          y = 416,
           width = 32,
           height = 32,
           rotation = 0,

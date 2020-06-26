@@ -1,4 +1,4 @@
-Player = {}
+local Player = {}
 
 function Player:new(o, x, y, length, direction)
    o = o or {}
@@ -42,6 +42,8 @@ function Player:update(dt)
 end
 
 function Player:isBound(x, y)
+  assert(self.segments[#self.segments-1], "Player is less than 2 segments long")
+  assert(self.segments[#self.segments-2], "Player is less than 3 segments long")
   if (x == self.segments[#self.segments-1].x
   and y == self.segments[#self.segments-1].y)
   or (x == self.segments[#self.segments-2].x
@@ -73,17 +75,22 @@ end
 function Player:findNeighbours(i, segment)
   local neighbours = {}
   if i == 1 then
+    assert(self.segments[i+1], "Player is less than 2 segments long")
     neighbours[self:checkNeighbour(segment, self.segments[i+1])] = true
   elseif i == #self.segments then
+    assert(self.segments[i-1], "Player is less than 2 segments long")
     neighbours[self:checkNeighbour(segment, self.segments[i-1])] = true
   else
+    assert(self.segments[i-1], "Player is less than 3 segments long")
     neighbours[self:checkNeighbour(segment, self.segments[i-1])] = true
+    assert(self.segments[i+1], "Player is less than 3 segments long")
     neighbours[self:checkNeighbour(segment, self.segments[i+1])] = true
   end
   return neighbours
 end
 
 function Player:checkNeighbour(segment, neighbour)
+  assert(neighbour, "Player segment (" .. segment.x .. ", " .. segment.y .. ") doesn't have a neighbour")
   if neighbour.y == segment.y and neighbour.x == previousXPosition(segment.x) then
     return "left"
   end
@@ -96,6 +103,7 @@ function Player:checkNeighbour(segment, neighbour)
   if neighbour.x == segment.x and neighbour.y == nextYPosition(segment.y) then
     return "down"
   end
+  error("Player segment (" .. segment.x .. ", " .. segment.y .. ") has a neighbour (" .. neighbour.x .. ", " .. neighbour.y .. ") too far away from it)")
 end
 
 function Player:getSpriteAccordingToNeighbors(i, neighbours)
@@ -167,6 +175,7 @@ function Player:keyPress(key)
 end
 
 function Player:next()
+  assert(self.segments[1], "Player disappeared")
   local newX = self.segments[1].x
   local newY = self.segments[1].y
 
@@ -178,9 +187,27 @@ function Player:next()
     newY = nextYPosition(newY)
   elseif self.direction[1] == "up" then
     newY = previousYPosition(newY)
+  else
+    error("Wrong direction provided: " .. self.direction[1])
   end
 
   return newX, newY
+end
+
+local function nextPos(pos, gridSize)
+  pos = pos + 1
+  if pos > gridSize/CELL_SIZE then
+    pos = 1
+  end
+  return pos
+end
+
+local function previousPos(pos, gridSize)
+  pos = pos - 1
+  if pos < 1 then
+    pos = gridSize/CELL_SIZE
+  end
+  return pos
 end
 
 function nextXPosition(x)
@@ -199,18 +226,4 @@ function previousYPosition(y)
   return previousPos(y, gridY)
 end
 
-function nextPos(pos, gridSize)
-  pos = pos + 1
-  if pos > gridSize/CELL_SIZE then
-    pos = 1
-  end
-  return pos
-end
-
-function previousPos(pos, gridSize)
-  pos = pos - 1
-  if pos < 1 then
-    pos = gridSize/CELL_SIZE
-  end
-  return pos
-end
+return Player

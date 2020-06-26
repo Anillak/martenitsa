@@ -1,2 +1,4 @@
 - figure out resolution
-- fix one segment player case
+- game states
+- key release animation
+- 
