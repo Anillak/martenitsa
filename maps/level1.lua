@@ -8,8 +8,8 @@ return {
   height = 16,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 8,
-  nextobjectid = 20,
+  nextlayerid = 9,
+  nextobjectid = 22,
   properties = {},
   tilesets = {
     {
@@ -325,6 +325,32 @@ return {
           y = 416,
           width = 32,
           height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 8,
+      name = "scissors",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 21,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 672,
+          y = 224,
+          width = 64,
+          height = 64,
           rotation = 0,
           visible = true,
           properties = {}

@@ -20,7 +20,7 @@ function love.load()
   knots = require 'knots'
   Goal = require 'goal'
   require('door')
-  require('scissors')
+  scissors = require 'scissors'
 
   function start()
     Timer.clear()
@@ -28,7 +28,7 @@ function love.load()
     walls.load(map)
     knots.load(map)
     loadDoors()
-    loadScissors()
+    scissors.load(map)
     goal = Goal:new(map)
     player = Player:new({}, 6, 3, 5, "right")
     loadGame()
@@ -39,11 +39,11 @@ function love.load()
 end
 
 function love.update(dt)
-  goal:update(dt)
   map:update(dt)
+  goal:update(dt)
   knots.update(dt)
   updateDoors(dt)
-  updateScissors(dt)
+  scissors.update(dt)
   player:updateAnimation(dt)
   Timer.update(dt)
 end
@@ -55,7 +55,7 @@ function love.draw()
   knots.draw()
   goal:draw()
   drawDoors()
-  drawScissors()
+  scissors.draw()
   ---[[
   drawConsole()
   --]]
@@ -80,8 +80,8 @@ function loadGame()
 
       goal:check(player)
       openDoors()
-      getCutByScissors()
-      player:eat(knots.toEat())
+      player:getCutBy(scissors.get())
+      player:eat(knots.get())
 
     end
   end)

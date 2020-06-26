@@ -87,30 +87,37 @@ end
 
 function Scissors:print() return " " .. self.x .. " " .. self.y end
 
-function loadScissors()
-  scissors = {}
-  createScissors(20, 10)
+S = {}
+
+local function create(x, y)
+  local s = Scissors:new({}, x, y)
+  table.insert(S.scissors, s)
 end
 
-function updateScissors(dt)
-  for _,s in ipairs(scissors) do
+function S.load(map)
+  assert(map, "Scissors needs a map to load.")
+  assert(map.layers["scissors"].objects, "No scissors defined in the map")
+  S.scissors = {}
+
+  for i,o in ipairs(map.layers["scissors"].objects) do
+    create(o.x/CELL_SIZE, o.y/CELL_SIZE)
+  end
+end
+
+function S.update(dt)
+  for _,s in ipairs(S.scissors) do
     s:update(dt)
   end
 end
 
-function drawScissors()
-  for _,s in ipairs(scissors) do
+function S.draw()
+  for _,s in ipairs(S.scissors) do
     s:draw()
   end
 end
 
-function createScissors(x, y)
-  local s = Scissors:new({}, x, y)
-  table.insert(scissors, s)
+function S.get()
+  return S.scissors
 end
 
-function getCutByScissors()
-  for i,s in ipairs(scissors) do
-    s:cutPlayer(player)
-  end
-end
+return S

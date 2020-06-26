@@ -168,6 +168,12 @@ function Player:eat(knots)
   end
 end
 
+function Player:getCutBy(scissors)
+  for i,s in ipairs(scissors) do
+    s:cutPlayer(self)
+  end
+end
+
 function Player:keyPress(key)
   if key == "right"
     and self.direction[#self.direction] ~= "right"

@@ -51,7 +51,7 @@ function K.draw()
   end
 end
 
-function K.toEat()
+function K.get()
   return K.knots
 end
 
