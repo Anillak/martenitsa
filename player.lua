@@ -35,11 +35,11 @@ function Player:update(dt)
     table.remove(self.direction, 1)
   end
   local newX, newY = self:next()
-  self.bound = self:isBound(newX, newY)
+  self.bound = self:checkIfBound(newX, newY)
   table.insert(self.segments, 1, self:createSegment(newX, newY))
 end
 
-function Player:isBound(x, y)
+function Player:checkIfBound(x, y)
   assert(self.segments[#self.segments-1], "Player is less than 2 segments long")
   assert(self.segments[#self.segments-2], "Player is less than 3 segments long")
   if (x == self.segments[#self.segments-1].x
@@ -48,6 +48,7 @@ function Player:isBound(x, y)
   and y == self.segments[#self.segments-2].y) then
     return true
   end
+  return false
 end
 
 function Player:draw()
