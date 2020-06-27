@@ -1,4 +1,5 @@
 - figure out resolution
-- game states
 - player animation
+- implement pause
 - create levels
+- save game progress

@@ -10,7 +10,8 @@ function Button:new(o, x, y, label, link, args)
   o.y = y
   o.label = label
   o.link = link
-  o.state = "none"
+  o.hovered = false
+  o.active = false
   o.args = args
 
   return o
@@ -25,9 +26,9 @@ function Button:update(dt)
 end
 
 function Button:draw()
-  if self.state == "active" then
+  if self.active  then
     love.graphics.setColor(0.5, 0, 0)
-  elseif self.state == "hovered" then
+  elseif self.hovered then
     love.graphics.setColor(1, 0.7, 0,8)
   else
     love.graphics.setColor(1, 0, 0)
@@ -68,9 +69,9 @@ end
 
 function Buttons:setActive(button)
   assert(button, "Undefined button to be set as active")
-  self.active.state = "none"
+  self.active.active = false
   self.active = button
-  button.state = "active"
+  button.active = true
 end
 
 local function inside(x, y, button)
@@ -81,9 +82,9 @@ end
 function Buttons:hovered(x, y)
   for _,b in pairs(self) do
     if inside(x, y, b) then
-        b.state = "hovered"
+        b.hovered = true
         return b
-      else b.state = "none"
+      else b.hovered = false
     end
   end
 end
