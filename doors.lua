@@ -6,40 +6,32 @@ function Key:new(o, x, y, door)
    self.__index = self
    o.x = x
    o.y = y
+   o.sprite = sprites.keyReleased
    o.pressed = false
    o.door = door
-
-   o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE*2)
-   o.animation = Anim8.newAnimation(o.grid('1-4',1, '1-4',2), 0.3)
-   o.animation:pause()
 
    return o
 end
 
 function Key:update(dt)
-  self.animation:update(dt)
   if self.pressed ~= true then
     self.door.open = false
   end
 end
 function Key:draw()
-  self.animation:draw(
-    sprites.key,
+  love.graphics.draw(self.sprite,
     self.x * CELL_SIZE,
     self.y * CELL_SIZE)
 end
 function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
-  self.animation:resume()
-  self.animation:gotoFrame(4)
-  self.animation:pause()
   self.pressed = true
+  self.sprite = sprites.keyPressed
 end
 function Key:release()
   if self.door.open == false then
-    self.animation:resume()
-    self.animation:pauseAtStart()
     self.pressed = false
+    self.sprite = sprites.keyReleased
   end
 end
 
