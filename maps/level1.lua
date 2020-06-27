@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 12,
-  nextobjectid = 28,
+  nextobjectid = 34,
   properties = {},
   tilesets = {
     {
@@ -154,6 +154,32 @@ return {
           shape = "rectangle",
           x = 544,
           y = 256,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 31,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 0,
+          y = 0,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 33,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 32,
+          y = 32,
           width = 32,
           height = 32,
           rotation = 0,
@@ -382,6 +408,21 @@ return {
           properties = {
             ["Number"] = 1
           }
+        },
+        {
+          id = 28,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 672,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Number"] = 2
+          }
         }
       }
     },
@@ -424,6 +465,21 @@ return {
           visible = true,
           properties = {
             ["Door"] = 1
+          }
+        },
+        {
+          id = 29,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 768,
+          y = 288,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Door"] = 2
           }
         }
       }

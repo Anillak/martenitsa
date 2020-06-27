@@ -48,14 +48,14 @@ end
 function Scissors:draw()
   self.animation:draw(
     sprites.scissors,
-    (self.x - 1) * CELL_SIZE,
-    (self.y - 1) * CELL_SIZE)
+    self.x * CELL_SIZE,
+    self.y * CELL_SIZE)
 
     for _,segment in ipairs(self.deadSegments) do
       segment.animation:draw(
         segment.sprite,
-        (segment.x-1) * CELL_SIZE + CELL_SIZE/2,
-        (segment.y-1) * CELL_SIZE + CELL_SIZE/2,
+        segment.x * CELL_SIZE + CELL_SIZE/2,
+        segment.y * CELL_SIZE + CELL_SIZE/2,
         math.rad(segment.rotation),
         1,
         1,

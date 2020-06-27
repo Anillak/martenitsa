@@ -17,8 +17,8 @@ function Checkpoint:update(dt) self.animation:update(dt) end
 function Checkpoint:draw()
   self.animation:draw(
     sprites.checkpoint,
-    (self.x - 1) * CELL_SIZE,
-    (self.y - 1) * CELL_SIZE)
+    self.x * CELL_SIZE,
+    self.y * CELL_SIZE)
 end
 function Checkpoint:print() return " " .. self.x .. " " .. self.y end
 function Checkpoint:check() self.covered = true end

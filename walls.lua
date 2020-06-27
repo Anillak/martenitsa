@@ -13,8 +13,8 @@ end
 
 function Wall:draw()
   love.graphics.draw(sprites.wall,
-    (self.x - 1) * CELL_SIZE,
-    (self.y - 1) * CELL_SIZE)
+    self.x * CELL_SIZE,
+    self.y * CELL_SIZE)
 end
 
 W = {}
@@ -31,10 +31,10 @@ function W.load(map)
   W.walls = {}
   W.walls.indices = {}
 
-  for i = 1, gridX/CELL_SIZE do
+  for i = 0, gridX/CELL_SIZE-1 do
     local row = {}
     W.walls.indices[i] = row
-    for j = 1, gridY/CELL_SIZE do
+    for j = 0, gridY/CELL_SIZE-1 do
       row[j] = false
     end
   end

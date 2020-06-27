@@ -4,8 +4,6 @@ function Player:new(o, x, y, length, direction)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
-   o.x = x
-   o.y = y
    o.segments = {}
    o.bound = false
    o.dead = false
@@ -61,8 +59,8 @@ function Player:draw()
 
     segment.animation:draw(
       image.sprite,
-      (segment.x-1) * CELL_SIZE + CELL_SIZE/2,
-      (segment.y-1) * CELL_SIZE + CELL_SIZE/2,
+      segment.x * CELL_SIZE + CELL_SIZE/2,
+      segment.y * CELL_SIZE + CELL_SIZE/2,
       math.rad(image.rotation),
       1,
       1,
@@ -154,6 +152,12 @@ function Player:getSpriteAccordingToNeighbors(i, neighbours)
   return image
 end
 
+function Player:maybeHit(walls)
+  if walls.isWall(self.segments[1].x, self.segments[1].y) then
+    self.dead = true
+  end
+end
+
 function Player:eat(knots)
   collected = -1
   for i,knot in ipairs(knots) do
@@ -178,6 +182,14 @@ function Player:open(doors)
   for _,d in ipairs(doors) do
     d:checkIfOpenBy(self)
   end
+end
+
+function Player:isBound()
+  return self.bound
+end
+
+function Player:isDead()
+  return self.dead
 end
 
 function Player:keyPress(key)
@@ -222,16 +234,16 @@ end
 
 local function nextPos(pos, gridSize)
   pos = pos + 1
-  if pos > gridSize/CELL_SIZE then
-    pos = 1
+  if pos > gridSize/CELL_SIZE-1 then
+    pos = 0
   end
   return pos
 end
 
 local function previousPos(pos, gridSize)
   pos = pos - 1
-  if pos < 1 then
-    pos = gridSize/CELL_SIZE
+  if pos < 0 then
+    pos = gridSize/CELL_SIZE-1
   end
   return pos
 end

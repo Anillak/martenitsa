@@ -30,12 +30,11 @@ function love.load()
     doors.load(map)
     scissors.load(map)
     goal = Goal:new(map)
-    player = Player:new({}, 6, 6, 5, "right")
+    player = Player:new({}, 5, 1, 5, "right")
     loadGame()
   end
-
+  
   start()
-
 end
 
 function love.update(dt)
@@ -66,23 +65,17 @@ function loadGame()
   Timer.every(0.3, function()
     player:update(dt)
 
-    if player.dead then
+    if player:isDead() then
       console = console .. "Player died :("
       start()
-    elseif player.bound and goal:isComplete() then
+    elseif player:isBound() and goal:isComplete() then
       console = console .. "Woohoo won!"
     else
-      newX, newY = player:next()
-
-      if walls.isWall(newX, newY) then
-        player.dead = true
-      end
-
       goal:check(player)
+      player:maybeHit(walls)
       player:open(doors.get())
       player:getCutBy(scissors.get())
       player:eat(knots.get())
-
     end
   end)
 end

@@ -9,8 +9,8 @@ function Key:new(o, x, y, door)
    o.pressed = false
    o.door = door
 
-   o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE)
-   o.animation = Anim8.newAnimation(o.grid('1-4',1), 0.3)
+   o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*4, CELL_SIZE*2)
+   o.animation = Anim8.newAnimation(o.grid('1-4',1, '1-4',2), 0.3)
    o.animation:pause()
 
    return o
@@ -25,18 +25,20 @@ end
 function Key:draw()
   self.animation:draw(
     sprites.key,
-    (self.x - 1) * CELL_SIZE,
-    (self.y - 1) * CELL_SIZE)
+    self.x * CELL_SIZE,
+    self.y * CELL_SIZE)
 end
 function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
   self.animation:resume()
-  self.animation:pauseAtEnd()
+  self.animation:gotoFrame(4)
+  self.animation:pause()
   self.pressed = true
 end
 function Key:release()
   if self.door.open == false then
-    -- animation for key release
+    self.animation:resume()
+    self.animation:pauseAtStart()
     self.pressed = false
   end
 end
@@ -79,8 +81,8 @@ function Door:draw()
 
   self.animation:draw(
     sprites.door,
-    (self.x - 1) * CELL_SIZE,
-    (self.y - 1) * CELL_SIZE)
+    self.x * CELL_SIZE,
+    self.y * CELL_SIZE)
 end
 
 function Door:checkIfOpenBy(p)
