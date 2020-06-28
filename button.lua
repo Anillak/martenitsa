@@ -1,6 +1,6 @@
 Button = {}
-local width = 200
-local height = 30
+local width = 197
+local height = 53
 
 function Button:new(o, x, y, label, link, args)
   o = o or {}
@@ -26,17 +26,18 @@ function Button:update(dt)
 end
 
 function Button:draw()
-  if self.active  then
-    love.graphics.setColor(0.5, 0, 0)
+  love.graphics.setFont(love.graphics.newFont(20))
+  if self.active then
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.draw(sprites.buttonActive, self.x, self.y)
   elseif self.hovered then
-    love.graphics.setColor(1, 0.7, 0,8)
+    love.graphics.setColor(1, 0.7, 0)
+    love.graphics.draw(sprites.buttonHover, self.x, self.y)
   else
-    love.graphics.setColor(1, 0, 0)
+    love.graphics.setColor(0.6, 0, 0)
+    love.graphics.draw(sprites.button, self.x, self.y)
   end
-
-  love.graphics.rectangle("fill", self.x, self.y, width, height)
-  love.graphics.setColor(1, 1, 1)
-  love.graphics.printf(self.label, self.x, self.y + 7, width, "center")
+  love.graphics.printf(self.label, self.x, self.y + 15, width, "center")
 end
 
 Buttons = {}
@@ -46,10 +47,10 @@ function Buttons:new(o)
   setmetatable(o, self)
   self.__index = self
   local position = (960 - width) / 2
-  o.start = Button:new({}, position, 100, "Start", Game, "maps/level1.lua")
-  o.continue = Button:new({}, position, 140, "Continue")
-  o.options = Button:new({}, position, 180, "Options")
-  o.exit = Button:new({}, position, 220, "Exit")
+  o.start = Button:new({}, position, 70, "Start", Game, "maps/level1.lua")
+  o.continue = Button:new({}, position, 130, "Continue")
+  o.options = Button:new({}, position, 190, "Options")
+  o.exit = Button:new({}, position, 250, "Exit")
 
   o.active = o.start
   return o

@@ -23,9 +23,9 @@ function Menu:keyreleased(key, code)
   if key == "escape" then
    love.event.quit()
   end
-  if key == 'up' then
+  if key == 'up' or key == 'left' then
     Buttons:selectPrevious()
-  elseif key == 'down' then
+  elseif key == 'down' or key == 'right' then
     Buttons:selectNext()
   elseif key == 'return' then
     Buttons.active:onClick()

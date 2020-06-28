@@ -8,8 +8,6 @@ function Game:init()
   Timer = require 'lib/hump-master/timer'
   Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
-  require 'sprites'
-  require 'utils'
   walls = require 'walls'
   Player = require 'player'
   knots = require 'knots'
@@ -80,7 +78,7 @@ function Game:keypressed(key)
 end
 
 function drawConsole()
-  love.graphics.setFont(font)
+  love.graphics.setFont(love.graphics.newFont(15))
   love.graphics.setColor(0, 0, 0)
   love.graphics.rectangle("fill", 0, 470, 960, 42)
   love.graphics.setColor(1, 1, 1)
@@ -91,11 +89,12 @@ end
 function love.load()
   love.graphics.setBackgroundColor(1, 1, 1)
 ---[[
-  font = love.graphics.newFont(15)
   console = ""
 --]]
 
   Gamestate = require "lib/hump-master/gamestate"
+  require 'sprites'
+  require 'utils'
   require 'menu'
 
   Gamestate.registerEvents()
