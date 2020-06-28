@@ -73,6 +73,9 @@ function Game:keypressed(key)
   if key == "escape" then
    love.event.quit()
   end
+  if key == 'p' then
+    return Gamestate.push(Pause)
+  end
 
   player:keyPress(key)
 end
@@ -96,6 +99,7 @@ function love.load()
   require 'sprites'
   require 'utils'
   require 'menu'
+  require 'pause'
 
   Gamestate.registerEvents()
   Gamestate.switch(Menu)
