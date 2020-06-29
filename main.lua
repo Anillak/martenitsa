@@ -1,9 +1,10 @@
 Game = {}
-GAME_X, GAME_Y = 960, 512
---GAME_X, GAME_Y = love.window.getDesktopDimensions()
-love.window.setMode( GAME_X, GAME_Y, {fullscreen = false} )
+--GAME_X, GAME_Y = 960, 512
+GAME_X, GAME_Y = love.window.getDesktopDimensions()
+love.window.setMode( GAME_X, GAME_Y, {fullscreen = true} )
 GRID_X, GRID_Y = 30, 16
 CELL_SIZE = GAME_X / 30
+BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
 
 function Game:init()
@@ -68,6 +69,10 @@ function Game:update(dt)
 end
 
 function Game:draw()
+  love.graphics.setBackgroundColor(0, 0, 0)
+  love.graphics.translate(0, BORDERS)
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.rectangle("fill", 0, 0, GAME_X, GAME_Y-BORDERS*2)
   map:drawLayer(map.layers["tiles"])
   map:drawLayer(map.layers["elements"])
   walls.draw()
@@ -95,14 +100,14 @@ end
 function drawConsole()
   love.graphics.setFont(love.graphics.newFont(15))
   love.graphics.setColor(0, 0, 0)
-  love.graphics.rectangle("fill", 0, GAME_Y-42, GAME_X, 42)
+  love.graphics.rectangle("fill", 0, GAME_Y-BORDERS-42, GAME_X, 42)
   love.graphics.setColor(1, 1, 1)
-  love.graphics.print("Console: " .. console, 10, GAME_Y-42)
-  love.graphics.print("PFS: " .. love.timer.getFPS() .. "    Cell size: " .. CELL_SIZE, 10, GAME_Y-22)
+  love.graphics.print("Console: " .. console, 10, GAME_Y-BORDERS-42)
+  love.graphics.print("PFS: " .. love.timer.getFPS() .. "    Cell size: " .. CELL_SIZE, 10, GAME_Y-BORDERS-22)
 end
 
 function love.load()
-  love.graphics.setBackgroundColor(1, 1, 1)
+  love.graphics.setBackgroundColor(0, 0, 0)
 ---[[
   console = ""
 --]]

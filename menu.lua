@@ -21,6 +21,10 @@ function Menu:update(dt)
 end
 
 function Menu:draw()
+  love.graphics.setBackgroundColor(0, 0, 0)
+  love.graphics.translate(0, BORDERS)
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.rectangle("fill", 0, 0, GAME_X, GAME_Y)
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
 end
