@@ -2,15 +2,15 @@ Button = {}
 local width = 197
 local height = 53
 
-function Button:new(o, x, y, label, link, args)
+function Button:new(o, x, y, label, inactive, state, args)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   o.x = x
   o.y = y
   o.label = label
-  o.link = link
-  o.inactive = false
+  o.state = state
+  o.inactive = inactive
   o.hovered = false
   o.active = false
   o.args = args
@@ -23,7 +23,7 @@ function Button:onClick()
     if self.label == "Exit" then
       love.event.quit()
     end
-    Gamestate.switch(self.link, self.args)
+    Gamestate.switch(self.state, self.args)
   end
 end
 
@@ -59,16 +59,17 @@ function Buttons:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
-  local position = (960 - width) / 2
-  o.start = Button:new({}, position, 70, "Start", Game, 1)
-  o.continue = Button:new({}, position, 130, "Continue", Game, saveData.level)
-  o.continue.inactive = not (saveData.level > 1)
-  o.options = Button:new({}, position, 190, "Options")
-  o.options.inactive = true
-  o.exit = Button:new({}, position, 250, "Exit")
 
-  o.active = o.start
   return o
+end
+
+function Buttons:add(key, x, y, label, inactive, state, args)
+  local button = Button:new({}, x, y, label, inactive, state, args)
+  self[key] = button
+end
+
+function Buttons.getWidth()
+  return width
 end
 
 function Buttons:update(dt)
@@ -85,7 +86,7 @@ end
 
 function Buttons:setActive(button)
   assert(button, "Undefined button to be set as active")
-  self.active.active = false
+  if self.active then self.active.active = false end
   self.active = button
   button.active = true
 end
@@ -101,37 +102,6 @@ function Buttons:hovered(x, y)
         b.hovered = true
         return b
       else b.hovered = false
-    end
-  end
-end
-
-function Buttons:selectNext()
-  if self.active == self.start then
-    if self.continue.inactive then
-      self:setActive(self.exit)
-    else
-      self:setActive(self.continue)
-    end
-  elseif self.active == self.continue then self:setActive(self.exit)
-  elseif self.active == self.options then self:setActive(self.exit)
-  elseif self.active == self.exit then self:setActive(self.start)
-  end
-end
-
-function Buttons:selectPrevious()
-  if self.active == self.start then self:setActive(self.exit)
-  elseif self.active == self.continue then self:setActive(self.start)
-  elseif self.active == self.options then
-    if self.continue.inactive then
-      self:setActive(self.start)
-    else
-      self:setActive(self.continue)
-    end
-  elseif self.active == self.exit then
-    if self.continue.inactive then
-      self:setActive(self.start)
-    else
-      self:setActive(self.continue)
     end
   end
 end
