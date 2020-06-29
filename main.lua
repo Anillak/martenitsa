@@ -1,9 +1,9 @@
 Game = {}
+gridX = 960
+gridY = 512
+CELL_SIZE = 32
 
 function Game:init()
-  gridX = 960
-  gridY = 512
-  CELL_SIZE = 32
   Anim8 = require 'lib/anim8-master/anim8'
   Timer = require 'lib/hump-master/timer'
   Signal = require 'lib/hump-master/signal'
@@ -32,18 +32,24 @@ function Game:enter(previous, level)
 
     if player:isDead() then
       console = console .. "Player died :("
-      Gamestate.switch(Menu)
-    elseif player:isBound() and goal:isComplete() then
-      saveData.level = level + 1
-      love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
+      Timer.clear()
+      player:playDead()
+      Timer.after(2, function() Gamestate.switch(Game, level) end)
+    elseif player:isWon() then
       console = console .. "Woohoo won!"
-      Gamestate.switch(Menu)
+      Timer.clear()
+      player:playVictory()
+      local newLevel = level + 1
+      saveData.level = newLevel
+      love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
+      Timer.after(2, function() Gamestate.switch(Game, newLevel) end)
     else
       goal:check(player)
       player:maybeHit(walls)
       player:open(doors.get())
       player:getCutBy(scissors.get())
       player:eat(knots.get())
+      player:maybeReach(goal)
     end
   end)
 end

@@ -9,7 +9,7 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 12,
-  nextobjectid = 58,
+  nextobjectid = 59,
   properties = {},
   tilesets = {},
   layers = {
@@ -55,7 +55,21 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 58,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 544,
+          y = 32,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
     },
     {
       type = "objectgroup",

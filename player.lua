@@ -6,6 +6,7 @@ function Player:new(o, x, y, length, direction)
    self.__index = self
    o.segments = {}
    o.bound = false
+   o.won = false
    o.dead = false
    o.direction = {direction}
 
@@ -31,12 +32,14 @@ function Player:updateAnimation(dt)
 end
 
 function Player:update(dt)
-  if #self.direction > 1 then
-    table.remove(self.direction, 1)
+  if not self.dead and not self.won then
+    if #self.direction > 1 then
+      table.remove(self.direction, 1)
+    end
+    local newX, newY = self:next()
+    self.bound = self:checkIfBound(newX, newY)
+    table.insert(self.segments, 1, self:createSegment(newX, newY))
   end
-  local newX, newY = self:next()
-  self.bound = self:checkIfBound(newX, newY)
-  table.insert(self.segments, 1, self:createSegment(newX, newY))
 end
 
 function Player:checkIfBound(x, y)
@@ -185,12 +188,24 @@ function Player:open(doors)
   end
 end
 
-function Player:isBound()
-  return self.bound
+function Player:maybeReach(goal)
+  self.won = self.bound and goal:isComplete()
 end
 
 function Player:isDead()
   return self.dead
+end
+
+function Player:isWon()
+  return self.won
+end
+
+function Player:playDead()
+  
+end
+
+function Player:playVictory()
+
 end
 
 function Player:keyPress(key)
