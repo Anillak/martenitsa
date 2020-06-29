@@ -1,5 +1,6 @@
 - figure out resolution
 - player animation
-- implement pause
 - create levels
 - save game progress
+- menu to select levels
+- make intro animation

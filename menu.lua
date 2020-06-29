@@ -1,12 +1,13 @@
 Menu = {}
 local B = require "button"
-local Buttons = B:new()
+local Buttons
 
 function Menu:init()
   self.background = love.graphics.newImage('sprites/bg.png')
 end
 
 function Menu:enter(previous)
+  Buttons = B:new()
   Buttons:setActive(Buttons.start)
 end
 

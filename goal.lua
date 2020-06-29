@@ -34,7 +34,7 @@ end
 function Goal:new(map)
   assert(map, "The goal needs a map.")
   assert(map.layers["checkpoints"].objects, "No checkpoints defined in the map")
-  o = o or {}
+  o = {}
   setmetatable(o, self)
   self.__index = self
   o.complete = false

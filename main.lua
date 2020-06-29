@@ -19,7 +19,8 @@ end
 function Game:enter(previous, level)
   Timer.clear()
   assert(level, "Game needs a level to load.")
-  map = Sti(level)
+  mapPath = string.format("maps/level%d.lua", level)
+  map = Sti(mapPath)
   walls.load(map)
   knots.load(map)
   doors.load(map)
@@ -33,6 +34,8 @@ function Game:enter(previous, level)
       console = console .. "Player died :("
       Gamestate.switch(Menu)
     elseif player:isBound() and goal:isComplete() then
+      saveData.level = level + 1
+      love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
       console = console .. "Woohoo won!"
       Gamestate.switch(Menu)
     else
@@ -94,6 +97,13 @@ function love.load()
 ---[[
   console = ""
 --]]
+  require 'save'
+  saveData = {}
+  saveData.level = 1
+  if love.filesystem.getInfo("martenitsaSaveData.lua") then
+    local data = love.filesystem.load("martenitsaSaveData.lua")
+    data()
+  end
 
   Gamestate = require "lib/hump-master/gamestate"
   require 'sprites'

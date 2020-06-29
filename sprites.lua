@@ -1,6 +1,7 @@
 sprites = {}
 sprites.button = love.graphics.newImage('sprites/button.png')
 sprites.buttonActive = love.graphics.newImage('sprites/button_active.png')
+sprites.buttonInactive = love.graphics.newImage('sprites/button_inactive.png')
 sprites.buttonHover = love.graphics.newImage('sprites/button_hover.png')
 sprites.checkpoint = love.graphics.newImage('sprites/checkpoint.png')
 sprites.knot = love.graphics.newImage('sprites/knot.png')

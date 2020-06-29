@@ -1,4 +1,3 @@
-
 Wall = {}
 
 function Wall:new(o, x, y)
