@@ -100,7 +100,7 @@ function S.load(map)
   S.scissors = {}
 
   for i,o in ipairs(map.layers["scissors"].objects) do
-    create(o.x/CELL_SIZE, o.y/CELL_SIZE)
+    create(o.x/TILE_SIZE, o.y/TILE_SIZE)
   end
 end
 

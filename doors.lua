@@ -104,7 +104,7 @@ function D.load(map)
   D.doors = {}
 
   for _,o in ipairs(map.layers["doors"].objects) do
-    local door = Door:new({}, o.x/CELL_SIZE, o.y/CELL_SIZE)
+    local door = Door:new({}, o.x/TILE_SIZE, o.y/TILE_SIZE)
     local n = o.properties["Number"]
     assert(n, "Door doesn't have a number")
     Signal.emit('create door', door.x, door.y)
@@ -112,7 +112,7 @@ function D.load(map)
       local d = k.properties["Door"]
       assert(d, "Key is not assigned to a door")
       if n == d then
-        door:addKey(k.x/CELL_SIZE, k.y/CELL_SIZE)
+        door:addKey(k.x/TILE_SIZE, k.y/TILE_SIZE)
       end
     end
     table.insert(D.doors, door)

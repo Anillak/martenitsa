@@ -13,7 +13,9 @@ end
 function Wall:draw()
   love.graphics.draw(sprites.wall,
     self.x * CELL_SIZE,
-    self.y * CELL_SIZE)
+    self.y * CELL_SIZE,
+    nil,
+    CELL_SIZE/TILE_SIZE, CELL_SIZE/TILE_SIZE)
 end
 
 W = {}
@@ -30,10 +32,10 @@ function W.load(map)
   W.walls = {}
   W.walls.indices = {}
 
-  for i = 0, gridX/CELL_SIZE-1 do
+  for i = 0, (GAME_X/CELL_SIZE)-1 do
     local row = {}
     W.walls.indices[i] = row
-    for j = 0, gridY/CELL_SIZE-1 do
+    for j = 0, (GAME_Y/CELL_SIZE)-1 do
       row[j] = false
     end
   end
@@ -42,7 +44,7 @@ function W.load(map)
   Signal.register('open door', function(x,y) W.walls.indices[x][y] = false end)
 
   for i,o in ipairs(map.layers["walls"].objects) do
-    create(o.x/CELL_SIZE, o.y/CELL_SIZE)
+    create(o.x/TILE_SIZE, o.y/TILE_SIZE)
   end
 end
 

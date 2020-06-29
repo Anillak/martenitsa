@@ -201,7 +201,7 @@ function Player:isWon()
 end
 
 function Player:playDead()
-  
+
 end
 
 function Player:playVictory()
@@ -250,7 +250,7 @@ end
 
 local function nextPos(pos, gridSize)
   pos = pos + 1
-  if pos > gridSize/CELL_SIZE-1 then
+  if pos > gridSize-1 then
     pos = 0
   end
   return pos
@@ -259,25 +259,25 @@ end
 local function previousPos(pos, gridSize)
   pos = pos - 1
   if pos < 0 then
-    pos = gridSize/CELL_SIZE-1
+    pos = gridSize-1
   end
   return pos
 end
 
 function nextXPosition(x)
-  return nextPos(x, gridX)
+  return nextPos(x, GRID_X)
 end
 
 function previousXPosition(x)
-  return previousPos(x, gridX)
+  return previousPos(x, GRID_X)
 end
 
 function nextYPosition(y)
-  return nextPos(y, gridY)
+  return nextPos(y, GRID_Y)
 end
 
 function previousYPosition(y)
-  return previousPos(y, gridY)
+  return previousPos(y, GRID_Y)
 end
 
 return Player

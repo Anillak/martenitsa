@@ -8,7 +8,7 @@ end
 
 function Menu:enter(previous)
   Buttons = B:new()
-  local position = (960 - Buttons.getWidth()) / 2
+  local position = (GAME_X - Buttons.getWidth()) / 2
   Buttons:add("start", position, 70, "Start", false, Game, 1)
   Buttons:add("continue", position, 130, "Continue", (not (saveData.level > 1)), Game, saveData.level)
   Buttons:add("options", position, 190, "Options", true)

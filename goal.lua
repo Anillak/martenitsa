@@ -40,7 +40,7 @@ function Goal:new(map)
   o.complete = false
 
   for i,c in ipairs(map.layers["checkpoints"].objects) do
-    createCheckpoint(o, c.x/CELL_SIZE, c.y/CELL_SIZE)
+    createCheckpoint(o, c.x/TILE_SIZE, c.y/TILE_SIZE)
   end
 
   return o

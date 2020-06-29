@@ -1,7 +1,10 @@
 Game = {}
-gridX = 960
-gridY = 512
-CELL_SIZE = 32
+GAME_X, GAME_Y = 960, 512
+--GAME_X, GAME_Y = love.window.getDesktopDimensions()
+love.window.setMode( GAME_X, GAME_Y, {fullscreen = false} )
+GRID_X, GRID_Y = 30, 16
+CELL_SIZE = GAME_X / 30
+TILE_SIZE = 32
 
 function Game:init()
   Anim8 = require 'lib/anim8-master/anim8'
@@ -27,7 +30,7 @@ function Game:enter(previous, level)
   scissors.load(map)
   goal = Goal:new(map)
   player = Player:new({}, 5, 1, 5, "right")
-  Timer.every(0.3, function()
+  Timer.every(0.2, function()
     player:update(dt)
 
     if player:isDead() then
@@ -92,10 +95,10 @@ end
 function drawConsole()
   love.graphics.setFont(love.graphics.newFont(15))
   love.graphics.setColor(0, 0, 0)
-  love.graphics.rectangle("fill", 0, 470, 960, 42)
+  love.graphics.rectangle("fill", 0, GAME_Y-42, GAME_X, 42)
   love.graphics.setColor(1, 1, 1)
-  love.graphics.print("Console: " .. console, 10, 470)
-  love.graphics.print("PFS: " .. love.timer.getFPS(), 10, 490)
+  love.graphics.print("Console: " .. console, 10, GAME_Y-42)
+  love.graphics.print("PFS: " .. love.timer.getFPS() .. "    Cell size: " .. CELL_SIZE, 10, GAME_Y-22)
 end
 
 function love.load()
