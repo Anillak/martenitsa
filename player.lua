@@ -20,7 +20,15 @@ function Player:createSegment(x, y)
   segment = {}
   segment.x = x
   segment.y = y
+  segment.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE)
+  segment.animation = Anim8.newAnimation(segment.grid('1-3', 1), 0.1)
   return segment
+end
+
+function Player:updateAnimation(dt)
+  for _,segment in ipairs(self.segments) do
+    segment.animation:update(dt)
+  end
 end
 
 function Player:update(dt)
@@ -53,10 +61,10 @@ function Player:draw()
     segment.sprite = image.sprite
     segment.rotation = image.rotation
 
-    love.graphics.draw(
+    segment.animation:draw(
       image.sprite,
-      segment.x * CELL_SIZE + TILE_SIZE/2,
-      segment.y * CELL_SIZE + TILE_SIZE/2,
+      segment.x * CELL_SIZE + CELL_SIZE/2,
+      segment.y * CELL_SIZE + CELL_SIZE/2,
       math.rad(image.rotation),
       CELL_SIZE/TILE_SIZE,
       CELL_SIZE/TILE_SIZE,

@@ -1,7 +1,7 @@
 Game = {}
 --GAME_X, GAME_Y = 960, 512
 GAME_X, GAME_Y = love.window.getDesktopDimensions()
-love.window.setMode( GAME_X, GAME_Y, {fullscreen = false} )
+love.window.setMode( GAME_X, GAME_Y, {fullscreen = true} )
 GRID_X, GRID_Y = 30, 16
 CELL_SIZE = GAME_X / 30
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
@@ -30,7 +30,7 @@ function Game:enter(previous, level)
   doors.load(map)
   scissors.load(map)
   goal = Goal:new(map)
-  player = Player:new({}, 5, 1, 5, "right")
+  player = Player:new({}, 5, 8, 5, "right")
   Timer.every(0.3, function()
     player:update(dt)
 
@@ -64,6 +64,7 @@ function Game:update(dt)
   knots.update(dt)
   doors.update(dt)
   scissors.update(dt)
+  player:updateAnimation(dt)
   Timer.update(dt)
 end
 
