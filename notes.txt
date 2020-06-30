@@ -1,6 +1,4 @@
-- figure out resolution, add borders when resolution isn't correct
 - player animation
 - create levels
-- save game progress
 - menu to select levels
 - make intro animation

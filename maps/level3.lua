@@ -9,9 +9,35 @@ return {
   tilewidth = 32,
   tileheight = 32,
   nextlayerid = 12,
-  nextobjectid = 71,
+  nextobjectid = 37,
   properties = {},
-  tilesets = {},
+  tilesets = {
+    {
+      name = "base",
+      firstgid = 1,
+      tilewidth = 32,
+      tileheight = 32,
+      spacing = 0,
+      margin = 0,
+      columns = 8,
+      image = "base.png",
+      imagewidth = 256,
+      imageheight = 4256,
+      tileoffset = {
+        x = 0,
+        y = 0
+      },
+      grid = {
+        orientation = "orthogonal",
+        width = 32,
+        height = 32
+      },
+      properties = {},
+      terrains = {},
+      tilecount = 1064,
+      tiles = {}
+    }
+  },
   layers = {
     {
       type = "tilelayer",
@@ -57,37 +83,11 @@ return {
       properties = {},
       objects = {
         {
-          id = 58,
+          id = 2,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 736,
-          y = 0,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 59,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 736,
-          y = 32,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 60,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 736,
+          x = 320,
           y = 64,
           width = 32,
           height = 32,
@@ -96,11 +96,11 @@ return {
           properties = {}
         },
         {
-          id = 61,
+          id = 3,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 736,
+          x = 320,
           y = 96,
           width = 32,
           height = 32,
@@ -109,11 +109,11 @@ return {
           properties = {}
         },
         {
-          id = 62,
+          id = 4,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 736,
+          x = 320,
           y = 128,
           width = 32,
           height = 32,
@@ -122,11 +122,11 @@ return {
           properties = {}
         },
         {
-          id = 63,
+          id = 5,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 736,
+          x = 320,
           y = 160,
           width = 32,
           height = 32,
@@ -135,12 +135,12 @@ return {
           properties = {}
         },
         {
-          id = 64,
+          id = 6,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 736,
-          y = 192,
+          x = 512,
+          y = 64,
           width = 32,
           height = 32,
           rotation = 0,
@@ -148,12 +148,12 @@ return {
           properties = {}
         },
         {
-          id = 65,
+          id = 7,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 768,
-          y = 192,
+          x = 512,
+          y = 96,
           width = 32,
           height = 32,
           rotation = 0,
@@ -161,12 +161,12 @@ return {
           properties = {}
         },
         {
-          id = 66,
+          id = 8,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 800,
-          y = 192,
+          x = 512,
+          y = 128,
           width = 32,
           height = 32,
           rotation = 0,
@@ -174,12 +174,12 @@ return {
           properties = {}
         },
         {
-          id = 67,
+          id = 9,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 832,
-          y = 192,
+          x = 512,
+          y = 160,
           width = 32,
           height = 32,
           rotation = 0,
@@ -187,12 +187,12 @@ return {
           properties = {}
         },
         {
-          id = 68,
+          id = 34,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 864,
-          y = 192,
+          x = 96,
+          y = 288,
           width = 32,
           height = 32,
           rotation = 0,
@@ -200,12 +200,12 @@ return {
           properties = {}
         },
         {
-          id = 69,
+          id = 35,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 896,
-          y = 192,
+          x = 96,
+          y = 320,
           width = 32,
           height = 32,
           rotation = 0,
@@ -213,12 +213,12 @@ return {
           properties = {}
         },
         {
-          id = 70,
+          id = 36,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 928,
-          y = 192,
+          x = 96,
+          y = 352,
           width = 32,
           height = 32,
           rotation = 0,
@@ -239,11 +239,50 @@ return {
       properties = {},
       objects = {
         {
-          id = 44,
+          id = 10,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 768,
+          x = 416,
+          y = 96,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 11,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 192,
+          y = 96,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 12,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 640,
+          y = 96,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 13,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 288,
           y = 256,
           width = 32,
           height = 32,
@@ -252,12 +291,12 @@ return {
           properties = {}
         },
         {
-          id = 48,
+          id = 14,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 672,
-          y = 64,
+          x = 416,
+          y = 256,
           width = 32,
           height = 32,
           rotation = 0,
@@ -265,12 +304,12 @@ return {
           properties = {}
         },
         {
-          id = 49,
+          id = 15,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 672,
-          y = 160,
+          x = 544,
+          y = 256,
           width = 32,
           height = 32,
           rotation = 0,
@@ -278,64 +317,25 @@ return {
           properties = {}
         },
         {
-          id = 50,
+          id = 31,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 832,
+          x = 0,
+          y = 0,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 33,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 32,
           y = 32,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 51,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 832,
-          y = 96,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 52,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 896,
-          y = 96,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 53,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 864,
-          y = 256,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 56,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 672,
-          y = 256,
           width = 32,
           height = 32,
           rotation = 0,
@@ -356,12 +356,12 @@ return {
       properties = {},
       objects = {
         {
-          id = 37,
+          id = 16,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 256,
-          y = 288,
+          x = 416,
+          y = 384,
           width = 32,
           height = 32,
           rotation = 0,
@@ -369,12 +369,12 @@ return {
           properties = {}
         },
         {
-          id = 40,
+          id = 17,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 352,
-          y = 192,
+          x = 416,
+          y = 352,
           width = 32,
           height = 32,
           rotation = 0,
@@ -382,25 +382,12 @@ return {
           properties = {}
         },
         {
-          id = 41,
+          id = 18,
           name = "",
           type = "",
           shape = "rectangle",
-          x = 224,
-          y = 192,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 42,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 384,
-          y = 288,
+          x = 448,
+          y = 416,
           width = 32,
           height = 32,
           rotation = 0,
@@ -419,7 +406,21 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 21,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 672,
+          y = 224,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
     },
     {
       type = "objectgroup",
@@ -431,7 +432,38 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 22,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 512,
+          y = 192,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Number"] = 1
+          }
+        },
+        {
+          id = 28,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 672,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Number"] = 2
+          }
+        }
+      }
     },
     {
       type = "objectgroup",
@@ -443,7 +475,53 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 24,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 288,
+          y = 352,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Door"] = 1
+          }
+        },
+        {
+          id = 26,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 224,
+          y = 416,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Door"] = 1
+          }
+        },
+        {
+          id = 29,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 768,
+          y = 288,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["Door"] = 2
+          }
+        }
+      }
     }
   }
 }

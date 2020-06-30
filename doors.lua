@@ -21,7 +21,9 @@ end
 function Key:draw()
   love.graphics.draw(self.sprite,
     self.x * CELL_SIZE,
-    self.y * CELL_SIZE)
+    self.y * CELL_SIZE,
+    nil,
+    CELL_SIZE/TILE_SIZE, CELL_SIZE/TILE_SIZE)
 end
 function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
