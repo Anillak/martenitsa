@@ -1,7 +1,7 @@
 Game = {}
 --GAME_X, GAME_Y = 960, 512
 GAME_X, GAME_Y = love.window.getDesktopDimensions()
-love.window.setMode( GAME_X, GAME_Y, {fullscreen = true} )
+love.window.setMode( GAME_X, GAME_Y, {fullscreen = false} )
 GRID_X, GRID_Y = 30, 16
 CELL_SIZE = GAME_X / 30
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
@@ -31,7 +31,7 @@ function Game:enter(previous, level)
   scissors.load(map)
   goal = Goal:new(map)
   player = Player:new({}, 5, 1, 5, "right")
-  Timer.every(0.2, function()
+  Timer.every(0.3, function()
     player:update(dt)
 
     if player:isDead() then
@@ -64,7 +64,6 @@ function Game:update(dt)
   knots.update(dt)
   doors.update(dt)
   scissors.update(dt)
-  player:updateAnimation(dt)
   Timer.update(dt)
 end
 
@@ -103,7 +102,7 @@ function drawConsole()
   love.graphics.rectangle("fill", 0, GAME_Y-BORDERS-42, GAME_X, 42)
   love.graphics.setColor(1, 1, 1)
   love.graphics.print("Console: " .. console, 10, GAME_Y-BORDERS-42)
-  love.graphics.print("PFS: " .. love.timer.getFPS() .. "    Cell size: " .. CELL_SIZE, 10, GAME_Y-BORDERS-22)
+  love.graphics.print("PFS: " .. love.timer.getFPS() .. "    Cell size: " .. CELL_SIZE .. "    Scale ratio: " .. CELL_SIZE/TILE_SIZE, 10, GAME_Y-BORDERS-22)
 end
 
 function love.load()

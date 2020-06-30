@@ -34,9 +34,6 @@ function Scissors:update(dt)
   self.animation:update(dt)
 
   if #self.deadSegments > 0 then
-    for i=#self.deadSegments,1 do
-      self.deadSegments[i].animation:pause()
-    end
     Timer.after(1, function()
       for k,v in pairs(self.deadSegments) do
         table.remove(self.deadSegments)
@@ -52,15 +49,15 @@ function Scissors:draw()
     self.y * CELL_SIZE)
 
     for _,segment in ipairs(self.deadSegments) do
-      segment.animation:draw(
+      love.graphics.draw(
         segment.sprite,
-        segment.x * CELL_SIZE + CELL_SIZE/2,
-        segment.y * CELL_SIZE + CELL_SIZE/2,
+        segment.x * CELL_SIZE + TILE_SIZE/2,
+        segment.y * CELL_SIZE + TILE_SIZE/2,
         math.rad(segment.rotation),
-        1,
-        1,
-        CELL_SIZE/2,
-        CELL_SIZE/2
+        CELL_SIZE/TILE_SIZE,
+        CELL_SIZE/TILE_SIZE,
+        TILE_SIZE/2,
+        TILE_SIZE/2
       )
     end
 end
@@ -73,7 +70,6 @@ function Scissors:cutPlayer(p)
         p.dead = true
       end
       self.cutting = false
-      -- console = console .. "cutting at " .. i
       cutTail = #p.segments - i
       break
     end
