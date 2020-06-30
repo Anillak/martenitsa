@@ -15,7 +15,9 @@ function Wall:draw()
     self.x * CELL_SIZE,
     self.y * CELL_SIZE,
     nil,
-    CELL_SIZE/TILE_SIZE, CELL_SIZE/TILE_SIZE)
+    CELL_SIZE/TILE_SIZE,
+    CELL_SIZE/TILE_SIZE
+  )
 end
 
 W = {}

@@ -7,7 +7,7 @@ function Knot:new(o, x, y)
    o.x = x
    o.y = y
 
-   o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE*3)
+   o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
    o.animation = Anim8.newAnimation(o.grid('1-3',1, '1-3',2, '1-2',3), 0.05)
 
    return o
@@ -18,7 +18,11 @@ function Knot:draw()
   self.animation:draw(
     sprites.knot,
     self.x * CELL_SIZE,
-    self.y * CELL_SIZE)
+    self.y * CELL_SIZE,
+    nil,
+    CELL_SIZE/TILE_SIZE,
+    CELL_SIZE/TILE_SIZE
+  )
 end
 function Knot:print() return " " .. self.x .. " " .. self.y end
 

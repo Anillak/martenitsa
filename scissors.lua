@@ -9,7 +9,7 @@ function Scissors:new(o, x, y)
    o.cutting = false
    o.deadSegments = {}
 
-   local size = CELL_SIZE*2
+   local size = TILE_SIZE*2
    o.grid = Anim8.newGrid(size, size, size*4, size)
    o.animation = Anim8.newAnimation(o.grid('1-4',1), 0.25)
    o.animation:pause()
@@ -46,7 +46,11 @@ function Scissors:draw()
   self.animation:draw(
     sprites.scissors,
     self.x * CELL_SIZE,
-    self.y * CELL_SIZE)
+    self.y * CELL_SIZE,
+    nil,
+    CELL_SIZE/TILE_SIZE,
+    CELL_SIZE/TILE_SIZE
+  )
 
     for _,segment in ipairs(self.deadSegments) do
       love.graphics.draw(

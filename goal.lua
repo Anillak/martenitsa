@@ -8,7 +8,7 @@ function Checkpoint:new(o, x, y)
   o.y = y
   o.covered = false
 
-  o.grid = Anim8.newGrid(CELL_SIZE, CELL_SIZE, CELL_SIZE*3, CELL_SIZE*3)
+  o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
   o.animation = Anim8.newAnimation(o.grid('1-3',1, '1-3',2, '1-3',3), {1, 0.1, 0.1, 0.2, 0.7, 0.2, 0.1, 0.1, 1})
   return o
 end
@@ -18,7 +18,11 @@ function Checkpoint:draw()
   self.animation:draw(
     sprites.checkpoint,
     self.x * CELL_SIZE,
-    self.y * CELL_SIZE)
+    self.y * CELL_SIZE,
+    nil,
+    CELL_SIZE/TILE_SIZE,
+    CELL_SIZE/TILE_SIZE
+  )
 end
 function Checkpoint:print() return " " .. self.x .. " " .. self.y end
 function Checkpoint:check() self.covered = true end
