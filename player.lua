@@ -1,4 +1,5 @@
 local Player = {}
+require 'playerUtils'
 
 function Player:new(o, x, y, length, direction)
    o = o or {}
@@ -54,10 +55,27 @@ function Player:checkIfBound(x, y)
   return false
 end
 
+function Player:findNeighbours(i, segment)
+  local neighbours = {}
+  if i == 1 then
+    assert(self.segments[i+1], "Player is less than 2 segments long")
+    neighbours[1] = checkNeighbour(segment, self.segments[i+1])
+  elseif i == #self.segments then
+    assert(self.segments[i-1], "Player is less than 2 segments long")
+    neighbours[1] = checkNeighbour(segment, self.segments[i-1])
+  else
+    assert(self.segments[i-1], "Player is less than 3 segments long")
+    neighbours[1] = checkNeighbour(segment, self.segments[i-1])
+    assert(self.segments[i+1], "Player is less than 3 segments long")
+    neighbours[2] = checkNeighbour(segment, self.segments[i+1])
+  end
+  return neighbours
+end
+
 function Player:draw()
   for i,segment in ipairs(self.segments) do
     local neighbours = self:findNeighbours(i, segment)
-    local image = self:getSpriteAccordingToNeighbors(i, neighbours)
+    local image = getSpriteAccordingToNeighbors(i, neighbours, #self.segments)
     segment.sprite = image.sprite
     segment.rotation = image.rotation
 
@@ -72,88 +90,6 @@ function Player:draw()
       TILE_SIZE/2
     )
   end
-end
-
-function Player:findNeighbours(i, segment)
-  local neighbours = {}
-  if i == 1 then
-    assert(self.segments[i+1], "Player is less than 2 segments long")
-    neighbours[self:checkNeighbour(segment, self.segments[i+1])] = true
-  elseif i == #self.segments then
-    assert(self.segments[i-1], "Player is less than 2 segments long")
-    neighbours[self:checkNeighbour(segment, self.segments[i-1])] = true
-  else
-    assert(self.segments[i-1], "Player is less than 3 segments long")
-    neighbours[self:checkNeighbour(segment, self.segments[i-1])] = true
-    assert(self.segments[i+1], "Player is less than 3 segments long")
-    neighbours[self:checkNeighbour(segment, self.segments[i+1])] = true
-  end
-  return neighbours
-end
-
-function Player:checkNeighbour(segment, neighbour)
-  assert(neighbour, "Player segment (" .. segment.x .. ", " .. segment.y .. ") doesn't have a neighbour")
-  if neighbour.y == segment.y and neighbour.x == previousXPosition(segment.x) then
-    return "left"
-  end
-  if neighbour.y == segment.y and neighbour.x == nextXPosition(segment.x) then
-    return "right"
-  end
-  if neighbour.x == segment.x and neighbour.y == previousYPosition(segment.y) then
-    return "up"
-  end
-  if neighbour.x == segment.x and neighbour.y == nextYPosition(segment.y) then
-    return "down"
-  end
-  error("Player segment (" .. segment.x .. ", " .. segment.y .. ") has a neighbour (" .. neighbour.x .. ", " .. neighbour.y .. ") too far away from it)")
-end
-
-function Player:getSpriteAccordingToNeighbors(i, neighbours)
-  local image = {}
-
-  if i == 1 then
-    image.sprite = sprites.playerHead
-    if neighbours["left"] then
-      image.rotation = 0
-    elseif neighbours["right"] then
-      image.rotation = 180
-    elseif neighbours["up"] then
-      image.rotation = 90
-    elseif neighbours["down"] then
-      image.rotation = 270
-    end
-  elseif i == #self.segments then
-    image.sprite = sprites.playerTail
-    if neighbours["right"] then
-      image.rotation = 0
-    elseif neighbours["left"] then
-      image.rotation = 180
-    elseif neighbours["down"] then
-      image.rotation = 90
-    elseif neighbours["up"] then
-      image.rotation = 270
-    end
-  elseif neighbours["left"] and neighbours["right"] then
-    image.sprite = sprites.playerMid
-    image.rotation = 0
-  elseif neighbours["up"] and neighbours["down"] then
-    image.sprite = sprites.playerMid
-    image.rotation = 270
-  elseif neighbours["left"] and neighbours["down"] then
-    image.sprite = sprites.playerCurve
-    image.rotation = 0
-  elseif neighbours["left"] and neighbours["up"] then
-    image.sprite = sprites.playerCurve
-    image.rotation = 90
-  elseif neighbours["right"] and neighbours["up"] then
-    image.sprite = sprites.playerCurve
-    image.rotation = 180
-  elseif neighbours["right"] and neighbours["down"] then
-    image.sprite = sprites.playerCurve
-    image.rotation = 270
-  end
-
-  return image
 end
 
 function Player:maybeHit(walls)
@@ -246,38 +182,6 @@ function Player:next()
   end
 
   return newX, newY
-end
-
-local function nextPos(pos, gridSize)
-  pos = pos + 1
-  if pos > gridSize-1 then
-    pos = 0
-  end
-  return pos
-end
-
-local function previousPos(pos, gridSize)
-  pos = pos - 1
-  if pos < 0 then
-    pos = gridSize-1
-  end
-  return pos
-end
-
-function nextXPosition(x)
-  return nextPos(x, GRID_X)
-end
-
-function previousXPosition(x)
-  return previousPos(x, GRID_X)
-end
-
-function nextYPosition(y)
-  return nextPos(y, GRID_Y)
-end
-
-function previousYPosition(y)
-  return previousPos(y, GRID_Y)
 end
 
 return Player

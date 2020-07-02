@@ -31,7 +31,7 @@ function Game:enter(previous, level)
   scissors.load(map)
   goal = Goal:new(map)
   player = Player:new({}, 5, 8, 5, "right")
-  Timer.every(0.3, function()
+  Timer.every(1, function()
     player:update(dt)
 
     if player:isDead() then
