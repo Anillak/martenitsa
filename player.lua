@@ -73,7 +73,9 @@ function Player:findNeighbours(i, segment)
 end
 
 function Player:draw()
-  for i,segment in ipairs(self.segments) do
+  for j=1,#self.segments do
+    i = #self.segments-j+1
+    local segment = self.segments[i]
     local neighbours = self:findNeighbours(i, segment)
     local image = getSpriteAccordingToNeighbors(i, neighbours, #self.segments)
     segment.sprite = image.sprite

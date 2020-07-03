@@ -14,7 +14,7 @@
   </data>
  </layer>
  <objectgroup id="3" name="walls">
-  <object id="58" x="544" y="32" width="32" height="32"/>
+  <object id="58" x="512" y="32" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="2" name="knots">
   <object id="44" x="256" y="64" width="32" height="32"/>

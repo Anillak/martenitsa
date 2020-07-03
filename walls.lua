@@ -10,16 +10,6 @@ function Wall:new(o, x, y)
    return o
 end
 
-function Wall:draw()
-  love.graphics.draw(sprites.wall,
-    self.x * CELL_SIZE,
-    self.y * CELL_SIZE,
-    nil,
-    CELL_SIZE/TILE_SIZE,
-    CELL_SIZE/TILE_SIZE
-  )
-end
-
 W = {}
 
 local function create(x, y)

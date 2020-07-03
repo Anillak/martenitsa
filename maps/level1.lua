@@ -61,7 +61,7 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 544,
+          x = 512,
           y = 32,
           width = 32,
           height = 32,
