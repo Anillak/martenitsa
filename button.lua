@@ -51,6 +51,7 @@ function Button:draw()
     love.graphics.setColor(0.6, 0, 0)
   end
   love.graphics.printf(self.label, self.x, self.y + 15, width, "center")
+  love.graphics.setColor(1, 1, 1)
 end
 
 Buttons = {}

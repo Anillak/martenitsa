@@ -30,7 +30,7 @@ function Game:enter(previous, level)
   doors.load(map)
   scissors.load(map)
   goal = Goal:new(map)
-  player = Player:new({}, 5, 8, 5, "right")
+  player = Player:new({}, 4, 15, 5, "right")
   Timer.every(0.3, function()
     player:update(dt)
 

@@ -8,7 +8,7 @@ end
 
 function Menu:enter(previous)
   Buttons = B:new()
-  local position = (GAME_X - Buttons.getWidth()) / 2
+  local position = (GRID_X*TILE_SIZE - Buttons.getWidth()) / 2
   Buttons:add("start", position, 70, "Start", false, Game, 1)
   Buttons:add("continue", position, 130, "Continue", (not (saveData.level > 1)), Game, saveData.level)
   Buttons:add("options", position, 190, "Options", true)
@@ -21,10 +21,10 @@ function Menu:update(dt)
 end
 
 function Menu:draw()
-  love.graphics.setBackgroundColor(0, 0, 0)
-  love.graphics.translate(0, BORDERS)
+  love.graphics.setBackgroundColor(1, 1, 1)
   love.graphics.setColor(1, 1, 1)
-  love.graphics.rectangle("fill", 0, 0, GAME_X, GAME_Y)
+  love.graphics.translate(0, BORDERS)
+  love.graphics.scale(SCALE)
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
 end
