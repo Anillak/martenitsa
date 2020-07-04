@@ -138,6 +138,10 @@ function Player:isWon()
   return self.won
 end
 
+function Player:length()
+  return #self.segments
+end
+
 function Player:playDead()
 
 end

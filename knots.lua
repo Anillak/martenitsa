@@ -55,4 +55,8 @@ function K.get()
   return K.knots
 end
 
+function K.available()
+  return #K.knots
+end
+
 return K

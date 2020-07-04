@@ -73,6 +73,10 @@ function Goal:isComplete()
   return self.complete
 end
 
+function Goal:isPossible(knotsAmount, playerLenght, gameGoal)
+  return knotsAmount + playerLenght >= gameGoal
+end
+
 function Goal:check(player)
   assert(player, "No Player trying to win!")
   for _,checkpoint in ipairs(self) do

@@ -30,7 +30,11 @@ function Game:enter(previous, level)
   doors.load(map)
   scissors.load(map)
   goal = Goal:new(map)
-  player = Player:new({}, 4, 8, 5, "right")
+  assert(map.layers["level"], "Map doesn't have level properties")
+  local x = map.layers["level"].properties["x"]
+  local y = map.layers["level"].properties["y"]
+  local length = map.layers["level"].properties["length"]
+  player = Player:new({}, x, y, length, "right")
   Timer.every(0.3, function()
     player:update(dt)
 
@@ -56,6 +60,9 @@ function Game:enter(previous, level)
       player:getCutBy(scissors.get())
       player:eat(knots.get())
       player:maybeReach(goal)
+      if not goal:isPossible(knots.available(), player:length(), map.layers["level"].properties["goal"]) then
+        console = console .. "Not possible"
+      end
     end
   end)
 end
