@@ -1,5 +1,6 @@
 Game = {}
 GAME_X, GAME_Y = love.window.getDesktopDimensions()
+--GAME_X, GAME_Y = 1280, 704
 GRID_X, GRID_Y = 40, 22
 CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
@@ -71,17 +72,18 @@ end
 
 function Game:draw()
   love.graphics.scale(SCALE)
-  love.graphics.translate(0, BORDERS)
   love.graphics.setBackgroundColor(0, 0, 0)
+  love.graphics.translate(0, BORDERS)
   love.graphics.setColor(1, 1, 1)
-  love.graphics.rectangle("fill", 0, 0, GAME_X, GAME_Y-BORDERS*2)
   map:drawLayer(map.layers["tiles"])
-  map:drawLayer(map.layers["elements"])
+  map:drawLayer(map.layers["tilesover"])
   knots.draw()
   goal:draw()
   doors.draw()
   scissors.draw()
   player:draw()
+  map:drawLayer(map.layers["elements"])
+  scissors.drawSecond()
   ---[[
   drawConsole()
   --]]
@@ -94,13 +96,16 @@ function Game:keypressed(key)
   if key == 'p' then
     return Gamestate.push(Pause)
   end
+  if key == 'm' then
+    return Gamestate.swicth(Menu)
+  end
 
   player:keyPress(key)
 end
 
 function drawConsole()
   love.graphics.setFont(love.graphics.newFont(10))
-  love.graphics.setColor(0, 0, 0)
+  love.graphics.setColor(0.1, 0.1, 0.1)
   love.graphics.rectangle("fill", 0, GRID_Y*TILE_SIZE-50, GRID_X*TILE_SIZE, 50)
   love.graphics.setColor(1, 1, 1)
   love.graphics.print("Console: " .. console, 10, GRID_Y*TILE_SIZE-45)
@@ -109,6 +114,7 @@ function drawConsole()
   sr = "    Scale ratio: " .. SCALE
   res = "    Resolution: " .. GAME_X .. "x" .. GAME_Y
   b = "    Borders: " .. BORDERS
+  --gc = "    Memory: " .. collectgarbage('count') .. "kb"
   text = pfs .. cs .. sr .. res ..b
   love.graphics.print(text, 10, GRID_Y*TILE_SIZE-22)
 end

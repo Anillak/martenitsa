@@ -65,6 +65,13 @@ function Scissors:draw()
     end
 end
 
+function Scissors:drawBottom()
+  self.animation:draw(
+    sprites.scissorsBottom,
+    self.x * TILE_SIZE,
+    self.y * TILE_SIZE)
+end
+
 function Scissors:cutPlayer(p)
   cutTail = -1
   for i,segment in ipairs(p.segments) do
@@ -112,6 +119,12 @@ end
 function S.draw()
   for _,s in ipairs(S.scissors) do
     s:draw()
+  end
+end
+
+function S.drawSecond()
+  for _,s in ipairs(S.scissors) do
+    s:drawBottom()
   end
 end
 
