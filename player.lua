@@ -83,11 +83,11 @@ function Player:draw()
 
     segment.animation:draw(
       image.sprite,
-      segment.x * CELL_SIZE + CELL_SIZE/2,
-      segment.y * CELL_SIZE + CELL_SIZE/2,
+      segment.x * TILE_SIZE + TILE_SIZE/2,
+      segment.y * TILE_SIZE + TILE_SIZE/2,
       math.rad(image.rotation),
-      CELL_SIZE/TILE_SIZE,
-      CELL_SIZE/TILE_SIZE,
+      1,
+      1,
       TILE_SIZE/2,
       TILE_SIZE/2
     )

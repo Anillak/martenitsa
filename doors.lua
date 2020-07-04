@@ -20,12 +20,8 @@ function Key:update(dt)
 end
 function Key:draw()
   love.graphics.draw(self.sprite,
-    self.x * CELL_SIZE,
-    self.y * CELL_SIZE,
-    nil,
-    CELL_SIZE/TILE_SIZE,
-    CELL_SIZE/TILE_SIZE
-  )
+    self.x * TILE_SIZE,
+    self.y * TILE_SIZE)
 end
 function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
@@ -77,12 +73,8 @@ function Door:draw()
 
   self.animation:draw(
     sprites.door,
-    self.x * CELL_SIZE,
-    self.y * CELL_SIZE,
-    nil,
-    CELL_SIZE/TILE_SIZE,
-    CELL_SIZE/TILE_SIZE
-  )
+    self.x * TILE_SIZE,
+    self.y * TILE_SIZE)
 end
 
 function Door:checkIfOpenBy(p)

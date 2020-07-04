@@ -4,13 +4,12 @@ function Pause:enter(from)
 end
 
 function Pause:draw()
-  local W, H = love.graphics.getWidth(), love.graphics.getHeight()
   self.from:draw()
   love.graphics.setColor(0,0,0, 0.7)
-  love.graphics.rectangle('fill', 0,0, W,H)
+  love.graphics.rectangle('fill', 0, 0, GAME_X, GAME_Y)
   love.graphics.setColor(1,1,1)
   love.graphics.setFont(love.graphics.newFont(30))
-  love.graphics.printf('PAUSE', 0, H/2 - 30, W, 'center')
+  love.graphics.printf('PAUSE', 0, GAME_X/2 - 30, GAME_Y, 'center')
 end
 
 function Pause:keypressed(key)

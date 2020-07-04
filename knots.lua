@@ -17,12 +17,8 @@ function Knot:update(dt) self.animation:update(dt) end
 function Knot:draw()
   self.animation:draw(
     sprites.knot,
-    self.x * CELL_SIZE,
-    self.y * CELL_SIZE,
-    nil,
-    CELL_SIZE/TILE_SIZE,
-    CELL_SIZE/TILE_SIZE
-  )
+    self.x * TILE_SIZE,
+    self.y * TILE_SIZE)
 end
 function Knot:print() return " " .. self.x .. " " .. self.y end
 

@@ -1,9 +1,10 @@
 Game = {}
 GAME_X, GAME_Y = love.window.getDesktopDimensions()
-GRID_X, GRID_Y = 40, 24
-CELL_SIZE = GAME_X / GRID_X
+GRID_X, GRID_Y = 40, 22
+CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
+SCALE = CELL_SIZE/TILE_SIZE
 
 function Game:init()
   Anim8 = require 'lib/anim8-master/anim8'
@@ -69,8 +70,9 @@ function Game:update(dt)
 end
 
 function Game:draw()
-  love.graphics.setBackgroundColor(0, 0, 0)
+  love.graphics.scale(SCALE)
   love.graphics.translate(0, BORDERS)
+  love.graphics.setBackgroundColor(0, 0, 0)
   love.graphics.setColor(1, 1, 1)
   love.graphics.rectangle("fill", 0, 0, GAME_X, GAME_Y-BORDERS*2)
   map:drawLayer(map.layers["tiles"])
@@ -79,10 +81,10 @@ function Game:draw()
   goal:draw()
   doors.draw()
   scissors.draw()
+  player:draw()
   ---[[
   drawConsole()
   --]]
-  player:draw()
 end
 
 function Game:keypressed(key)
@@ -97,17 +99,18 @@ function Game:keypressed(key)
 end
 
 function drawConsole()
-  love.graphics.setFont(love.graphics.newFont(15))
+  love.graphics.setFont(love.graphics.newFont(10))
   love.graphics.setColor(0, 0, 0)
-  love.graphics.rectangle("fill", 0, GAME_Y-BORDERS-42, GAME_X, 42)
+  love.graphics.rectangle("fill", 0, GRID_Y*TILE_SIZE-50, GRID_X*TILE_SIZE, 50)
   love.graphics.setColor(1, 1, 1)
-  love.graphics.print("Console: " .. console, 10, GAME_Y-BORDERS-42)
+  love.graphics.print("Console: " .. console, 10, GRID_Y*TILE_SIZE-45)
   pfs = "PFS: " .. love.timer.getFPS()
-  cs = "    Cell size: " .. CELL_SIZE
-  sr = "    Scale ratio: " .. CELL_SIZE/TILE_SIZE
+  cs = "    Cell size: " .. TILE_SIZE
+  sr = "    Scale ratio: " .. SCALE
   res = "    Resolution: " .. GAME_X .. "x" .. GAME_Y
-  text = pfs .. cs .. sr .. res
-  love.graphics.print(text, 10, GAME_Y-BORDERS-22)
+  b = "    Borders: " .. BORDERS
+  text = pfs .. cs .. sr .. res ..b
+  love.graphics.print(text, 10, GRID_Y*TILE_SIZE-22)
 end
 
 function love.load()
