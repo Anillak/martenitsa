@@ -1,10 +1,7 @@
 Game = {}
-GAME_X, GAME_Y = 960, 512
---GAME_X, GAME_Y = 1440, 768
---GAME_X, GAME_Y = love.window.getDesktopDimensions()
-love.window.setMode( GAME_X, GAME_Y, {fullscreen = false} )
-GRID_X, GRID_Y = 30, 16
-CELL_SIZE = GAME_X / 30
+GAME_X, GAME_Y = love.window.getDesktopDimensions()
+GRID_X, GRID_Y = 40, 24
+CELL_SIZE = GAME_X / GRID_X
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
 
@@ -45,8 +42,10 @@ function Game:enter(previous, level)
       Timer.clear()
       player:playVictory()
       local newLevel = level + 1
-      saveData.level = newLevel
-      love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
+      if saveData.level < newLevel then
+        saveData.level = newLevel
+        love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
+      end
       Timer.after(2, function() Gamestate.switch(Game, newLevel) end)
     else
       goal:check(player)
