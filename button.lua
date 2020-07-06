@@ -2,7 +2,7 @@ Button = {}
 local width = 197
 local height = 53
 
-function Button:new(o, x, y, label, inactive, state, args)
+function Button:new(o, key, x, y, label, inactive, state, args)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
@@ -10,6 +10,7 @@ function Button:new(o, x, y, label, inactive, state, args)
   o.y = y
   o.label = label
   o.state = state
+  o.key = key
   o.inactive = inactive
   o.hovered = false
   o.active = false
@@ -65,7 +66,7 @@ function Buttons:new(o)
 end
 
 function Buttons:add(key, x, y, label, inactive, state, args)
-  local button = Button:new({}, x, y, label, inactive, state, args)
+  local button = Button:new({}, key, x, y, label, inactive, state, args)
   self[key] = button
 end
 
@@ -87,9 +88,15 @@ end
 
 function Buttons:setActive(button)
   assert(button, "Undefined button to be set as active")
-  if self.active then self.active.active = false end
-  self.active = button
-  button.active = true
+  if not button.inactive then
+    if self.active then self.active.active = false end
+    self.active = button
+    button.active = true
+  end
+end
+
+function Buttons:getActive()
+  return self.active.key
 end
 
 local function inside(x, y, button)

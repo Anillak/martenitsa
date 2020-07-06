@@ -1,4 +1,13 @@
 - player animation
+  - on level end
+  - on dead
+- make intro animation
 - create levels
 - menu to select levels
-- make intro animation
+- go to menu
+- restart when not possible
+- assets to create
+  - rocks
+  - flowers
+  - здравец
+  - sticks

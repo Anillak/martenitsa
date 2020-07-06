@@ -9,7 +9,7 @@ function Pause:draw()
   love.graphics.rectangle('fill', 0, 0, GAME_X, GAME_Y)
   love.graphics.setColor(1,1,1)
   love.graphics.setFont(love.graphics.newFont(30))
-  love.graphics.printf('PAUSE', 0, GAME_X/2 - 30, GAME_Y, 'center')
+  love.graphics.printf('PAUSE', 0, GAME_Y/2 - 30, GAME_X, 'center')
 end
 
 function Pause:keypressed(key)

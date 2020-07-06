@@ -104,7 +104,7 @@ function Game:keypressed(key)
     return Gamestate.push(Pause)
   end
   if key == 'm' then
-    return Gamestate.swicth(Menu)
+    return Gamestate.switch(Menu)
   end
 
   player:keyPress(key)
@@ -143,6 +143,7 @@ function love.load()
   require 'sprites'
   require 'utils'
   require 'menu'
+  require 'levels'
   require 'pause'
 
   Gamestate.registerEvents()

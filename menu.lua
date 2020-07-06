@@ -10,7 +10,7 @@ function Menu:enter(previous)
   Buttons = B:new()
   local position = (GRID_X*TILE_SIZE - Buttons.getWidth()) / 2
   Buttons:add("start", position, 70, "Start", false, Game, 1)
-  Buttons:add("continue", position, 130, "Continue", (not (saveData.level > 1)), Game, saveData.level)
+  Buttons:add("continue", position, 130, "Continue", (not (saveData.level > 1)), Levels)
   Buttons:add("options", position, 190, "Options", true)
   Buttons:add("exit", position, 250, "Exit", false)
   Buttons:setActive(Buttons.start)
