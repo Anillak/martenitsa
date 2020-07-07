@@ -11,11 +11,14 @@ end
 function Levels:enter()
   Buttons = B:new()
   local width = Buttons.getWidth()
-  for i=1,levelsAmount do
-    local positionX = width * i
-    local positionY = math.random(200, 400)
-    local inactive = i > saveData.level
-    Buttons:add(i, positionX, positionY, i, inactive, Game, i)
+  for i=0,levelsAmount-1 do
+    local col = i % 4
+    local row = math.floor(i / 4)
+    local positionX = width*col + 170 + 50*col
+    local positionY = math.random(250 + 100*row, 250 + 100*row)
+    local level = i+1
+    local inactive = level > saveData.level
+    Buttons:add(level, positionX, positionY, level, inactive, Game, level)
   end
   Buttons:setActive(Buttons[1])
 end
