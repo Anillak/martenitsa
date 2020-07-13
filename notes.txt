@@ -1,13 +1,16 @@
+- look into scaling issue
+- fix key bug
 - player animation
   - on level end
   - on dead
+  - on cut
 - make intro animation
 - create levels
 - menu to select levels
 - go to menu
 - restart when not possible
 - assets to create
-  - rocks
-  - flowers
+  - more rocks
+  - more flowers
   - здравец
-  - sticks
+  - forest
