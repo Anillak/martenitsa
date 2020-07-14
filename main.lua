@@ -55,10 +55,10 @@ function Game:enter(previous, level)
       Timer.after(2, function() Gamestate.switch(Game, newLevel) end)
     else
       goal:check(player)
+      player:eat(knots.get())
       player:maybeHit(walls)
       player:open(doors.get())
       player:getCutBy(scissors.get())
-      player:eat(knots.get())
       player:maybeReach(goal)
       if not goal:isPossible(knots.available(), player:length(), map.layers["level"].properties["goal"]) then
         console = console .. "Not possible"
