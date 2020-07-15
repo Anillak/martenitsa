@@ -5,7 +5,8 @@ GRID_X, GRID_Y = 40, 22
 CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
-SCALE = CELL_SIZE/TILE_SIZE
+--SCALE = CELL_SIZE/TILE_SIZE
+SCALE = tonumber(string.format("%.1f", CELL_SIZE/TILE_SIZE))
 
 function Game:init()
   Anim8 = require 'lib/anim8-master/anim8'
