@@ -1,6 +1,6 @@
 local Scissors = {}
 
-function Scissors:new(o, x, y)
+function Scissors:new(o, x, y, interval)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
@@ -14,7 +14,9 @@ function Scissors:new(o, x, y)
    o.animation = Anim8.newAnimation(o.grid('1-4',1), 0.25)
    o.animation:pause()
 
-   Timer.every(5, function()
+   if not interval then interval = 5 end
+
+   Timer.every(interval, function()
      o.animation:resume()
      Timer.after(0.25, function()
        o.cutting = true
@@ -95,8 +97,8 @@ function Scissors:print() return " " .. self.x .. " " .. self.y end
 
 S = {}
 
-local function create(x, y)
-  local s = Scissors:new({}, x, y)
+local function create(x, y, i)
+  local s = Scissors:new({}, x, y, i)
   table.insert(S.scissors, s)
 end
 
@@ -105,8 +107,8 @@ function S.load(map)
   assert(map.layers["scissors"].objects, "No scissors defined in the map")
   S.scissors = {}
 
-  for i,o in ipairs(map.layers["scissors"].objects) do
-    create(o.x/TILE_SIZE, o.y/TILE_SIZE)
+  for _,o in ipairs(map.layers["scissors"].objects) do
+    create(o.x/TILE_SIZE, o.y/TILE_SIZE, o.properties["interval"])
   end
 end
 

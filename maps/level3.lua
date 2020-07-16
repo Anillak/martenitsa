@@ -745,7 +745,9 @@ return {
           height = 64,
           rotation = 0,
           visible = true,
-          properties = {}
+          properties = {
+            ["interval"] = 4
+          }
         }
       }
     },
