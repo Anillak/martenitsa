@@ -24,7 +24,7 @@ end
 function Game:enter(previous, level)
   Timer.clear()
   assert(level, "Game needs a level to load.")
-  mapPath = string.format("maps/level%d.lua", level)
+  local mapPath = string.format("maps/level%d.lua", level)
   map = Sti(mapPath)
   walls.load(map)
   knots.load(map)
@@ -36,6 +36,7 @@ function Game:enter(previous, level)
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
   player = Player:new({}, x, y, length, "right")
+  self.currentLevel = level
   Timer.every(0.3, function()
     player:update(dt)
 
@@ -106,6 +107,9 @@ function Game:keypressed(key)
   end
   if key == 'm' then
     return Gamestate.switch(Menu)
+  end
+  if key == 'r' then
+    return Gamestate.switch(Game, Game.currentLevel)
   end
 
   player:keyPress(key)
