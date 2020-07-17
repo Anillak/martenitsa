@@ -11,7 +11,7 @@ function Menu:enter(previous)
   local position = (GRID_X*TILE_SIZE - Buttons.getWidth()) / 2
   Buttons:add("start", position, 70, "Start", false, Game, 1)
   Buttons:add("continue", position, 130, "Continue", (not (saveData.level > 1)), Levels)
-  Buttons:add("options", position, 190, "Options", true)
+  Buttons:add("controls", position, 190, "Controls", false, Controls)
   Buttons:add("exit", position, 250, "Exit", false)
   Buttons:setActive(Buttons.start)
 end
@@ -32,12 +32,12 @@ end
 function Menu:selectNext()
   if Buttons.active == Buttons.start then
     if Buttons.continue.inactive then
-      Buttons:setActive(Buttons.exit)
+      Buttons:setActive(Buttons.controls)
     else
       Buttons:setActive(Buttons.continue)
     end
-  elseif Buttons.active == Buttons.continue then Buttons:setActive(Buttons.exit)
-  elseif Buttons.active == Buttons.options then Buttons:setActive(Buttons.exit)
+  elseif Buttons.active == Buttons.continue then Buttons:setActive(Buttons.controls)
+  elseif Buttons.active == Buttons.controls then Buttons:setActive(Buttons.exit)
   elseif Buttons.active == Buttons.exit then Buttons:setActive(Buttons.start)
   end
 end
@@ -45,18 +45,14 @@ end
 function Menu:selectPrevious()
   if Buttons.active == Buttons.start then Buttons:setActive(Buttons.exit)
   elseif Buttons.active == Buttons.continue then Buttons:setActive(Buttons.start)
-  elseif Buttons.active == Buttons.options then
+  elseif Buttons.active == Buttons.controls then
     if Buttons.continue.inactive then
       Buttons:setActive(Buttons.start)
     else
       Buttons:setActive(Buttons.continue)
     end
   elseif Buttons.active == Buttons.exit then
-    if Buttons.continue.inactive then
-      Buttons:setActive(Buttons.start)
-    else
-      Buttons:setActive(Buttons.continue)
-    end
+    Buttons:setActive(Buttons.controls)
   end
 end
 

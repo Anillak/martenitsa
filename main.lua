@@ -151,6 +151,7 @@ function love.load()
   require 'sprites'
   require 'utils'
   require 'menu'
+  require 'controls'
   require 'levels'
   require 'pause'
 
