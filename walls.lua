@@ -1,26 +1,27 @@
 Wall = {}
 
-function Wall:new(o, x, y)
+function Wall:new(o, x, y, isWater)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
    o.x = x
    o.y = y
+   o.isWater = isWater
 
    return o
 end
 
 W = {}
 
-local function create(x, y)
-  wall = Wall:new({}, x, y)
+local function create(x, y, isWater)
+  wall = Wall:new({}, x, y, isWater)
   W.walls.indices[x][y] = true
   table.insert(W.walls, wall)
 end
 
 function W.load(map)
   assert(map, "Walls needs a map to load.")
-  assert(map.layers["walls"].objects, "No walls defined in the map")
+  assert(map.layers["walls"], "No walls defined in the map")
   W.walls = {}
   W.walls.indices = {}
 
@@ -35,7 +36,15 @@ function W.load(map)
   Signal.register('create door', function(x,y) W.walls.indices[x][y] = true end)
   Signal.register('open door', function(x,y) W.walls.indices[x][y] = false end)
 
-  for i,o in ipairs(map.layers["walls"].objects) do
+  for _,o in ipairs(map.layers["walls"].objects) do
+    create(o.x/TILE_SIZE, o.y/TILE_SIZE)
+  end
+  if map.layers["water"] then
+    for _,o in ipairs(map.layers["water"].objects) do
+      create(o.x/TILE_SIZE, o.y/TILE_SIZE, true)
+    end
+  end
+  for _,o in ipairs(map.layers["walls"].objects) do
     create(o.x/TILE_SIZE, o.y/TILE_SIZE)
   end
 end

@@ -46,9 +46,7 @@ end
 function Player:checkIfBound(x, y)
   assert(self.segments[#self.segments-1], "Player is less than 2 segments long")
   assert(self.segments[#self.segments-2], "Player is less than 3 segments long")
-  if (x == self.segments[#self.segments-1].x
-  and y == self.segments[#self.segments-1].y)
-  or (x == self.segments[#self.segments-2].x
+  if (x == self.segments[#self.segments-2].x
   and y == self.segments[#self.segments-2].y) then
     return true
   end
