@@ -1,16 +1,21 @@
 - look into scaling issue
+- make intro stop motion animation
+  - around the Menu
+  - first time starting game
+- menu to select levels (as you like it)
+- controls page
+- go to menu and pause hints
+- restart when not possible
 - player animation
   - on level end
   - on dead
   - on cut
-- make intro animation
 - create levels
-- menu to select levels (as you like it)
-- go to menu and pause hints
-- restart when not possible
+- create mid-levels
 - assets to create
   - more rocks
   - more flowers
   - здравец
   - forest
   - grass
+  - water
