@@ -92,6 +92,9 @@ function Game:draw()
   scissors.draw()
   player:draw()
   map:drawLayer(map.layers["elements"])
+  if map.layers["over"] then
+    map:drawLayer(map.layers["over"])
+  end
   scissors.drawSecond()
   ---[[
   drawConsole()
