@@ -2102,7 +2102,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 928,
-          y = 320,
+          y = 384,
           width = 32,
           height = 32,
           rotation = 0,

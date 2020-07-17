@@ -5,7 +5,7 @@ local levelsAmount = 1
 
 function Levels:init()
   self.background = love.graphics.newImage('sprites/bg.png')
-  levelsAmount = 6
+  levelsAmount = 7
 end
 
 function Levels:enter()
