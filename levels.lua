@@ -28,10 +28,7 @@ function Levels:update(dt)
 end
 
 function Levels:draw()
-  love.graphics.setBackgroundColor(1, 1, 1)
-  love.graphics.setColor(1, 1, 1)
-  love.graphics.translate(0, BORDERS)
-  love.graphics.scale(SCALE)
+  resetToDraw()
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
 end

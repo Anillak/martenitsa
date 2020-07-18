@@ -37,25 +37,22 @@ function Controls:update(dt)
 end
 
 function Controls:draw()
-  love.graphics.setBackgroundColor(1, 1, 1)
-  love.graphics.setColor(1, 1, 1)
-  love.graphics.translate(0, BORDERS)
-  love.graphics.scale(SCALE)
+  resetToDraw()
   love.graphics.draw(self.background, 0, 0)
 
   self.up_anim:draw(sprites.controls, 532, 100)
   self.down_anim:draw(sprites.controls, 532, 132)
   self.right_anim:draw(sprites.controls, 564, 132)
   self.left_anim:draw(sprites.controls, 500, 132)
-  self.m_anim:draw(sprites.controls, 500, 300)
-  self.r_anim:draw(sprites.controls, 510, 370)
-  self.p_anim:draw(sprites.controls, 490, 440)
+  self.m_anim:draw(sprites.controls, 500, 305)
+  self.r_anim:draw(sprites.controls, 510, 375)
+  self.p_anim:draw(sprites.controls, 490, 445)
 
-  self.k_anim:draw(sprites.knot, 480, 210)
-  self.c_anim:draw(sprites.checkpoint, 740, 210)
+  self.k_anim:draw(sprites.knot, 480, 215)
+  self.c_anim:draw(sprites.checkpoint, 740, 215)
 
   love.graphics.setColor(0, 0, 0)
-  love.graphics.setFont(love.graphics.newFont(FONT, 15))
+  love.graphics.setFont(love.graphics.newFont(FONT, 16))
 
   love.graphics.printf("Move Marto with the arrows", 610, 120, 200, "left")
   love.graphics.printf("Gather knots to get long enough to wrap Marto around the checkpoints", 530, 200, 200, "left")

@@ -5,9 +5,8 @@ GRID_X, GRID_Y = 40, 22
 CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
---SCALE = CELL_SIZE/TILE_SIZE
 SCALE = tonumber(string.format("%.1f", CELL_SIZE/TILE_SIZE))
-FONT = "asset/PatuaOne-Regular.ttf"
+FONT = "asset/Coda-Regular.ttf"
 
 function Game:init()
   Timer = require 'lib/hump-master/timer'
@@ -31,10 +30,12 @@ function Game:enter(previous, level)
   doors.load(map)
   scissors.load(map)
   goal = Goal:new(map)
+
   assert(map.layers["level"], "Map doesn't have level properties")
   local x = map.layers["level"].properties["x"]
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
+  local required = map.layers["level"].properties["goal"]
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
   Timer.every(0.3, function()
@@ -62,11 +63,15 @@ function Game:enter(previous, level)
       player:open(doors.get())
       player:getCutBy(scissors.get())
       player:maybeReach(goal)
-      if not goal:isPossible(knots.available(), player:length(), map.layers["level"].properties["goal"]) then
+      if not goal:isPossible(knots.available(), player:length(), required) then
         console = console .. "Not possible"
+        showHint = true
       end
     end
   end)
+
+  self.r_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
+  self.r_anim = Anim8.newAnimation(self.r_grid('1-2', 2), 0.5)
 end
 
 function Game:update(dt)
@@ -77,13 +82,11 @@ function Game:update(dt)
   scissors.update(dt)
   player:updateAnimation(dt)
   Timer.update(dt)
+  self.r_anim:update(dt)
 end
 
 function Game:draw()
-  love.graphics.scale(SCALE)
-  love.graphics.setBackgroundColor(0, 0, 0)
-  love.graphics.translate(0, BORDERS)
-  love.graphics.setColor(1, 1, 1)
+  resetToDraw()
   map:drawLayer(map.layers["tiles"])
   map:drawLayer(map.layers["tilesover"])
   knots.draw()
@@ -96,9 +99,12 @@ function Game:draw()
     map:drawLayer(map.layers["over"])
   end
   scissors.drawSecond()
-  ---[[
-  drawConsole()
-  --]]
+  if showHint then
+    self.r_anim:draw(sprites.controls, 1238, 10)
+  end
+  if doDrawConsole then
+    drawConsole()
+  end
 end
 
 function Game:keypressed(key)
@@ -114,12 +120,15 @@ function Game:keypressed(key)
   if key == 'r' then
     return Gamestate.switch(Game, Game.currentLevel)
   end
+  if key == 'c' then
+    doDrawConsole = not doDrawConsole
+  end
 
   player:keyPress(key)
 end
 
 function drawConsole()
-  love.graphics.setFont(love.graphics.newFont(10))
+  love.graphics.setFont(love.graphics.newFont(FONT, 10))
   love.graphics.setColor(0.1, 0.1, 0.1)
   love.graphics.rectangle("fill", 0, GRID_Y*TILE_SIZE-50, GRID_X*TILE_SIZE, 50)
   love.graphics.setColor(1, 1, 1)
@@ -135,10 +144,7 @@ function drawConsole()
 end
 
 function love.load()
-  love.graphics.setBackgroundColor(0, 0, 0)
----[[
   console = ""
---]]
   require 'save'
   saveData = {}
   saveData.level = 1
