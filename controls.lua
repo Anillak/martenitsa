@@ -55,7 +55,7 @@ function Controls:draw()
   self.c_anim:draw(sprites.checkpoint, 740, 210)
 
   love.graphics.setColor(0, 0, 0)
-  love.graphics.setFont(love.graphics.newFont(15))
+  love.graphics.setFont(love.graphics.newFont(FONT, 15))
 
   love.graphics.printf("Move Marto with the arrows", 610, 120, 200, "left")
   love.graphics.printf("Gather knots to get long enough to wrap Marto around the checkpoints", 530, 200, 200, "left")

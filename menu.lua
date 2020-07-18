@@ -5,7 +5,7 @@ local video
 
 function Menu:init()
   self.background = love.graphics.newImage('sprites/bg.png')
-  video = love.graphics.newVideo("video/intro.ogv")
+  video = love.graphics.newVideo("asset/intro.ogv")
 end
 
 function Menu:enter(previous)

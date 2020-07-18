@@ -33,7 +33,7 @@ function Button:update(dt)
 end
 
 function Button:draw()
-  love.graphics.setFont(love.graphics.newFont(20))
+  love.graphics.setFont(love.graphics.newFont(FONT, 20))
   if self.inactive then
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.buttonInactive, self.x, self.y)
@@ -51,7 +51,7 @@ function Button:draw()
     love.graphics.draw(sprites.button, self.x, self.y)
     love.graphics.setColor(0.6, 0, 0)
   end
-  love.graphics.printf(self.label, self.x, self.y + 15, width, "center")
+  love.graphics.printf(self.label, self.x, self.y + 13, width, "center")
   love.graphics.setColor(1, 1, 1)
 end
 
