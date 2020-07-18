@@ -1,18 +1,21 @@
 Menu = {}
 local B = require "button"
 local Buttons
+local video
 
 function Menu:init()
   self.background = love.graphics.newImage('sprites/bg.png')
+  video = love.graphics.newVideo("video/intro.ogv")
 end
 
 function Menu:enter(previous)
+  video:play()
   Buttons = B:new()
-  local position = (GRID_X*TILE_SIZE - Buttons.getWidth()) / 2
-  Buttons:add("start", position, 70, "Start", false, Game, 1)
-  Buttons:add("continue", position, 130, "Continue", (not (saveData.level > 1)), Levels)
-  Buttons:add("controls", position, 190, "Controls", false, Controls)
-  Buttons:add("exit", position, 250, "Exit", false)
+  local position = 510
+  Buttons:add("start", position, 240, "Start", false, Game, 1)
+  Buttons:add("continue", position, 300, "Continue", (not (saveData.level > 1)), Levels)
+  Buttons:add("controls", position, 360, "Controls", false, Controls)
+  Buttons:add("exit", position, 420, "Exit", false)
   Buttons:setActive(Buttons.start)
 end
 
@@ -25,6 +28,7 @@ function Menu:draw()
   love.graphics.setColor(1, 1, 1)
   love.graphics.translate(0, BORDERS)
   love.graphics.scale(SCALE)
+  love.graphics.draw(video, 0, 0)
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
 end

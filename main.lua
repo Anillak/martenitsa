@@ -1,6 +1,6 @@
 Game = {}
-GAME_X, GAME_Y = love.window.getDesktopDimensions()
---GAME_X, GAME_Y = 1280, 704
+--GAME_X, GAME_Y = love.window.getDesktopDimensions()
+GAME_X, GAME_Y = 1280, 704
 GRID_X, GRID_Y = 40, 22
 CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2

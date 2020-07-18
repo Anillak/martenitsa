@@ -40,6 +40,9 @@ function Levels:keyreleased(key, code)
   if key == "escape" then
    love.event.quit()
   end
+  if key == 'm' then
+    return Gamestate.switch(Menu)
+  end
   if key == 'up' or key == 'left' then
     self:selectPrevious()
   elseif key == 'down' or key == 'right' then
