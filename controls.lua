@@ -1,7 +1,22 @@
 Controls = {}
 
 function Controls:init()
+  self.background = love.graphics.newImage('sprites/bg.png')
 
+  self.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
+  self.m_anim = Anim8.newAnimation(self.grid('1-2', 1), 0.5)
+  self.r_anim = Anim8.newAnimation(self.grid('1-2', 2), 0.5)
+  self.p_anim = Anim8.newAnimation(self.grid('1-2', 3), 0.5)
+  self.down_anim = Anim8.newAnimation(self.grid('1-2', 4), 0.5)
+  self.up_anim = Anim8.newAnimation(self.grid('1-2', 5), 0.5)
+  self.right_anim = Anim8.newAnimation(self.grid('1-2', 6), 0.5)
+  self.left_anim = Anim8.newAnimation(self.grid('1-2', 7), 0.5)
+
+  self.c_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
+  self.c_anim = Anim8.newAnimation(self.c_grid('1-3',1, '1-3',2, '1-3',3), {1, 0.1, 0.1, 0.2, 0.7, 0.2, 0.1, 0.1, 1})
+
+  self.k_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
+  self.k_anim = Anim8.newAnimation(self.k_grid('1-3',1, '1-3',2, '1-2',3), 0.05)
 end
 
 function Controls:enter(previous)
@@ -9,7 +24,16 @@ function Controls:enter(previous)
 end
 
 function Controls:update(dt)
+  self.m_anim:update(dt)
+  self.r_anim:update(dt)
+  self.p_anim:update(dt)
+  self.down_anim:update(dt)
+  self.up_anim:update(dt)
+  self.right_anim:update(dt)
+  self.left_anim:update(dt)
 
+  self.c_anim:update(dt)
+  self.k_anim:update(dt)
 end
 
 function Controls:draw()
@@ -17,7 +41,29 @@ function Controls:draw()
   love.graphics.setColor(1, 1, 1)
   love.graphics.translate(0, BORDERS)
   love.graphics.scale(SCALE)
+  love.graphics.draw(self.background, 0, 0)
 
+  self.up_anim:draw(sprites.controls, 532, 100)
+  self.down_anim:draw(sprites.controls, 532, 132)
+  self.right_anim:draw(sprites.controls, 564, 132)
+  self.left_anim:draw(sprites.controls, 500, 132)
+  self.m_anim:draw(sprites.controls, 500, 300)
+  self.r_anim:draw(sprites.controls, 510, 370)
+  self.p_anim:draw(sprites.controls, 490, 440)
+
+  self.k_anim:draw(sprites.knot, 480, 210)
+  self.c_anim:draw(sprites.checkpoint, 740, 210)
+
+  love.graphics.setColor(0, 0, 0)
+  love.graphics.setFont(love.graphics.newFont(15))
+
+  love.graphics.printf("Move Marto with the arrows", 610, 120, 200, "left")
+  love.graphics.printf("Gather knots to get long enough to wrap Marto around the checkpoints", 530, 200, 200, "left")
+  love.graphics.printf("You can press M to go back to the menu", 550, 300, 200, "left")
+  love.graphics.printf("Press R to reset the level when you are stuck", 560, 370, 200, "left")
+  love.graphics.printf("To pause the level at any time press P", 540, 440, 200, "left")
+
+  love.graphics.setColor(1, 1, 1)
 end
 
 function Controls:keyreleased(key, code)

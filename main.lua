@@ -9,7 +9,6 @@ TILE_SIZE = 32
 SCALE = tonumber(string.format("%.1f", CELL_SIZE/TILE_SIZE))
 
 function Game:init()
-  Anim8 = require 'lib/anim8-master/anim8'
   Timer = require 'lib/hump-master/timer'
   Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
@@ -148,6 +147,7 @@ function love.load()
   end
 
   Gamestate = require "lib/hump-master/gamestate"
+  Anim8 = require 'lib/anim8-master/anim8'
   require 'sprites'
   require 'utils'
   require 'menu'
