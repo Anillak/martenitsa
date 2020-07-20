@@ -42,9 +42,11 @@ function Levels:keyreleased(key, code)
   end
   if key == 'up' or key == 'left' then
     self:selectPrevious()
-  elseif key == 'down' or key == 'right' then
+  end
+  if key == 'down' or key == 'right' then
     self:selectNext()
-  elseif key == 'return' then
+  end
+  if key == 'return' then
     Buttons.active:onClick()
   end
 end
@@ -61,4 +63,22 @@ function Levels:selectPrevious()
   if previous > 0 then
     Buttons:setActive(Buttons[previous])
   end
+end
+
+function Levels:mousemoved(x, y)
+  local button = Buttons:hovered(x, y)
+end
+
+function Levels:mousepressed(x, y)
+  local button = Buttons:hovered(x, y)
+end
+
+function Levels:mousereleased(x, y, mouseBtn)
+  local button = Buttons:hovered(x, y)
+  if button then
+    Buttons:setActive(button)
+      if mouseBtn == 1 then
+        button:onClick()
+      end
+    end
 end

@@ -63,9 +63,11 @@ function Menu:keyreleased(key, code)
   end
   if key == 'up' or key == 'left' then
     self:selectPrevious()
-  elseif key == 'down' or key == 'right' then
+  end
+  if key == 'down' or key == 'right' then
     self:selectNext()
-  elseif key == 'return' then
+  end
+  if key == 'return' then
     Buttons.active:onClick()
   end
 end

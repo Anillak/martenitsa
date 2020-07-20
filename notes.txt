@@ -1,17 +1,10 @@
+- create levels
+- create mid-levels
 - look into scaling issue
-- make intro stop motion animation
-  - around the Menu
-  - first time starting game
-- menu to select levels (as you like it)
-- controls page
-- go to menu and pause hints
-- restart when not possible
 - player animation
   - on level end
   - on dead
   - on cut
-- create levels
-- create mid-levels
 - assets to create
   - more rocks
   - more flowers
@@ -19,3 +12,5 @@
   - forest
   - grass
   - water 
+- randomize assets in levels
+- implement pejo and penda to unlock final level

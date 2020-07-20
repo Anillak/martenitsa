@@ -55,7 +55,7 @@ function Game:enter(previous, level)
         saveData.level = newLevel
         love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
       end
-      Timer.after(2, function() Gamestate.switch(Game, newLevel) end)
+      Timer.after(2, function() Gamestate.switch(Info, level) end)
     else
       goal:check(player)
       player:eat(knots.get())
@@ -118,7 +118,7 @@ function Game:keypressed(key)
     return Gamestate.switch(Menu)
   end
   if key == 'r' then
-    return Gamestate.switch(Game, Game.currentLevel)
+    return Gamestate.switch(Game, self.currentLevel)
   end
   if key == 'c' then
     doDrawConsole = not doDrawConsole
@@ -160,6 +160,7 @@ function love.load()
   require 'menu'
   require 'controls'
   require 'levels'
+  require 'info'
   require 'pause'
 
   Gamestate.registerEvents()

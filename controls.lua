@@ -1,4 +1,6 @@
 Controls = {}
+local B = require "button"
+local Buttons
 
 function Controls:init()
   self.background = love.graphics.newImage('sprites/bg.png')
@@ -20,10 +22,13 @@ function Controls:init()
 end
 
 function Controls:enter(previous)
-
+  Buttons = B:new()
+  Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
+  Buttons:setActive(Buttons.menu)
 end
 
 function Controls:update(dt)
+  Buttons:update(dt)
   self.m_anim:update(dt)
   self.r_anim:update(dt)
   self.p_anim:update(dt)
@@ -61,6 +66,7 @@ function Controls:draw()
   love.graphics.printf("To pause the level at any time press P", 540, 440, 200, "left")
 
   love.graphics.setColor(1, 1, 1)
+  Buttons:draw()
 end
 
 function Controls:keyreleased(key, code)
@@ -70,4 +76,25 @@ function Controls:keyreleased(key, code)
   if key == 'm' then
     return Gamestate.switch(Menu)
   end
+  if key == 'return' then
+    Buttons.active:onClick()
+  end
+end
+
+function Controls:mousemoved(x, y)
+  local button = Buttons:hovered(x, y)
+end
+
+function Controls:mousepressed(x, y)
+  local button = Buttons:hovered(x, y)
+end
+
+function Controls:mousereleased(x, y, mouseBtn)
+  local button = Buttons:hovered(x, y)
+  if button then
+    Buttons:setActive(button)
+      if mouseBtn == 1 then
+        button:onClick()
+      end
+    end
 end
