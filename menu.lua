@@ -9,6 +9,7 @@ function Menu:init()
 end
 
 function Menu:enter(previous)
+  video:rewind()
   video:play()
   Buttons = B:new()
   local position = 510
