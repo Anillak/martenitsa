@@ -76,25 +76,17 @@ function Controls:keyreleased(key, code)
   if key == 'm' then
     return Gamestate.switch(Menu)
   end
-  if key == 'return' then
-    Buttons.active:onClick()
-  end
+  Buttons:keyreleased(key, code)
 end
 
 function Controls:mousemoved(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousemoved(x, y)
 end
 
 function Controls:mousepressed(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousepressed(x, y)
 end
 
 function Controls:mousereleased(x, y, mouseBtn)
-  local button = Buttons:hovered(x, y)
-  if button then
-    Buttons:setActive(button)
-      if mouseBtn == 1 then
-        button:onClick()
-      end
-    end
+  Buttons:mousereleased(x, y, mouseBtn)
 end

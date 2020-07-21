@@ -40,45 +40,17 @@ function Levels:keyreleased(key, code)
   if key == 'm' then
     return Gamestate.switch(Menu)
   end
-  if key == 'up' or key == 'left' then
-    self:selectPrevious()
-  end
-  if key == 'down' or key == 'right' then
-    self:selectNext()
-  end
-  if key == 'return' then
-    Buttons.active:onClick()
-  end
-end
-
-function Levels:selectNext()
-  local next = Buttons:getActive() + 1
-  if next <= levelsAmount then
-    Buttons:setActive(Buttons[next])
-  end
-end
-
-function Levels:selectPrevious()
-  local previous = Buttons:getActive() - 1
-  if previous > 0 then
-    Buttons:setActive(Buttons[previous])
-  end
+  Buttons:keyreleased(key, code)
 end
 
 function Levels:mousemoved(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousemoved(x, y)
 end
 
 function Levels:mousepressed(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousepressed(x, y)
 end
 
 function Levels:mousereleased(x, y, mouseBtn)
-  local button = Buttons:hovered(x, y)
-  if button then
-    Buttons:setActive(button)
-      if mouseBtn == 1 then
-        button:onClick()
-      end
-    end
+  Buttons:mousereleased(x, y, mouseBtn)
 end

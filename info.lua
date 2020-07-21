@@ -38,41 +38,17 @@ function Info:keyreleased(key, code)
   if key == 'm' then
     return Gamestate.switch(Menu)
   end
-  if key == 'left' then
-    self:selectPrevious()
-  end
-  if key == 'right' then
-    self:selectNext()
-  end
-  if key == 'return' then
-    Buttons.active:onClick()
-  end
-end
-
-function Info:selectNext()
-  if Buttons.active == Buttons.level then Buttons:setActive(Buttons.menu)
-  elseif Buttons.active == Buttons.menu then Buttons:setActive(Buttons.level) end
-end
-
-function Info:selectPrevious()
-  if Buttons.active == Buttons.level then Buttons:setActive(Buttons.menu)
-  elseif Buttons.active == Buttons.menu then Buttons:setActive(Buttons.level) end
+  Buttons:keyreleased(key, code)
 end
 
 function Info:mousemoved(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousemoved(x, y)
 end
 
 function Info:mousepressed(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousepressed(x, y)
 end
 
 function Info:mousereleased(x, y, mouseBtn)
-  local button = Buttons:hovered(x, y)
-  if button then
-    Buttons:setActive(button)
-      if mouseBtn == 1 then
-        button:onClick()
-      end
-    end
+  Buttons:mousereleased(x, y, mouseBtn)
 end

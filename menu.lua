@@ -30,62 +30,21 @@ function Menu:draw()
   Buttons:draw()
 end
 
-function Menu:selectNext()
-  if Buttons.active == Buttons.start then
-    if Buttons.continue.inactive then
-      Buttons:setActive(Buttons.controls)
-    else
-      Buttons:setActive(Buttons.continue)
-    end
-  elseif Buttons.active == Buttons.continue then Buttons:setActive(Buttons.controls)
-  elseif Buttons.active == Buttons.controls then Buttons:setActive(Buttons.exit)
-  elseif Buttons.active == Buttons.exit then Buttons:setActive(Buttons.start)
-  end
-end
-
-function Menu:selectPrevious()
-  if Buttons.active == Buttons.start then Buttons:setActive(Buttons.exit)
-  elseif Buttons.active == Buttons.continue then Buttons:setActive(Buttons.start)
-  elseif Buttons.active == Buttons.controls then
-    if Buttons.continue.inactive then
-      Buttons:setActive(Buttons.start)
-    else
-      Buttons:setActive(Buttons.continue)
-    end
-  elseif Buttons.active == Buttons.exit then
-    Buttons:setActive(Buttons.controls)
-  end
-end
-
 function Menu:keyreleased(key, code)
   if key == "escape" then
    love.event.quit()
   end
-  if key == 'up' or key == 'left' then
-    self:selectPrevious()
-  end
-  if key == 'down' or key == 'right' then
-    self:selectNext()
-  end
-  if key == 'return' then
-    Buttons.active:onClick()
-  end
+  Buttons:keyreleased(key, code)
 end
 
 function Menu:mousemoved(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousemoved(x, y)
 end
 
 function Menu:mousepressed(x, y)
-  local button = Buttons:hovered(x, y)
+  Buttons:mousepressed(x, y)
 end
 
 function Menu:mousereleased(x, y, mouseBtn)
-  local button = Buttons:hovered(x, y)
-  if button then
-    Buttons:setActive(button)
-      if mouseBtn == 1 then
-        button:onClick()
-      end
-    end
+  Buttons:mousereleased(x, y, mouseBtn)
 end

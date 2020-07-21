@@ -61,6 +61,7 @@ function Buttons:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
+  self.indices = {}
 
   return o
 end
@@ -68,6 +69,7 @@ end
 function Buttons:add(key, x, y, label, inactive, state, args)
   local button = Button:new({}, key, x, y, label, inactive, state, args)
   self[key] = button
+  self.indices[#self.indices + 1] = key
 end
 
 function Buttons.getWidth()
@@ -112,6 +114,82 @@ function Buttons:hovered(x, y)
       else b.hovered = false
     end
   end
+end
+
+local function next(t, key)
+  index = 0
+  for i,v in ipairs(t) do
+    if v == key then index = i+1 end
+  end
+  if index > #t then
+    return 1
+  else return index
+  end
+end
+
+local function previous(t, key)
+  index = 0
+  for i,v in ipairs(t) do
+    if v == key then index = i-1 end
+  end
+  if index < 1 then
+    return #t
+    else return index
+  end
+end
+
+function Buttons:selectNext()
+  if #self.indices > 1 then
+    local nextIndex = next(self.indices, self:getActive())
+    local nextButton = self[self.indices[nextIndex]]
+    while nextButton.inactive do
+      nextIndex = next(self.indices, self.indices[nextIndex])
+      nextButton = self[self.indices[nextIndex]]
+    end
+    self:setActive(nextButton)
+  end
+end
+
+function Buttons:selectPrevious()
+  if #self.indices > 1 then
+    local prevIndex = previous(self.indices, self:getActive())
+    local prevButton = self[self.indices[prevIndex]]
+    while prevButton.inactive do
+      prevIndex = previous(self.indices, self.indices[prevIndex])
+      prevButton = self[self.indices[prevIndex]]
+    end
+    self:setActive(prevButton)
+  end
+end
+
+function Buttons:keyreleased(key, code)
+  if key == 'up' or key == 'left' then
+    self:selectPrevious()
+  end
+  if key == 'down' or key == 'right' then
+    self:selectNext()
+  end
+  if key == 'return' then
+    self.active:onClick()
+  end
+end
+
+function Buttons:mousemoved(x, y)
+  local button = self:hovered(x, y)
+end
+
+function Buttons:mousepressed(x, y)
+  local button = self:hovered(x, y)
+end
+
+function Buttons:mousereleased(x, y, mouseBtn)
+  local button = self:hovered(x, y)
+  if button then
+    self:setActive(button)
+      if mouseBtn == 1 then
+        button:onClick()
+      end
+    end
 end
 
 return Buttons
