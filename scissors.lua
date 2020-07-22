@@ -130,6 +130,12 @@ function S.drawSecond()
   end
 end
 
+function S.stop()
+  for _,s in ipairs(S.scissors) do
+    s.animation:pause()
+  end
+end
+
 function S.get()
   return S.scissors
 end

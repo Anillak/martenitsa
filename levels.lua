@@ -20,6 +20,7 @@ function Levels:enter()
     local inactive = level > saveData.level
     Buttons:add(level, positionX, positionY, level, inactive, Game, level)
   end
+  Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
   Buttons:setActive(Buttons[1])
 end
 

@@ -43,11 +43,13 @@ function Game:enter(previous, level)
 
     if player:isDead() then
       console = console .. "Player died :("
+      scissors.stop()
       Timer.clear()
       player:playDead()
       Timer.after(2, function() Gamestate.switch(Game, level) end)
     elseif player:isWon() then
       console = console .. "Woohoo won!"
+      scissors.stop()
       Timer.clear()
       player:playVictory()
       local newLevel = level + 1
