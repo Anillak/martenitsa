@@ -17,6 +17,7 @@ function Scissors:new(o, x, y, interval)
    if not interval then interval = 5 end
 
    Timer.every(interval, function()
+     sounds.scissors:play()
      o.animation:resume()
      Timer.after(0.25, function()
        o.cutting = true

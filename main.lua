@@ -38,7 +38,7 @@ function Game:enter(previous, level)
   local required = map.layers["level"].properties["goal"]
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
-  Timer.every(0.3, function()
+  Timer.every(0.2, function()
     player:update(dt)
 
     if player:isDead() then
@@ -140,8 +140,8 @@ function drawConsole()
   sr = "    Scale ratio: " .. SCALE
   res = "    Resolution: " .. GAME_X .. "x" .. GAME_Y
   b = "    Borders: " .. BORDERS
-  --gc = "    Memory: " .. collectgarbage('count') .. "kb"
-  text = pfs .. cs .. sr .. res ..b
+  gc = "    Memory: " .. collectgarbage('count') .. "kb"
+  text = pfs .. cs .. sr .. res ..b..gc
   love.graphics.print(text, 10, GRID_Y*TILE_SIZE-22)
 end
 
@@ -158,6 +158,7 @@ function love.load()
   Gamestate = require "lib/hump-master/gamestate"
   Anim8 = require 'lib/anim8-master/anim8'
   require 'sprites'
+  require 'sounds'
   require 'utils'
   require 'menu'
   require 'controls'

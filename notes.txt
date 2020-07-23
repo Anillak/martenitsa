@@ -12,5 +12,9 @@
   - forest
   - grass
   - water 
-- randomize assets in levels
+- randomize assets in levels (different knots, tiles)
+- show the intro video only for the beginning, then a picture
+- better backgrounds for sections (pejo and penda, more colour)
+- sounds
+- music: slow piano versions of folk songs
 - implement pejo and penda to unlock final level
