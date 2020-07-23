@@ -3,7 +3,7 @@ local B = require "button"
 local Buttons
 
 function Controls:init()
-  self.background = love.graphics.newImage('sprites/bg.png')
+  self.background = love.graphics.newImage('asset/bg.png')
 
   self.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
   self.m_anim = Anim8.newAnimation(self.grid('1-2', 1), 0.5)

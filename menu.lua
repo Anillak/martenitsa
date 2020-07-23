@@ -4,13 +4,13 @@ local Buttons
 local video
 
 function Menu:init()
-  self.background = love.graphics.newImage('sprites/bg.png')
-  video = love.graphics.newVideo("asset/intro.ogv")
+  self.background = love.graphics.newImage('asset/bg.png')
+  self.intro = love.graphics.newImage('asset/intro.jpg')
+  self.video = love.graphics.newVideo("asset/intro.ogv")
 end
 
 function Menu:enter(previous)
-  video:rewind()
-  video:play()
+  self.video:play()
   Buttons = B:new()
   local position = 510
   Buttons:add("start", position, 240, "Start", false, Game, 1)
@@ -26,7 +26,11 @@ end
 
 function Menu:draw()
   resetToDraw()
-  love.graphics.draw(video, 0, 0)
+  if self.video:isPlaying() then
+    love.graphics.draw(self.video, 0, 0)
+  else
+    love.graphics.draw(self.intro, 0, 0)
+  end
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
 end

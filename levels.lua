@@ -4,7 +4,7 @@ local Buttons
 local levelsAmount = 1
 
 function Levels:init()
-  self.background = love.graphics.newImage('sprites/bg.png')
+  self.background = love.graphics.newImage('asset/bg.png')
   levelsAmount = 7
 end
 

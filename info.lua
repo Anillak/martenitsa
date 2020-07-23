@@ -3,7 +3,7 @@ local B = require "button"
 local Buttons
 
 function Info:init()
-  self.background = love.graphics.newImage('sprites/bg.png')
+  self.background = love.graphics.newImage('asset/bg.png')
   self.level = 0
 end
 
