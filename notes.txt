@@ -1,19 +1,20 @@
+- sounds
+- transitions between levels
+- player animation
+  - on level end
+  - on dead
+- create levels
+  - finish level 7 and 8
+  - randomize assets in levels
 - assets to create
   - здравец
   - forest
   - grass
   - water 
-- create levels
-  - finish level 7 and 8
-  - randomize assets in levels
 - create mid-levels
   - write text for each section
   - make photos of martenitsas for backgrounds
-- transitions between levels
-- player animation
-  - on level end
-  - on dead
 - add game name to intro
 - logo research
-- sounds
+- talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs

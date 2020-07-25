@@ -93,12 +93,10 @@ function Game:draw()
   knots.draw()
   goal:draw()
   doors.draw()
+  map:drawLayer(map.layers["elements"])
   scissors.draw()
   player:draw()
-  map:drawLayer(map.layers["elements"])
-  if map.layers["over"] then
-    map:drawLayer(map.layers["over"])
-  end
+  map:drawLayer(map.layers["over"])
   scissors.drawSecond()
   if showHint then
     self.r_anim:draw(sprites.controls, 1238, 10)
