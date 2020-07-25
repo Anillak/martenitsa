@@ -10,9 +10,12 @@ function Scissors:new(o, x, y, interval)
    o.deadSegments = {}
 
    local size = TILE_SIZE*2
-   o.grid = Anim8.newGrid(size, size, size*4, size)
-   o.animation = Anim8.newAnimation(o.grid('1-4',1), 0.25)
+   local grid = Anim8.newGrid(size, size, size*4, size)
+   o.animation = Anim8.newAnimation(grid('1-4',1), 0.25)
    o.animation:pause()
+
+   local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
+   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
 
    if not interval then interval = 5 end
 
@@ -35,12 +38,10 @@ end
 
 function Scissors:update(dt)
   self.animation:update(dt)
+  self.animation_dead:update(dt)
 
   if #self.deadSegments > 0 then
-    for i=#self.deadSegments,1 do
-      self.deadSegments[i].animation:pause()
-    end
-    Timer.after(1, function()
+    Timer.after(2, function()
       for k,v in pairs(self.deadSegments) do
         table.remove(self.deadSegments)
       end
@@ -54,18 +55,18 @@ function Scissors:draw()
     self.x * TILE_SIZE,
     self.y * TILE_SIZE)
 
-    for _,segment in ipairs(self.deadSegments) do
-      segment.animation:draw(
-        segment.sprite,
-        segment.x * TILE_SIZE + TILE_SIZE/2,
-        segment.y * TILE_SIZE + TILE_SIZE/2,
-        math.rad(segment.rotation),
-        1,
-        1,
-        TILE_SIZE/2,
-        TILE_SIZE/2
-      )
-    end
+  for _,segment in ipairs(self.deadSegments) do
+    self.animation_dead:draw(
+      sprites[segment.sprite .. "Cut"],
+      segment.x * TILE_SIZE + TILE_SIZE/2,
+      segment.y * TILE_SIZE + TILE_SIZE/2,
+      math.rad(segment.rotation),
+      1,
+      1,
+      TILE_SIZE/2,
+      TILE_SIZE/2
+    )
+  end
 end
 
 function Scissors:drawBottom()
@@ -89,7 +90,9 @@ function Scissors:cutPlayer(p)
   end
   if cutTail ~= -1 and p.dead == false then
     for i=1,cutTail do
-      table.insert(self.deadSegments, table.remove(p.segments))
+      local s = table.remove(p.segments)
+      if i == 1 then s.sprite = "playerTail" end
+      table.insert(self.deadSegments, s)
     end
   end
 end

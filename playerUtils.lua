@@ -19,7 +19,7 @@ function getSpriteAccordingToNeighbors(i, neighbours, n)
   local image = {}
 
   if i == 1 then
-    image.sprite = sprites.playerHead
+    image.sprite = "playerHead"
     if neighbours[1] == "left" then
       image.rotation = 0
     elseif neighbours[1] == "right" then
@@ -30,7 +30,7 @@ function getSpriteAccordingToNeighbors(i, neighbours, n)
       image.rotation = 270
     end
   elseif i == n then
-    image.sprite = sprites.playerTail
+    image.sprite = "playerTail"
     if neighbours[1] == "right" then
       image.rotation = 0
     elseif neighbours[1] == "left" then
@@ -41,40 +41,40 @@ function getSpriteAccordingToNeighbors(i, neighbours, n)
       image.rotation = 270
     end
   elseif neighbours[1] == "right" and neighbours[2] == "left" then
-    image.sprite = sprites.playerMid
+    image.sprite = "playerMid"
     image.rotation = 0
   elseif neighbours[1] == "down" and neighbours[2] == "up" then
-    image.sprite = sprites.playerMid
+    image.sprite = "playerMid"
     image.rotation = 90
   elseif neighbours[1] == "left" and neighbours[2] == "right" then
-    image.sprite = sprites.playerMid
+    image.sprite = "playerMid"
     image.rotation = 180
   elseif neighbours[1] == "up" and neighbours[2] == "down" then
-    image.sprite = sprites.playerMid
+    image.sprite = "playerMid"
     image.rotation = 270
   elseif neighbours[1] == "left" and neighbours[2] == "down" then
-    image.sprite = sprites.playerCurveAlt
+    image.sprite = "playerCurveAlt"
     image.rotation = 0
   elseif neighbours[1] == "down" and neighbours[2] == "left" then
-    image.sprite = sprites.playerCurve
+    image.sprite = "playerCurve"
     image.rotation = 0
   elseif neighbours[1] == "left" and neighbours[2] == "up" then
-    image.sprite = sprites.playerCurve
+    image.sprite = "playerCurve"
     image.rotation = 90
   elseif neighbours[1] == "up" and neighbours[2] == "left" then
-    image.sprite = sprites.playerCurveAlt
+    image.sprite = "playerCurveAlt"
     image.rotation = 90
   elseif neighbours[1] == "right" and neighbours[2] == "up" then
-    image.sprite = sprites.playerCurveAlt
+    image.sprite = "playerCurveAlt"
     image.rotation = 180
   elseif neighbours[1] == "up" and neighbours[2] == "right" then
-    image.sprite = sprites.playerCurve
+    image.sprite = "playerCurve"
     image.rotation = 180
   elseif neighbours[1] == "right" and neighbours[2] == "down" then
-    image.sprite = sprites.playerCurve
+    image.sprite = "playerCurve"
     image.rotation = 270
   elseif neighbours[1] == "down" and neighbours[2] == "right" then
-    image.sprite = sprites.playerCurveAlt
+    image.sprite = "playerCurveAlt"
     image.rotation = 270
   end
 
