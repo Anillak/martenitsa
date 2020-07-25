@@ -7,8 +7,10 @@ function Knot:new(o, x, y)
    o.x = x
    o.y = y
 
-   o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
-   o.animation = Anim8.newAnimation(o.grid('1-3',1, '1-3',2, '1-2',3), 0.05)
+   o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*3)
+   local row = math.random(1, 3)
+   local time = math.random(4, 6)
+   o.animation = Anim8.newAnimation(o.grid('1-2',row), {time, 0.5})
 
    return o
 end

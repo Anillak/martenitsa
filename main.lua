@@ -38,7 +38,7 @@ function Game:enter(previous, level)
   local required = map.layers["level"].properties["goal"]
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
-  Timer.every(0.2, function()
+  Timer.every(0.3, function()
     player:update(dt)
 
     if player:isDead() then
