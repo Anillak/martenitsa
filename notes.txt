@@ -2,7 +2,7 @@
 - transitions between levels
 - player animation
   - on level end
-  - on dead
+  - on dead - NEXT
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
@@ -12,7 +12,7 @@
   - grass
   - water 
 - create mid-levels
-  - write text for each section
+  - write text for each section - NEXT
   - make photos of martenitsas for backgrounds
 - add game name to intro
 - logo research

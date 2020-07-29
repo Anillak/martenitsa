@@ -11,6 +11,9 @@ function Player:new(o, x, y, length, direction)
    o.dead = false
    o.direction = {direction}
 
+   local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
+   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
+
    for i=0,length-1 do
      table.insert(o.segments, self:createSegment(x-i, y))
    end
@@ -32,6 +35,12 @@ function Player:update(dt)
     local newX, newY = self:next()
     self.bound = self:checkIfBound(newX, newY)
     table.insert(self.segments, 1, self:createSegment(newX, newY))
+  end
+end
+
+function Player:animationUpdate(dt)
+  if self.dead then
+    self.animation_dead:update(dt)
   end
 end
 
@@ -62,6 +71,32 @@ function Player:findNeighbours(i, segment)
   return neighbours
 end
 
+local function drawAlivePlayer(segment)
+  love.graphics.draw(
+    sprites[segment.sprite],
+    segment.x * TILE_SIZE + TILE_SIZE/2,
+    segment.y * TILE_SIZE + TILE_SIZE/2,
+    math.rad(segment.rotation),
+    1,
+    1,
+    TILE_SIZE/2,
+    TILE_SIZE/2
+  )
+end
+
+local function drawDeadPlayer(animation, segment)
+  animation:draw(
+    sprites[segment.sprite .. "Cut"],
+    segment.x * TILE_SIZE + TILE_SIZE/2,
+    segment.y * TILE_SIZE + TILE_SIZE/2,
+    math.rad(segment.rotation),
+    1,
+    1,
+    TILE_SIZE/2,
+    TILE_SIZE/2
+  )
+end
+
 function Player:draw()
   for j=1,#self.segments do
     i = #self.segments-j+1
@@ -71,16 +106,11 @@ function Player:draw()
     segment.sprite = image.sprite
     segment.rotation = image.rotation
 
-    love.graphics.draw(
-      sprites[image.sprite],
-      segment.x * TILE_SIZE + TILE_SIZE/2,
-      segment.y * TILE_SIZE + TILE_SIZE/2,
-      math.rad(image.rotation),
-      1,
-      1,
-      TILE_SIZE/2,
-      TILE_SIZE/2
-    )
+    if not self.dead then
+      drawAlivePlayer(segment)
+    else
+      drawDeadPlayer(self.animation_dead, segment)
+    end
   end
 end
 

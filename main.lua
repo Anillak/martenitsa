@@ -82,6 +82,7 @@ function Game:update(dt)
   knots.update(dt)
   doors.update(dt)
   scissors.update(dt)
+  player:animationUpdate(dt)
   Timer.update(dt)
   self.r_anim:update(dt)
 end
