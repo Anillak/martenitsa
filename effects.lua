@@ -27,7 +27,7 @@ function E.load()
       effects.hitWall.y = y * TILE_SIZE
     end)
 
-  effects.hitWater = Effect:new({}, sprites.hitWall, 3, 1, 1, {0.2, 0.2, 1.6})
+  effects.hitWater = Effect:new({}, sprites.hitWater, 3, 1, 1, {0.2, 0.2, 1.6})
   Signal.register('hit water',
     function(x, y)
       effects.hitWater.active = true

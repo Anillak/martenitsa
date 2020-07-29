@@ -15,7 +15,7 @@ function Scissors:new(o, x, y, interval)
    o.animation:pause()
 
    local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
-   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
+   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 2})
 
    if not interval then interval = 5 end
 

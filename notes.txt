@@ -1,8 +1,9 @@
 - sounds
-- transitions between levels
+- transitions between levels - NEXT
+- optimize performance
 - player animation
-  - on level end
-  - on dead - NEXT
+  - on level end - NEXT
+  - think about how we make the animation, fix scissor cut short piece problem
 - create levels
   - finish level 7 and 8
   - randomize assets in levels

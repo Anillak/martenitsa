@@ -41,7 +41,7 @@ function Game:enter(previous, level)
   local required = map.layers["level"].properties["goal"]
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
-  Timer.every(0.3, function()
+  Timer.every(0.2, function()
     player:update(dt)
 
     if player:isDead() then
@@ -70,7 +70,7 @@ function Game:enter(previous, level)
       player:maybeReach(goal)
       if not goal:isPossible(knots.available(), player:length(), required) then
         console = console .. "Not possible"
-        showHint = true
+        Signal.emit('show r')
       end
     end
   end)
@@ -100,9 +100,6 @@ function Game:draw()
   map:drawLayer(map.layers["over"])
   scissors.drawSecond()
   effects.draw()
-  if showHint then
-    Signal.emit('show r')
-  end
   if doDrawConsole then
     drawConsole()
   end
