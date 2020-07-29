@@ -115,8 +115,14 @@ function Player:draw()
 end
 
 function Player:maybeHit(walls)
-  if walls.isWall(self.segments[1].x, self.segments[1].y) then
+  isWall, isWater = walls.isWall(self.segments[1].x, self.segments[1].y)
+  if isWall then
     self.dead = true
+    if isWater then
+      Signal.emit('hit water', self.segments[1].x, self.segments[1].y)
+    else
+      Signal.emit('hit wall', self.segments[1].x, self.segments[1].y)
+    end
   end
 end
 

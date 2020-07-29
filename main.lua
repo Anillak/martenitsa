@@ -12,6 +12,7 @@ function Game:init()
   Timer = require 'lib/hump-master/timer'
   Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
+  effects = require 'effects'
   walls = require 'walls'
   Player = require 'player'
   knots = require 'knots'
@@ -21,10 +22,12 @@ function Game:init()
 end
 
 function Game:enter(previous, level)
+  Signal.clear()
   Timer.clear()
   assert(level, "Game needs a level to load.")
   local mapPath = string.format("maps/level%d.lua", level)
   map = Sti(mapPath)
+  effects.load()
   walls.load(map)
   knots.load(map)
   doors.load(map)
@@ -71,9 +74,6 @@ function Game:enter(previous, level)
       end
     end
   end)
-
-  self.r_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
-  self.r_anim = Anim8.newAnimation(self.r_grid('1-2', 2), 0.5)
 end
 
 function Game:update(dt)
@@ -84,7 +84,7 @@ function Game:update(dt)
   scissors.update(dt)
   player:animationUpdate(dt)
   Timer.update(dt)
-  self.r_anim:update(dt)
+  effects.update(dt)
 end
 
 function Game:draw()
@@ -94,13 +94,14 @@ function Game:draw()
   knots.draw()
   goal:draw()
   doors.draw()
-  map:drawLayer(map.layers["elements"])
   scissors.draw()
   player:draw()
+  map:drawLayer(map.layers["elements"])
   map:drawLayer(map.layers["over"])
   scissors.drawSecond()
+  effects.draw()
   if showHint then
-    self.r_anim:draw(sprites.controls, 1238, 10)
+    Signal.emit('show r')
   end
   if doDrawConsole then
     drawConsole()

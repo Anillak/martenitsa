@@ -1,12 +1,11 @@
 Wall = {}
 
-function Wall:new(o, x, y, isWater)
+function Wall:new(o, x, y)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
    o.x = x
    o.y = y
-   o.isWater = isWater
 
    return o
 end
@@ -14,8 +13,8 @@ end
 W = {}
 
 local function create(x, y, isWater)
-  wall = Wall:new({}, x, y, isWater)
-  W.walls.indices[x][y] = true
+  wall = Wall:new({}, x, y)
+  W.walls.indices[x][y] = {true, isWater}
   table.insert(W.walls, wall)
 end
 
@@ -29,12 +28,12 @@ function W.load(map)
     local row = {}
     W.walls.indices[i] = row
     for j = 0, (GAME_Y/TILE_SIZE)-1 do
-      row[j] = false
+      row[j] = {false, false}
     end
   end
 
-  Signal.register('create door', function(x,y) W.walls.indices[x][y] = true end)
-  Signal.register('open door', function(x,y) W.walls.indices[x][y] = false end)
+  Signal.register('create door', function(x,y) W.walls.indices[x][y] = {true, false} end)
+  Signal.register('open door', function(x,y) W.walls.indices[x][y] = {false, false} end)
 
   for _,o in ipairs(map.layers["walls"].objects) do
     create(o.x/TILE_SIZE, o.y/TILE_SIZE)
@@ -56,7 +55,7 @@ function W.draw()
 end
 
 function W.isWall(x, y)
-  return W.walls.indices[x][y]
+  return W.walls.indices[x][y][1], W.walls.indices[x][y][2]
 end
 
 return W
