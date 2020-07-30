@@ -12,10 +12,11 @@ function Scissors:new(o, x, y, interval)
    local size = TILE_SIZE*2
    local grid = Anim8.newGrid(size, size, size*4, size)
    o.animation = Anim8.newAnimation(grid('1-4',1), 0.25)
-   o.animation:pause()
+   o.animation:pauseAtStart()
 
    local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
-   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 2})
+   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.5}, "pauseAtEnd")
+   o.animation_dead:pauseAtStart()
 
    if not interval then interval = 5 end
 
@@ -38,9 +39,11 @@ end
 
 function Scissors:update(dt)
   self.animation:update(dt)
-  self.animation_dead:update(dt)
 
   if #self.deadSegments > 0 then
+    self.animation_dead:resume()
+    self.animation_dead:update(dt)
+    
     Timer.after(2, function()
       for k,v in pairs(self.deadSegments) do
         table.remove(self.deadSegments)

@@ -66,6 +66,7 @@ function Game:enter(previous, level)
       player:eat(knots.get())
       player:maybeHit(walls)
       player:open(doors.get())
+      player:composeSegments()
       player:getCutBy(scissors.get())
       player:maybeReach(goal)
       if not goal:isPossible(knots.available(), player:length(), required) then

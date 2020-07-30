@@ -14,9 +14,11 @@ function Player:new(o, x, y, length, direction)
    local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
    o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
 
-   for i=0,length-1 do
-     table.insert(o.segments, self:createSegment(x-i, y))
+   for i=1,length do
+     o.segments[i] = self:createSegment(x-i, y)
    end
+
+   o:composeSegments()
    return o
 end
 
@@ -24,7 +26,18 @@ function Player:createSegment(x, y)
   segment = {}
   segment.x = x
   segment.y = y
+  segment.sprite = "playerHead"
+  segment.rotation = 0
   return segment
+end
+
+function Player:composeSegments()
+  for i,segment in ipairs(self.segments) do
+    local neighbours = self:findNeighbours(i, segment)
+    local image = getSpriteAccordingToNeighbors(i, neighbours, #self.segments)
+    segment.sprite = image.sprite
+    segment.rotation = image.rotation
+  end
 end
 
 function Player:update(dt)
@@ -101,10 +114,6 @@ function Player:draw()
   for j=1,#self.segments do
     i = #self.segments-j+1
     local segment = self.segments[i]
-    local neighbours = self:findNeighbours(i, segment)
-    local image = getSpriteAccordingToNeighbors(i, neighbours, #self.segments)
-    segment.sprite = image.sprite
-    segment.rotation = image.rotation
 
     if not self.dead then
       drawAlivePlayer(segment)

@@ -45,8 +45,8 @@ function Door:new(o, x, y)
    o.y = y
    o.open = false
    o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
-   o.animation = Anim8.newAnimation(o.grid('1-4', 1), 0.2)
-   o.animation:pause()
+   o.animation = Anim8.newAnimation(o.grid('1-4', 1), 0.2, "pauseAtEnd")
+   o.animation:pauseAtStart()
 
    return o
 end
@@ -61,9 +61,6 @@ function Door:update(dt)
     if self.open then
       Signal.emit('open door', self.x, self.y)
       self.animation:resume()
-      Timer.after(0.6, function()
-        self.animation:pauseAtEnd()
-      end)
     end
   end
 end

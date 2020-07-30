@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="338">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="339">
  <editorsettings>
   <export target="level3.lua" format="lua"/>
  </editorsettings>
@@ -169,6 +169,7 @@
   <object id="286" x="1024" y="224" width="32" height="32"/>
   <object id="287" x="992" y="224" width="32" height="32"/>
   <object id="288" x="960" y="224" width="32" height="32"/>
+  <object id="338" x="768" y="128" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="2" name="knots">
   <object id="156" x="992" y="96" width="32" height="32"/>
@@ -179,7 +180,7 @@
   <object id="192" x="1056" y="128" width="32" height="32"/>
   <object id="211" x="1024" y="160" width="32" height="32"/>
   <object id="212" x="928" y="512" width="32" height="32"/>
-  <object id="289" x="800" y="224" width="32" height="32"/>
+  <object id="289" x="352" y="224" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="7" name="checkpoints">
   <object id="37" x="1216" y="448" width="32" height="32"/>
