@@ -58,7 +58,7 @@ function Game:enter(previous, level)
         saveData.level = newLevel
         love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
       end
-      Timer.after(1, function() Gamestate.push(Victory, level) end)
+      Timer.after(1, function() Gamestate.switch(Victory, level) end)
     else
       goal:check(player)
       player:eat(knots.get())
@@ -104,7 +104,7 @@ function Game:draw()
   end
 end
 
-function Game:keypressed(key)
+function Game:keyreleased(key)
   if key == "escape" then
    love.event.quit()
   end
@@ -120,7 +120,9 @@ function Game:keypressed(key)
   if key == 'c' then
     doDrawConsole = not doDrawConsole
   end
+end
 
+function Game:keypressed(key)
   player:keyPress(key)
 end
 

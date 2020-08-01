@@ -25,7 +25,7 @@ function Pause:draw()
   self.p_anim:draw(sprites.controls, 583, 365)
 end
 
-function Pause:keypressed(key)
+function Pause:keyreleased(key)
   if key == "escape" then
    love.event.quit()
   end

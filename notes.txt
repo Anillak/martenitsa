@@ -1,6 +1,4 @@
 - sounds
-- fix the enter pressing in info right after Victory - NEXT
-- check gamestates in the stack after push - NEXT
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
@@ -16,3 +14,4 @@
 - logo research
 - talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs
+- implement the end of the game / credits
