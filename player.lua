@@ -177,14 +177,6 @@ function Player:length()
   return #self.segments
 end
 
-function Player:playDead()
-
-end
-
-function Player:playVictory()
-
-end
-
 function Player:keyPress(key)
   if key == "right"
     and self.direction[#self.direction] ~= "right"

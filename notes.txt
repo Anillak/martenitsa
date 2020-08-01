@@ -1,9 +1,6 @@
 - sounds
-- transitions between levels - NEXT
-- optimize performance
-- player animation
-  - on level end - NEXT
-  - think about how we make the animation, fix scissor cut short piece problem
+- fix the enter pressing in info right after Victory - NEXT
+- check gamestates in the stack after push - NEXT
 - create levels
   - finish level 7 and 8
   - randomize assets in levels

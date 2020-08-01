@@ -48,19 +48,17 @@ function Game:enter(previous, level)
       console = console .. "Player died :("
       scissors.stop()
       Timer.clear()
-      player:playDead()
       Timer.after(2, function() Gamestate.switch(Game, level) end)
     elseif player:isWon() then
       console = console .. "Woohoo won!"
       scissors.stop()
       Timer.clear()
-      player:playVictory()
       local newLevel = level + 1
       if saveData.level < newLevel then
         saveData.level = newLevel
         love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
       end
-      Timer.after(2, function() Gamestate.switch(Info, level) end)
+      Timer.after(1, function() Gamestate.push(Victory, level) end)
     else
       goal:check(player)
       player:eat(knots.get())
@@ -111,13 +109,13 @@ function Game:keypressed(key)
    love.event.quit()
   end
   if key == 'p' then
-    return Gamestate.push(Pause)
+    Gamestate.push(Pause)
   end
   if key == 'm' then
-    return Gamestate.switch(Menu)
+    Gamestate.switch(Menu)
   end
   if key == 'r' then
-    return Gamestate.switch(Game, self.currentLevel)
+    Gamestate.switch(Game, self.currentLevel)
   end
   if key == 'c' then
     doDrawConsole = not doDrawConsole
@@ -160,6 +158,7 @@ function love.load()
   require 'menu'
   require 'controls'
   require 'levels'
+  require 'victory'
   require 'info'
   require 'pause'
 
