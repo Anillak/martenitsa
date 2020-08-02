@@ -5,7 +5,7 @@ local Buttons
 function Victory:init()
   local size = TILE_SIZE*4
   local grid = Anim8.newGrid(size, size, size*5, size)
-  self.victory_anim = Anim8.newAnimation(grid('1-5', 1), 0.5)
+  self.victory_anim = Anim8.newAnimation(grid('1-5', 1), 0.5, "pauseAtEnd")
 end
 
 function Victory:enter(from, level)

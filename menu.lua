@@ -6,6 +6,7 @@ local video
 function Menu:init()
   self.background = love.graphics.newImage('asset/bg.png')
   self.intro = love.graphics.newImage('asset/intro.jpg')
+  self.name = love.graphics.newImage('asset/name.png')
   self.video = love.graphics.newVideo("asset/intro.ogv")
 end
 
@@ -30,6 +31,7 @@ function Menu:draw()
     love.graphics.draw(self.video, 0, 0)
   else
     love.graphics.draw(self.intro, 0, 0)
+    love.graphics.draw(self.name, 370, 60)
   end
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
