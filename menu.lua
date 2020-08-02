@@ -41,6 +41,9 @@ function Menu:keyreleased(key, code)
   if key == "escape" then
    love.event.quit()
   end
+  if key == "1" or key == "2" or key == "3" or key == "4" or key == "5" or key == "6" or key == "7" or key == "8" then
+    Gamestate.switch(Info, tonumber(key))
+  end
   Buttons:keyreleased(key, code)
 end
 
