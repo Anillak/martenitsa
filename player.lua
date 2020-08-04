@@ -180,19 +180,19 @@ function Player:length()
 end
 
 function Player:keyPress(key)
-  if key == "right"
+  if key == "right" or key == "d"
     and self.direction[#self.direction] ~= "right"
     and self.direction[#self.direction] ~= "left" then
       table.insert(self.direction, "right")
-  elseif key == "left"
+  elseif key == "left" or key == "a"
     and self.direction[#self.direction] ~= "left"
     and self.direction[#self.direction] ~= "right" then
       table.insert(self.direction, "left")
-  elseif key == "down"
+  elseif key == "down" or key == "s"
     and self.direction[#self.direction] ~= "down"
     and self.direction[#self.direction] ~= "up" then
       table.insert(self.direction, "down")
-  elseif key == "up"
+  elseif key == "up" or key == "w"
     and self.direction[#self.direction] ~= "up"
     and self.direction[#self.direction] ~= "down" then
       table.insert(self.direction, "up")

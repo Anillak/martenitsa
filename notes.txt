@@ -1,4 +1,12 @@
+- fix resizing
+  - borders and bg colour
+  - scissor animation bleeding
 - sounds - NEXT
+  - better water splash
+  - rock door
+  - victory
+  - knot eat
+  - buttons press
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
@@ -7,6 +15,7 @@
   - forest
   - grass
   - water 
+- player animation (different mid pieces)
 - create mid-levels
   - make photos of martenitsas for backgrounds
   - implement the end of the game / credits

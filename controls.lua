@@ -5,20 +5,20 @@ local Buttons
 function Controls:init()
   self.background = love.graphics.newImage('asset/bg.png')
 
-  self.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
-  self.m_anim = Anim8.newAnimation(self.grid('1-2', 1), 0.5)
-  self.r_anim = Anim8.newAnimation(self.grid('1-2', 2), 0.5)
-  self.p_anim = Anim8.newAnimation(self.grid('1-2', 3), 0.5)
-  self.down_anim = Anim8.newAnimation(self.grid('1-2', 4), 0.5)
-  self.up_anim = Anim8.newAnimation(self.grid('1-2', 5), 0.5)
-  self.right_anim = Anim8.newAnimation(self.grid('1-2', 6), 0.5)
-  self.left_anim = Anim8.newAnimation(self.grid('1-2', 7), 0.5)
+  local b_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
+  self.m_anim = Anim8.newAnimation(b_grid('1-2', 1), 0.5)
+  self.r_anim = Anim8.newAnimation(b_grid('1-2', 2), 0.5)
+  self.p_anim = Anim8.newAnimation(b_grid('1-2', 3), 0.5)
+  self.down_anim = Anim8.newAnimation(b_grid('1-2', 4), 0.5)
+  self.up_anim = Anim8.newAnimation(b_grid('1-2', 5), 0.5)
+  self.right_anim = Anim8.newAnimation(b_grid('1-2', 6), 0.5)
+  self.left_anim = Anim8.newAnimation(b_grid('1-2', 7), 0.5)
 
-  self.c_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
-  self.c_anim = Anim8.newAnimation(self.c_grid('1-3',1, '1-3',2, '1-3',3), {1, 0.1, 0.1, 0.2, 0.7, 0.2, 0.1, 0.1, 1})
+  local c_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
+  self.c_anim = Anim8.newAnimation(c_grid('1-3',1, '1-3',2, '1-3',3), {1, 0.1, 0.1, 0.2, 0.7, 0.2, 0.1, 0.1, 1})
 
-  self.k_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*3, TILE_SIZE*3)
-  self.k_anim = Anim8.newAnimation(self.k_grid('1-3',1, '1-3',2, '1-2',3), 0.05)
+  local k_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*3)
+  self.k_anim = Anim8.newAnimation(k_grid('1-2',3), {2, 0.5})
 end
 
 function Controls:enter(previous)
