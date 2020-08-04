@@ -13,3 +13,5 @@
 - logo research
 - talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs
+- use local instead of self?
+- add long martenitsa animation to levels selection

@@ -12,7 +12,7 @@ function Info:enter(previous, level)
   self.level = level
   Buttons = B:new()
   Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
-  if level ~= 8 then
+  if level ~= LEVELS_AMOUNT then
     Buttons:add("level", 915, 600, "Continue", false, Game, level+1)
     Buttons:setActive(Buttons.level)
   else

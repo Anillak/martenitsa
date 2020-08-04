@@ -1,17 +1,15 @@
 Levels = {}
 local B = require "button"
 local Buttons
-local levelsAmount = 1
 
 function Levels:init()
   self.background = love.graphics.newImage('asset/bg.png')
-  levelsAmount = 7
 end
 
 function Levels:enter()
   Buttons = B:new()
   local width = Buttons.getWidth()
-  for i=0,levelsAmount-1 do
+  for i=0,LEVELS_AMOUNT-1 do
     local col = i % 4
     local row = math.floor(i / 4)
     local positionX = width*col + 170 + 50*col

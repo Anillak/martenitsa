@@ -7,6 +7,7 @@ BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
 SCALE = tonumber(string.format("%.1f", CELL_SIZE/TILE_SIZE))
 FONT = "asset/Coda-Regular.ttf"
+LEVELS_AMOUNT = 8
 
 function Game:init()
   Timer = require 'lib/hump-master/timer'
