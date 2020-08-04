@@ -41,6 +41,9 @@ function Game:enter(previous, level)
   local required = map.layers["level"].properties["goal"]
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
+  if level > 1 then
+    sounds.birds:play()
+  end
   Timer.every(0.2, function()
     player:update(dt)
 

@@ -129,8 +129,10 @@ function Player:maybeHit(walls)
     self.dead = true
     if isWater then
       Signal.emit('hit water', self.segments[1].x, self.segments[1].y)
+      sounds.waterHit:play()
     else
       Signal.emit('hit wall', self.segments[1].x, self.segments[1].y)
+      sounds.wallHit:play()
     end
   end
 end

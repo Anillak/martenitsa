@@ -1,17 +1,15 @@
-- sounds
+- sounds - NEXT
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
-- assets to create
+- assets to create - NEXT
   - здравец
   - forest
   - grass
   - water 
 - create mid-levels
-  - write text for each section - NEXT
   - make photos of martenitsas for backgrounds
-- add game name to intro
+  - implement the end of the game / credits
 - logo research
 - talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs
-- implement the end of the game / credits
