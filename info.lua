@@ -8,6 +8,7 @@ function Info:init()
 end
 
 function Info:enter(previous, level)
+  sounds.birds:pause()
   self.level = level
   Buttons = B:new()
   Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
@@ -62,12 +63,6 @@ function Info:draw()
 end
 
 function Info:keyreleased(key, code)
-  if key == "escape" then
-   love.event.quit()
-  end
-  if key == 'm' then
-    return Gamestate.switch(Menu)
-  end
   Buttons:keyreleased(key, code)
 end
 

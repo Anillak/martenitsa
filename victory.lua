@@ -29,9 +29,6 @@ function Victory:draw()
 end
 
 function Victory:keyreleased(key, code)
-  if key == "escape" then
-   love.event.quit()
-  end
   Buttons:keyreleased(key, code)
 end
 

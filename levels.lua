@@ -35,12 +35,6 @@ function Levels:draw()
 end
 
 function Levels:keyreleased(key, code)
-  if key == "escape" then
-   love.event.quit()
-  end
-  if key == 'm' then
-    return Gamestate.switch(Menu)
-  end
   Buttons:keyreleased(key, code)
 end
 

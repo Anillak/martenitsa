@@ -108,20 +108,23 @@ function Game:draw()
 end
 
 function Game:keyreleased(key)
-  if key == "escape" then
-   love.event.quit()
-  end
   if key == 'p' then
     Gamestate.push(Pause)
-  end
-  if key == 'm' then
-    Gamestate.switch(Menu)
   end
   if key == 'r' then
     Gamestate.switch(Game, self.currentLevel)
   end
   if key == 'c' then
     doDrawConsole = not doDrawConsole
+  end
+end
+
+function love.keyreleased(key)
+  if key == "escape" then
+   love.event.quit()
+  end
+  if key == 'm' then
+    return Gamestate.switch(Menu)
   end
 end
 

@@ -26,9 +26,6 @@ function Pause:draw()
 end
 
 function Pause:keyreleased(key)
-  if key == "escape" then
-   love.event.quit()
-  end
   if key == 'p' then
     return Gamestate.pop()
   end

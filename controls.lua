@@ -70,12 +70,6 @@ function Controls:draw()
 end
 
 function Controls:keyreleased(key, code)
-  if key == "escape" then
-   love.event.quit()
-  end
-  if key == 'm' then
-    return Gamestate.switch(Menu)
-  end
   Buttons:keyreleased(key, code)
 end
 
