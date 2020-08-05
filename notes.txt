@@ -12,9 +12,10 @@
   - forest
   - grass
   - water 
-- player animation (different mid pieces)
+  - fix door and scissor "grass"
 - create mid-levels
   - make photos of martenitsas for backgrounds
+  - work on text
   - implement the end of the game / credits
 - logo research
 - talk to Bogdan about trailer and intro music
