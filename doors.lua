@@ -25,13 +25,19 @@ function Key:draw()
 end
 function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
-  self.pressed = true
-  self.sprite = sprites.keyPressed
+  if self.pressed ~= true then
+    self.pressed = true
+    self.sprite = sprites.keyPressed
+    sounds.buttonPress:play()
+  end
 end
 function Key:release()
   if self.door.open == false then
-    self.pressed = false
-    self.sprite = sprites.keyReleased
+    if self.pressed ~= false then
+      self.pressed = false
+      self.sprite = sprites.keyReleased
+      sounds.buttonRelease:play()
+    end
   end
 end
 
@@ -61,6 +67,7 @@ function Door:update(dt)
     if self.open then
       Signal.emit('open door', self.x, self.y)
       self.animation:resume()
+      sounds.doorOpen:play()
     end
   end
 end

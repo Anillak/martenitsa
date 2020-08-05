@@ -148,6 +148,13 @@ function Player:eat(knots)
     table.remove(self.segments)
   else
     table.remove(knots, collected)
+    local playSound = love.math.random(1, 2)
+    if playSound == 1 then
+      sounds.knotEat1:play()
+    elseif playSound == 2 then
+      sounds.knotEat2:play()
+    end
+
   end
 end
 
