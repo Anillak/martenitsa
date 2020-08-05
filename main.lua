@@ -1,11 +1,12 @@
 Game = {}
---GAME_X, GAME_Y = love.window.getDesktopDimensions()
+ORIGINAL_GAME_X, ORIGINAL_GAME_Y = 1280, 704
 GAME_X, GAME_Y = 1280, 704
+--GAME_X, GAME_Y = love.window.getDesktopDimensions()
 GRID_X, GRID_Y = 40, 22
 CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
-SCALE = tonumber(string.format("%.1f", CELL_SIZE/TILE_SIZE))
+SCALE = CELL_SIZE/TILE_SIZE
 FONT = "asset/Coda-Regular.ttf"
 LEVELS_AMOUNT = 8
 
@@ -106,6 +107,7 @@ function Game:draw()
   if doDrawConsole then
     drawConsole()
   end
+  drawBorders()
 end
 
 function Game:keyreleased(key)
@@ -140,7 +142,7 @@ function drawConsole()
   love.graphics.setColor(1, 1, 1)
   love.graphics.print("Console: " .. console, 10, GRID_Y*TILE_SIZE-45)
   pfs = "PFS: " .. love.timer.getFPS()
-  cs = "    Cell size: " .. TILE_SIZE
+  cs = "    Cell size: " .. CELL_SIZE
   sr = "    Scale ratio: " .. SCALE
   res = "    Resolution: " .. GAME_X .. "x" .. GAME_Y
   b = "    Borders: " .. BORDERS

@@ -67,6 +67,7 @@ function Controls:draw()
 
   love.graphics.setColor(1, 1, 1)
   Buttons:draw()
+  drawBorders()
 end
 
 function Controls:keyreleased(key, code)

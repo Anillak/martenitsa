@@ -36,6 +36,7 @@ function Menu:draw()
   end
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
+  drawBorders()
 end
 
 function Menu:keyreleased(key, code)

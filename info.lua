@@ -60,6 +60,7 @@ function Info:draw()
 
   love.graphics.setColor(1, 1, 1)
   Buttons:draw()
+  drawBorders()
 end
 
 function Info:keyreleased(key, code)

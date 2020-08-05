@@ -30,6 +30,7 @@ function Levels:draw()
   resetToDraw()
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
+  drawBorders()
 end
 
 function Levels:keyreleased(key, code)

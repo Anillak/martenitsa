@@ -16,13 +16,14 @@ end
 function Pause:draw()
   self.from:draw()
   love.graphics.setColor(0,0,0, 0.7)
-  love.graphics.rectangle('fill', 0, 0, GAME_X, GAME_Y)
+  love.graphics.rectangle('fill', 0, 0, ORIGINAL_GAME_X, ORIGINAL_GAME_Y)
   love.graphics.setColor(1,1,1)
   love.graphics.setFont(love.graphics.newFont(FONT, 30))
-  love.graphics.printf('PAUSE', 0, GAME_Y/2 - 30, GAME_X, 'center')
+  love.graphics.printf('PAUSE', 0, ORIGINAL_GAME_Y/2 - 30, ORIGINAL_GAME_X, 'center')
   love.graphics.setFont(love.graphics.newFont(FONT, 16))
-  love.graphics.printf('Press                 again to continue', 0, GAME_Y/2 + 20, GAME_X, 'center')
+  love.graphics.printf('Press                 again to continue', 0, ORIGINAL_GAME_Y/2 + 20, ORIGINAL_GAME_X, 'center')
   self.p_anim:draw(sprites.controls, 583, 365)
+  drawBorders()
 end
 
 function Pause:keyreleased(key)

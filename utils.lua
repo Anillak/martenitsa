@@ -12,3 +12,10 @@ function resetToDraw()
   love.graphics.translate(0, BORDERS)
   love.graphics.setColor(1, 1, 1)
 end
+
+function drawBorders()
+  love.graphics.setColor(0, 0, 0)
+  love.graphics.rectangle("fill", 0, -BORDERS, ORIGINAL_GAME_X, BORDERS)
+  love.graphics.rectangle("fill", 0, ORIGINAL_GAME_Y, ORIGINAL_GAME_X, BORDERS)
+  love.graphics.setColor(1, 1, 1)
+end
