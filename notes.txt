@@ -1,6 +1,5 @@
 - fix resizing
-  - borders and bg colour
-  - scissor animation bleeding
+  - scissor and other animations bleeding
 - sounds
   - victory
   - menu button select

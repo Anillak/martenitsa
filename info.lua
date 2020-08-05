@@ -66,15 +66,3 @@ end
 function Info:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
-
-function Info:mousemoved(x, y)
-  Buttons:mousemoved(x, y)
-end
-
-function Info:mousepressed(x, y)
-  Buttons:mousepressed(x, y)
-end
-
-function Info:mousereleased(x, y, mouseBtn)
-  Buttons:mousereleased(x, y, mouseBtn)
-end

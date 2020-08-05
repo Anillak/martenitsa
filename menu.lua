@@ -45,15 +45,3 @@ function Menu:keyreleased(key, code)
   end
   Buttons:keyreleased(key, code)
 end
-
-function Menu:mousemoved(x, y)
-  Buttons:mousemoved(x, y)
-end
-
-function Menu:mousepressed(x, y)
-  Buttons:mousepressed(x, y)
-end
-
-function Menu:mousereleased(x, y, mouseBtn)
-  Buttons:mousereleased(x, y, mouseBtn)
-end

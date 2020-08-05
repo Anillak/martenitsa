@@ -106,16 +106,6 @@ local function inside(x, y, button)
   and button.y < y and button.y + height > y
 end
 
-function Buttons:hovered(x, y)
-  for _,b in pairs(self) do
-    if inside(x, y, b) then
-        b.hovered = true
-        return b
-      else b.hovered = false
-    end
-  end
-end
-
 local function next(t, key)
   index = 0
   for i,v in ipairs(t) do
@@ -172,24 +162,6 @@ function Buttons:keyreleased(key, code)
   if key == 'return' then
     self.active:onClick()
   end
-end
-
-function Buttons:mousemoved(x, y)
-  local button = self:hovered(x, y)
-end
-
-function Buttons:mousepressed(x, y)
-  local button = self:hovered(x, y)
-end
-
-function Buttons:mousereleased(x, y, mouseBtn)
-  local button = self:hovered(x, y)
-  if button then
-    self:setActive(button)
-      if mouseBtn == 1 then
-        button:onClick()
-      end
-    end
 end
 
 return Buttons

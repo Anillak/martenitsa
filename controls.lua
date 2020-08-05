@@ -73,15 +73,3 @@ end
 function Controls:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
-
-function Controls:mousemoved(x, y)
-  Buttons:mousemoved(x, y)
-end
-
-function Controls:mousepressed(x, y)
-  Buttons:mousepressed(x, y)
-end
-
-function Controls:mousereleased(x, y, mouseBtn)
-  Buttons:mousereleased(x, y, mouseBtn)
-end

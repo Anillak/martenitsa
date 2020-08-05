@@ -32,15 +32,3 @@ end
 function Victory:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
-
-function Victory:mousemoved(x, y)
-  Buttons:mousemoved(x, y)
-end
-
-function Victory:mousepressed(x, y)
-  Buttons:mousepressed(x, y)
-end
-
-function Victory:mousereleased(x, y, mouseBtn)
-  Buttons:mousereleased(x, y, mouseBtn)
-end

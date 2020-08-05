@@ -36,15 +36,3 @@ end
 function Levels:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
-
-function Levels:mousemoved(x, y)
-  Buttons:mousemoved(x, y)
-end
-
-function Levels:mousepressed(x, y)
-  Buttons:mousepressed(x, y)
-end
-
-function Levels:mousereleased(x, y, mouseBtn)
-  Buttons:mousereleased(x, y, mouseBtn)
-end

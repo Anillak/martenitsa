@@ -1,4 +1,5 @@
 Game = {}
+love.mouse.setVisible(false)
 ORIGINAL_GAME_X, ORIGINAL_GAME_Y = 1280, 704
 GAME_X, GAME_Y = 1280, 704
 --GAME_X, GAME_Y = love.window.getDesktopDimensions()
