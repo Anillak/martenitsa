@@ -1,8 +1,10 @@
 - fix resizing
   - borders and bg colour
   - scissor animation bleeding
-- sounds - NEXT
+- sounds
   - victory
+  - menu button select
+  - intro
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
