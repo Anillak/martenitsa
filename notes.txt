@@ -16,9 +16,10 @@
 - create mid-levels
   - make photos of martenitsas for backgrounds
   - work on text
+  - maybe change font
   - implement the end of the game / credits
 - logo research
 - talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs
 - use local instead of self?
-- add long martenitsa animation to levels selection
+- add long martenitsa animation (picture?) to levels selection

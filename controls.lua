@@ -23,7 +23,7 @@ end
 
 function Controls:enter(previous)
   Buttons = B:new()
-  Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
+  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
   Buttons:setActive(Buttons.menu)
 end
 

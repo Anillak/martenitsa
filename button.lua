@@ -76,6 +76,10 @@ function Buttons.getWidth()
   return width
 end
 
+function Buttons.getCenteredHorizontalPosition()
+  return ORIGINAL_GAME_X/2 - width/2
+end
+
 function Buttons:update(dt)
   for _,b in pairs(self) do
     b:update(dt)

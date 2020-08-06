@@ -11,11 +11,12 @@ function Info:enter(previous, level)
   sounds.birds:pause()
   self.level = level
   Buttons = B:new()
-  Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
   if level ~= LEVELS_AMOUNT then
+    Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
     Buttons:add("level", 915, 600, "Continue", false, Game, level+1)
     Buttons:setActive(Buttons.level)
   else
+    Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
     Buttons:setActive(Buttons.menu)
   end
 

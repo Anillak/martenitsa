@@ -3,7 +3,8 @@ local B = require "button"
 local Buttons
 
 function Levels:init()
-  self.background = love.graphics.newImage('asset/bg.png')
+  self.background = love.graphics.newImage('asset/levels-bg.jpg')
+  self.positions = {250, 200, 220, 200, 400, 350, 370, 320}
 end
 
 function Levels:enter()
@@ -11,14 +12,13 @@ function Levels:enter()
   local width = Buttons.getWidth()
   for i=0,LEVELS_AMOUNT-1 do
     local col = i % 4
-    local row = math.floor(i / 4)
     local positionX = width*col + 170 + 50*col
-    local positionY = math.random(250 + 100*row, 250 + 100*row)
     local level = i+1
+    local positionY = self.positions[level]
     local inactive = level > saveData.level
     Buttons:add(level, positionX, positionY, level, inactive, Game, level)
   end
-  Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
+  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
   Buttons:setActive(Buttons[1])
 end
 
