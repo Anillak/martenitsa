@@ -7,7 +7,7 @@
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
-- assets to create - NEXT
+- assets to create
   - здравец
   - forest
   - grass
@@ -16,8 +16,6 @@
 - create mid-levels
   - make photos of martenitsas for backgrounds
   - work on text
-  - implement the end of the game / credits
-- logo research
+- add logo to beginning
 - talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs
-- use local instead of self?
