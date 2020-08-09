@@ -168,6 +168,7 @@ function love.load()
   require 'sprites'
   require 'sounds'
   require 'utils'
+  require 'intro'
   require 'menu'
   require 'controls'
   require 'levels'
@@ -176,5 +177,5 @@ function love.load()
   require 'pause'
 
   Gamestate.registerEvents()
-  Gamestate.switch(Menu)
+  Gamestate.switch(Intro)
 end

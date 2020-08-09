@@ -1,18 +1,15 @@
 Menu = {}
 local B = require "button"
 local Buttons
-local video
 
 function Menu:init()
   self.background = love.graphics.newImage('asset/bg.png')
   self.intro = love.graphics.newImage('asset/intro.jpg')
   self.name = love.graphics.newImage('asset/name.png')
-  self.video = love.graphics.newVideo("asset/intro.ogv")
 end
 
 function Menu:enter(previous)
   sounds.birds:pause()
-  self.video:play()
   Buttons = B:new()
   local position = 510
   Buttons:add("start", position, 240, "Start", false, Game, 1)
@@ -28,12 +25,8 @@ end
 
 function Menu:draw()
   resetToDraw()
-  if self.video:isPlaying() then
-    love.graphics.draw(self.video, 0, 0)
-  else
-    love.graphics.draw(self.intro, 0, 0)
-    love.graphics.draw(self.name, 370, 60)
-  end
+  love.graphics.draw(self.intro, 0, 0)
+  love.graphics.draw(self.name, 370, 60)
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
   drawBorders()

@@ -164,8 +164,10 @@ function Buttons:keyreleased(key, code)
 end
 
 function Buttons:keypressed(key, code)
-  if key == 'up' or key == 'left' or key == 'down' or key == 'right' then
-    sounds.menuMove:play()
+  if #self.indices > 1 then
+    if key == 'up' or key == 'left' or key == 'down' or key == 'right' then
+      sounds.menuMove:play()
+    end
   end
   if key == 'return' then
     sounds.menuPress:play()

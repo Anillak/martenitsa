@@ -1,8 +1,7 @@
 - fix resizing
   - scissor and other animations bleeding
 - sounds - NEXT
-  - victory
-  - menu button select
+  - victory - pipes
   - intro
 - create levels
   - finish level 7 and 8
