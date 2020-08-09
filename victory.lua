@@ -32,3 +32,7 @@ end
 function Victory:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
+
+function Victory:keypressed(key, code)
+  Buttons:keypressed(key, code)
+end

@@ -36,3 +36,7 @@ end
 function Levels:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
+
+function Levels:keypressed(key, code)
+  Buttons:keypressed(key, code)
+end

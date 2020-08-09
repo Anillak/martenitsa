@@ -40,8 +40,13 @@ function Menu:draw()
 end
 
 function Menu:keyreleased(key, code)
+  -- remove later
   if key == "1" or key == "2" or key == "3" or key == "4" or key == "5" or key == "6" or key == "7" or key == "8" then
     Gamestate.switch(Info, tonumber(key))
   end
   Buttons:keyreleased(key, code)
+end
+
+function Menu:keypressed(key, code)
+  Buttons:keypressed(key, code)
 end

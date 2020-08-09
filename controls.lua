@@ -73,3 +73,7 @@ end
 function Controls:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
+
+function Controls:keypressed(key, code)
+  Buttons:keypressed(key, code)
+end

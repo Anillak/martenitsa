@@ -1,6 +1,6 @@
 - fix resizing
   - scissor and other animations bleeding
-- sounds
+- sounds - NEXT
   - victory
   - menu button select
   - intro
@@ -14,7 +14,7 @@
   - water 
   - fix door and scissor "grass"
 - create mid-levels
-  - make photos of martenitsas for backgrounds
+  - make photos of martenitsas for backgrounds - NEXT
   - work on text
 - add logo to beginning
 - talk to Bogdan about trailer and intro music

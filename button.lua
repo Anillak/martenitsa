@@ -105,11 +105,6 @@ function Buttons:getActive()
   return self.active.key
 end
 
-local function inside(x, y, button)
-  return button.x < x and button.x + width > x
-  and button.y < y and button.y + height > y
-end
-
 local function next(t, key)
   index = 0
   for i,v in ipairs(t) do
@@ -165,6 +160,15 @@ function Buttons:keyreleased(key, code)
   end
   if key == 'return' then
     self.active:onClick()
+  end
+end
+
+function Buttons:keypressed(key, code)
+  if key == 'up' or key == 'left' or key == 'down' or key == 'right' then
+    sounds.menuMove:play()
+  end
+  if key == 'return' then
+    sounds.menuPress:play()
   end
 end
 
