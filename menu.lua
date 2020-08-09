@@ -3,7 +3,7 @@ local B = require "button"
 local Buttons
 
 function Menu:init()
-  self.background = love.graphics.newImage('asset/bg.png')
+  self.background = love.graphics.newImage('asset/bg-real.png')
   self.intro = love.graphics.newImage('asset/intro.jpg')
   self.name = love.graphics.newImage('asset/name.png')
 end

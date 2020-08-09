@@ -2,7 +2,7 @@ Intro = {}
 local video
 
 function Intro:init()
-  self.background = love.graphics.newImage('asset/bg.png')
+  self.background = love.graphics.newImage('asset/bg-real.png')
   self.video = love.graphics.newVideo("asset/intro.ogv")
 end
 
@@ -19,7 +19,7 @@ function Intro:draw()
   love.graphics.draw(self.video, 0, 0)
   love.graphics.draw(self.background, 0, 0)
   if not self.video:isPlaying() then
-    Gamestate.switch(Menu)    
+    Gamestate.switch(Menu)
   end
   drawBorders()
 end
