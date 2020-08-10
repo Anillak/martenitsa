@@ -12,6 +12,5 @@
   - grass
   - water 
   - fix door and scissor "grass"
-- add logo to beginning - NEXT
 - talk to Bogdan about trailer and intro music
 - music: slow piano versions of folk songs

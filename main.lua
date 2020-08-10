@@ -13,7 +13,6 @@ FONT_SECOND = "asset/Lato-Regular.ttf"
 LEVELS_AMOUNT = 8
 
 function Game:init()
-  Timer = require 'lib/hump-master/timer'
   Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
   effects = require 'effects'
@@ -163,11 +162,13 @@ function love.load()
     data()
   end
 
+  Timer = require 'lib/hump-master/timer'
   Gamestate = require "lib/hump-master/gamestate"
   Anim8 = require 'lib/anim8-master/anim8'
   require 'sprites'
   require 'sounds'
   require 'utils'
+  require 'logo'
   require 'intro'
   require 'menu'
   require 'controls'
@@ -177,5 +178,5 @@ function love.load()
   require 'pause'
 
   Gamestate.registerEvents()
-  Gamestate.switch(Intro)
+  Gamestate.switch(Logo)
 end

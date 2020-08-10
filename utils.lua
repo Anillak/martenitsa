@@ -6,6 +6,10 @@ function hit(item, other)
   return item.x == other.x and item.y == other.y
 end
 
+function getCenteredHorizontalPosition(width)
+  return ORIGINAL_GAME_X/2 - width/2
+end
+
 function resetToDraw()
   love.graphics.scale(SCALE)
   love.graphics.setBackgroundColor(1, 1, 1)

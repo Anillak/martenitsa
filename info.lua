@@ -29,10 +29,6 @@ function Info:update(dt)
   Buttons:update(dt)
 end
 
-local function getCenteredHorizontalPosition(width)
-  return ORIGINAL_GAME_X/2 - width/2
-end
-
 function Info:draw()
   resetToDraw()
   love.graphics.draw(bgReal, 0, 0)

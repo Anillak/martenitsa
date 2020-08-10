@@ -1,4 +1,5 @@
 sprites = {}
+sprites.logo = love.graphics.newImage('sprites/logo.png')
 sprites.button = love.graphics.newImage('sprites/button.png')
 sprites.buttonActive = love.graphics.newImage('sprites/button_active.png')
 sprites.buttonInactive = love.graphics.newImage('sprites/button_inactive.png')
