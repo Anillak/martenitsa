@@ -13,6 +13,7 @@ function Victory:enter(from, level)
   Buttons = B:new()
   Buttons:add("continue", 542, 350, "Continue", false, Info, level)
   Buttons:setActive(Buttons.continue)
+  sounds.victory:play()
 end
 
 function Victory:update(dt)

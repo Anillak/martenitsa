@@ -1,8 +1,5 @@
 - fix resizing
   - scissor and other animations bleeding
-- sounds - NEXT
-  - victory - pipes
-  - intro
 - create levels
   - finish level 7 and 8
   - randomize assets in levels
