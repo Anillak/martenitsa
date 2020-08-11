@@ -8,7 +8,7 @@ function Menu:init()
   self.name = love.graphics.newImage('asset/name.png')
 end
 
-function Menu:enter(previous)
+function Menu:enter(previous, active)
   sounds.birds:pause()
   Buttons = B:new()
   local position = 510
@@ -16,7 +16,12 @@ function Menu:enter(previous)
   Buttons:add("continue", position, 300, "Continue", (not (saveData.level > 1)), Levels)
   Buttons:add("controls", position, 360, "Controls", false, Controls)
   Buttons:add("exit", position, 420, "Exit", false)
-  Buttons:setActive(Buttons.start)
+  if not active then
+    Buttons:setActive(Buttons.start)
+  else
+    Buttons:setActive(Buttons[active])
+  end
+
 end
 
 function Menu:update(dt)
