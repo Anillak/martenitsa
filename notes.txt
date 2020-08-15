@@ -1,13 +1,13 @@
-- fix resizing
+- bugs
+  - resizing
   - scissor and other animations bleeding
+  - weird martenitsa shapes when fast arrow clicking
 - create levels
-  - finish level 7 and 8
+  - finish level 7 and 8 - NEXT
   - randomize assets in levels
 - assets to create
   - здравец
-  - forest
+  - forest - NEXT
   - grass
   - water 
   - fix door and scissor "grass"
-- talk to Bogdan about trailer and intro music
-- music: slow piano versions of folk songs

@@ -35,8 +35,8 @@ function Player:composeSegments()
   for i,segment in ipairs(self.segments) do
     local neighbours = self:findNeighbours(i, segment)
     local image = getSpriteAccordingToNeighbors(i, neighbours, #self.segments)
-    segment.sprite = image.sprite
-    segment.rotation = image.rotation
+    if image.sprite then segment.sprite = image.sprite end
+    if image.rotation then segment.rotation = image.rotation end
   end
 end
 
@@ -85,6 +85,8 @@ function Player:findNeighbours(i, segment)
 end
 
 local function drawAlivePlayer(segment)
+  assert(segment.sprite, "Segment (" .. segment.x ..","..segment.y.. ") no sprite")
+  assert(segment.rotation, "Segment " .. segment.sprite .. " no rotation")
   love.graphics.draw(
     sprites[segment.sprite],
     segment.x * TILE_SIZE + TILE_SIZE/2,
