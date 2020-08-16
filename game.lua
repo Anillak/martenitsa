@@ -29,48 +29,50 @@ function Game:enter(previous, level)
   local x = map.layers["level"].properties["x"]
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
-  local required = map.layers["level"].properties["goal"]
+  self.required = map.layers["level"].properties["goal"]
   local possible = true
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
   if level > 1 then
     sounds.birds:play()
   end
-  Timer.every(0.2, function()
-    player:update(dt)
+  Timer.every(0.2, function() self:move() end)
+end
 
-    if player:isDead() then
-      log("Player died in level " .. level)
-      scissors.stop()
-      Timer.clear()
-      Timer.after(2, function() Gamestate.switch(Game, level) end)
-    elseif player:isWon() then
-      log("Player won in level " .. level)
-      scissors.stop()
-      Timer.clear()
-      local newLevel = level + 1
-      if saveData.level < newLevel then
-        saveData.level = newLevel
-        love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
-      end
-      Timer.after(1, function() Gamestate.switch(Victory, level) end)
-    else
-      goal:check(player)
-      player:eat(knots.get())
-      player:maybeHit(walls)
-      player:open(doors.get())
-      player:composeSegments()
-      player:getCutBy(scissors.get())
-      player:maybeReach(goal)
-      if not goal:isPossible(knots.available(), player:length(), required) then
-        if possible then
-          possible = false
-          log("Not possible to finish level " .. level)
-          Signal.emit('show r')
-        end
+function Game:move()
+  player:update()
+
+  if player:isDead() then
+    log("Player died in level " .. level)
+    scissors.stop()
+    Timer.clear()
+    Timer.after(2, function() Gamestate.switch(Game, level) end)
+  elseif player:isWon() then
+    log("Player won in level " .. level)
+    scissors.stop()
+    Timer.clear()
+    local newLevel = level + 1
+    if saveData.level < newLevel then
+      saveData.level = newLevel
+      love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
+    end
+    Timer.after(1, function() Gamestate.switch(Victory, level) end)
+  else
+    goal:check(player)
+    player:eat(knots.get())
+    player:maybeHit(walls)
+    player:open(doors.get())
+    player:composeSegments()
+    player:getCutBy(scissors.get())
+    player:maybeReach(goal)
+    if not goal:isPossible(knots.available(), player:length(), self.required) then
+      if possible then
+        possible = false
+        log("Not possible to finish level " .. level)
+        Signal.emit('show r')
       end
     end
-  end)
+  end
 end
 
 function Game:update(dt)
@@ -118,4 +120,20 @@ end
 
 function Game:keypressed(key)
   player:keyPress(key)
+end
+
+function drawConsole()
+  love.graphics.setFont(love.graphics.newFont(FONT, 10))
+  love.graphics.setColor(0.1, 0.1, 0.1)
+  love.graphics.rectangle("fill", 0, GRID_Y*TILE_SIZE-50, GRID_X*TILE_SIZE, 50)
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.print("Console: " .. console, 10, GRID_Y*TILE_SIZE-45)
+  pfs = "PFS: " .. love.timer.getFPS()
+  cs = "    Cell size: " .. CELL_SIZE
+  sr = "    Scale ratio: " .. SCALE
+  res = "    Resolution: " .. GAME_X .. "x" .. GAME_Y
+  b = "    Borders: " .. BORDERS
+  gc = "    Memory: " .. collectgarbage('count') .. "kb"
+  text = pfs .. cs .. sr .. res ..b..gc
+  love.graphics.print(text, 10, GRID_Y*TILE_SIZE-22)
 end

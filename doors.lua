@@ -43,12 +43,13 @@ end
 
 local Door = {}
 
-function Door:new(o, x, y)
+function Door:new(o, x, y, n)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
    o.x = x
    o.y = y
+   o.n = n
    o.open = false
    o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
    o.animation = Anim8.newAnimation(o.grid('1-4', 1), 0.2, "pauseAtEnd")
@@ -65,6 +66,7 @@ function Door:update(dt)
       key:update(dt)
     end
     if self.open then
+      log("Player opened door number " .. self.n)
       Signal.emit('open door', self.x, self.y)
       self.animation:resume()
       sounds.doorOpen:play()
@@ -110,9 +112,9 @@ function D.load(map)
   D.doors = {}
 
   for _,o in ipairs(map.layers["doors"].objects) do
-    local door = Door:new({}, o.x/TILE_SIZE, o.y/TILE_SIZE)
     local n = o.properties["Number"]
     assertWithLogging(n, "Door doesn't have a number")
+    local door = Door:new({}, o.x/TILE_SIZE, o.y/TILE_SIZE, n)
     Signal.emit('create door', door.x, door.y)
     for _,k in ipairs(map.layers["keys"].objects) do
       local d = k.properties["Door"]

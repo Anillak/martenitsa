@@ -85,6 +85,7 @@ function Scissors:cutPlayer(p)
     if segment.x == self.x + 1 and segment.y == self.y and self.cutting then
       if i == 1 or i == 2 or i == 3 then
         p.dead = true
+        log("Scissors killed player")
       end
       self.cutting = false
       cutTail = #p.segments - i
@@ -92,6 +93,7 @@ function Scissors:cutPlayer(p)
     end
   end
   if cutTail ~= -1 and p.dead == false then
+    log("Scissors cut player at " .. cutTail)
     for i=1,cutTail do
       local s = table.remove(p.segments)
       if i == 1 then s.sprite = "playerTail" end
