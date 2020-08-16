@@ -23,3 +23,26 @@ function drawBorders()
   love.graphics.rectangle("fill", 0, ORIGINAL_GAME_Y, ORIGINAL_GAME_X, BORDERS)
   love.graphics.setColor(1, 1, 1)
 end
+
+function log(message)
+  love.filesystem.append("log.lua", os.date() .. ": ")
+  love.filesystem.append("log.lua", message)
+  love.filesystem.append("log.lua", "\r\n")
+end
+
+function errorWithLogging(message)
+  log(message)
+  error(message)
+end
+
+function assertWithLogging(assertion, message)
+  if not assertion then log(message) end
+  assert(assertion, message)
+end
+
+function logSystem()
+  log("Resolution: " .. GAME_X .. "x" .. GAME_Y)
+  log("Cell size: " .. CELL_SIZE)
+  log("Scale ratio: " .. SCALE)
+  log("Borders: " .. BORDERS)
+end

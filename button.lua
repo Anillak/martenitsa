@@ -93,7 +93,7 @@ function Buttons:draw()
 end
 
 function Buttons:setActive(button)
-  assert(button, "Undefined button to be set as active")
+  assertWithLogging(button, "Undefined button to be set as active")
   if not button.inactive then
     if self.active then self.active.active = false end
     self.active = button

@@ -1,7 +1,6 @@
 - bugs
   - resizing
   - scissor and other animations bleeding
-  - weird martenitsa shapes when fast arrow clicking
 - create levels
   - finish level 7 and 8 - NEXT
   - randomize assets in levels

@@ -27,7 +27,7 @@ end
 function Game:enter(previous, level)
   Signal.clear()
   Timer.clear()
-  assert(level, "Game needs a level to load.")
+  assertWithLogging(level, "Game needs a level to load.")
   local mapPath = string.format("maps/level%d.lua", level)
   map = Sti(mapPath)
   effects.load()
@@ -37,11 +37,12 @@ function Game:enter(previous, level)
   scissors.load(map)
   goal = Goal:new(map)
 
-  assert(map.layers["level"], "Map doesn't have level properties")
+  assertWithLogging(map.layers["level"], "Map doesn't have level properties")
   local x = map.layers["level"].properties["x"]
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
   local required = map.layers["level"].properties["goal"]
+  local possible = true
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
   if level > 1 then
@@ -51,12 +52,12 @@ function Game:enter(previous, level)
     player:update(dt)
 
     if player:isDead() then
-      console = console .. "Player died :("
+      log("Player died in level " .. level)
       scissors.stop()
       Timer.clear()
       Timer.after(2, function() Gamestate.switch(Game, level) end)
     elseif player:isWon() then
-      console = console .. "Woohoo won!"
+      log("Player won in level " .. level)
       scissors.stop()
       Timer.clear()
       local newLevel = level + 1
@@ -74,8 +75,11 @@ function Game:enter(previous, level)
       player:getCutBy(scissors.get())
       player:maybeReach(goal)
       if not goal:isPossible(knots.available(), player:length(), required) then
-        console = console .. "Not possible"
-        Signal.emit('show r')
+        if possible then
+          possible = false
+          log("Not possible to finish level " .. level)
+          Signal.emit('show r')
+        end
       end
     end
   end)
@@ -116,6 +120,7 @@ function Game:keyreleased(key)
     Gamestate.push(Pause)
   end
   if key == 'r' then
+    log("Player reset " .. self.currentLevel)
     Gamestate.switch(Game, self.currentLevel)
   end
   if key == 'c' then
@@ -179,4 +184,5 @@ function love.load()
 
   Gamestate.registerEvents()
   Gamestate.switch(Logo)
+  logSystem()
 end

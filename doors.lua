@@ -104,19 +104,19 @@ end
 D = {}
 
 function D.load(map)
-  assert(map, "Doors needs a map to load.")
-  assert(map.layers["doors"].objects, "No doors defined in the map")
-  assert(map.layers["keys"].objects, "No keys defined in the map")
+  assertWithLogging(map, "Doors needs a map to load.")
+  assertWithLogging(map.layers["doors"].objects, "No doors defined in the map")
+  assertWithLogging(map.layers["keys"].objects, "No keys defined in the map")
   D.doors = {}
 
   for _,o in ipairs(map.layers["doors"].objects) do
     local door = Door:new({}, o.x/TILE_SIZE, o.y/TILE_SIZE)
     local n = o.properties["Number"]
-    assert(n, "Door doesn't have a number")
+    assertWithLogging(n, "Door doesn't have a number")
     Signal.emit('create door', door.x, door.y)
     for _,k in ipairs(map.layers["keys"].objects) do
       local d = k.properties["Door"]
-      assert(d, "Key is not assigned to a door")
+      assertWithLogging(d, "Key is not assigned to a door")
       if n == d then
         door:addKey(k.x/TILE_SIZE, k.y/TILE_SIZE)
       end

@@ -32,8 +32,8 @@ local function createCheckpoint(goal, x, y)
 end
 
 function Goal:new(map)
-  assert(map, "The goal needs a map.")
-  assert(map.layers["checkpoints"].objects, "No checkpoints defined in the map")
+  assertWithLogging(map, "The goal needs a map.")
+  assertWithLogging(map.layers["checkpoints"].objects, "No checkpoints defined in the map")
   o = {}
   setmetatable(o, self)
   self.__index = self
@@ -78,7 +78,7 @@ function Goal:isPossible(knotsAmount, playerLenght, gameGoal)
 end
 
 function Goal:check(player)
-  assert(player, "No Player trying to win!")
+  assertWithLogging(player, "No Player trying to win!")
   for _,checkpoint in ipairs(self) do
     local pressed = false
     for _,segment in ipairs(player.segments) do

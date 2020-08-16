@@ -35,6 +35,9 @@ function Player:composeSegments()
   for i,segment in ipairs(self.segments) do
     local neighbours = self:findNeighbours(i, segment)
     local image = getSpriteAccordingToNeighbors(i, neighbours, #self.segments)
+    if not image.sprite or not image.rotation then
+      log("Image sprite or rotation not set, something went wrong with the player, reverting to original")
+    end
     if image.sprite then segment.sprite = image.sprite end
     if image.rotation then segment.rotation = image.rotation end
   end
@@ -58,8 +61,8 @@ function Player:animationUpdate(dt)
 end
 
 function Player:checkIfBound(x, y)
-  assert(self.segments[#self.segments-1], "Player is less than 2 segments long")
-  assert(self.segments[#self.segments-2], "Player is less than 3 segments long")
+  assertWithLogging(self.segments[#self.segments-1], "Player is less than 2 segments long")
+  assertWithLogging(self.segments[#self.segments-2], "Player is less than 3 segments long")
   if (x == self.segments[#self.segments-2].x
   and y == self.segments[#self.segments-2].y) then
     return true
@@ -70,23 +73,21 @@ end
 function Player:findNeighbours(i, segment)
   local neighbours = {}
   if i == 1 then
-    assert(self.segments[i+1], "Player is less than 2 segments long")
+    assertWithLogging(self.segments[i+1], "Player is less than 2 segments long")
     neighbours[1] = checkNeighbour(segment, self.segments[i+1])
   elseif i == #self.segments then
-    assert(self.segments[i-1], "Player is less than 2 segments long")
+    assertWithLogging(self.segments[i-1], "Player is less than 2 segments long")
     neighbours[1] = checkNeighbour(segment, self.segments[i-1])
   else
-    assert(self.segments[i-1], "Player is less than 3 segments long")
+    assertWithLogging(self.segments[i-1], "Player is less than 3 segments long")
     neighbours[1] = checkNeighbour(segment, self.segments[i-1])
-    assert(self.segments[i+1], "Player is less than 3 segments long")
+    assertWithLogging(self.segments[i+1], "Player is less than 3 segments long")
     neighbours[2] = checkNeighbour(segment, self.segments[i+1])
   end
   return neighbours
 end
 
 local function drawAlivePlayer(segment)
-  assert(segment.sprite, "Segment (" .. segment.x ..","..segment.y.. ") no sprite")
-  assert(segment.rotation, "Segment " .. segment.sprite .. " no rotation")
   love.graphics.draw(
     sprites[segment.sprite],
     segment.x * TILE_SIZE + TILE_SIZE/2,
@@ -189,19 +190,19 @@ function Player:length()
 end
 
 function Player:keyPress(key)
-  if key == "right" or key == "d"
+  if (key == "right" or key == "d")
     and self.direction[#self.direction] ~= "right"
     and self.direction[#self.direction] ~= "left" then
       table.insert(self.direction, "right")
-  elseif key == "left" or key == "a"
+  elseif (key == "left" or key == "a")
     and self.direction[#self.direction] ~= "left"
     and self.direction[#self.direction] ~= "right" then
       table.insert(self.direction, "left")
-  elseif key == "down" or key == "s"
+  elseif (key == "down" or key == "s")
     and self.direction[#self.direction] ~= "down"
     and self.direction[#self.direction] ~= "up" then
       table.insert(self.direction, "down")
-  elseif key == "up" or key == "w"
+  elseif (key == "up" or key == "w")
     and self.direction[#self.direction] ~= "up"
     and self.direction[#self.direction] ~= "down" then
       table.insert(self.direction, "up")
@@ -209,7 +210,7 @@ function Player:keyPress(key)
 end
 
 function Player:next()
-  assert(self.segments[1], "Player disappeared")
+  assertWithLogging(self.segments[1], "Player disappeared")
   local newX = self.segments[1].x
   local newY = self.segments[1].y
 
@@ -222,7 +223,7 @@ function Player:next()
   elseif self.direction[1] == "up" then
     newY = previousYPosition(newY)
   else
-    error("Wrong direction provided: " .. self.direction[1])
+    errorWithLogging("Wrong direction provided: " .. self.direction[1])
   end
 
   return newX, newY

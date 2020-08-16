@@ -32,8 +32,8 @@ local function create(x, y)
 end
 
 function K.load(map)
-  assert(map, "Knots needs a map to load.")
-  assert(map.layers["knots"].objects, "No knots defined in the map")
+  assertWithLogging(map, "Knots needs a map to load.")
+  assertWithLogging(map.layers["knots"].objects, "No knots defined in the map")
   K.knots = {}
 
   for i,o in ipairs(map.layers["knots"].objects) do

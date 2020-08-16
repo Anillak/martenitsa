@@ -43,7 +43,7 @@ function Scissors:update(dt)
   if #self.deadSegments > 0 then
     self.animation_dead:resume()
     self.animation_dead:update(dt)
-    
+
     Timer.after(2, function()
       for k,v in pairs(self.deadSegments) do
         table.remove(self.deadSegments)
@@ -110,8 +110,8 @@ local function create(x, y, i)
 end
 
 function S.load(map)
-  assert(map, "Scissors needs a map to load.")
-  assert(map.layers["scissors"].objects, "No scissors defined in the map")
+  assertWithLogging(map, "Scissors needs a map to load.")
+  assertWithLogging(map.layers["scissors"].objects, "No scissors defined in the map")
   S.scissors = {}
 
   for _,o in ipairs(map.layers["scissors"].objects) do

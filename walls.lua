@@ -19,8 +19,8 @@ local function create(x, y, isWater)
 end
 
 function W.load(map)
-  assert(map, "Walls needs a map to load.")
-  assert(map.layers["walls"], "No walls defined in the map")
+  assertWithLogging(map, "Walls needs a map to load.")
+  assertWithLogging(map.layers["walls"], "No walls defined in the map")
   W.walls = {}
   W.walls.indices = {}
 
