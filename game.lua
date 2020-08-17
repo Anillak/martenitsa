@@ -30,7 +30,7 @@ function Game:enter(previous, level)
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
   self.required = map.layers["level"].properties["goal"]
-  local possible = true
+  self.possible = true
   player = Player:new({}, x, y, length, "right")
   self.currentLevel = level
   if level > 1 then
@@ -43,20 +43,20 @@ function Game:move()
   player:update()
 
   if player:isDead() then
-    log("Player died in level " .. level)
+    log("Player died in level " .. self.currentLevel)
     scissors.stop()
     Timer.clear()
-    Timer.after(2, function() Gamestate.switch(Game, level) end)
+    Timer.after(2, function() Gamestate.switch(Game, self.currentLevel) end)
   elseif player:isWon() then
-    log("Player won in level " .. level)
+    log("Player won in level " .. self.currentLevel)
     scissors.stop()
     Timer.clear()
-    local newLevel = level + 1
+    local newLevel = self.currentLevel + 1
     if saveData.level < newLevel then
       saveData.level = newLevel
       love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     end
-    Timer.after(1, function() Gamestate.switch(Victory, level) end)
+    Timer.after(1, function() Gamestate.switch(Victory, self.currentLevel) end)
   else
     goal:check(player)
     player:eat(knots.get())
@@ -66,9 +66,9 @@ function Game:move()
     player:getCutBy(scissors.get())
     player:maybeReach(goal)
     if not goal:isPossible(knots.available(), player:length(), self.required) then
-      if possible then
-        possible = false
-        log("Not possible to finish level " .. level)
+      if self.possible then
+        self.possible = false
+        log("Not possible to finish level " .. self.currentLevel)
         Signal.emit('show r')
       end
     end
