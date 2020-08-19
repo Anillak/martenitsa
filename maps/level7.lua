@@ -2347,19 +2347,6 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
-        },
-        {
-          id = 385,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 928,
-          y = 512,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
         }
       }
     },

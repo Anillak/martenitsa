@@ -2,13 +2,11 @@
   - resizing
   - scissor and other animations bleeding
 - create levels
-  - finish level 7 and 8 - NEXT
+  - finish level 8 - NEXT
   - randomize assets in levels
 - assets to create
   - здравец
   - forest - NEXT
   - grass
   - water 
-  - fix door and scissor "grass"
-- sounds
-  - when player needs to reset - NEXT
+  - fix door's, rocks' and scissors' "grass"
