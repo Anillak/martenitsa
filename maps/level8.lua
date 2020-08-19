@@ -290,8 +290,8 @@ return {
       properties = {
         ["goal"] = 14,
         ["length"] = 6,
-        ["x"] = 5,
-        ["y"] = 6
+        ["x"] = 25,
+        ["y"] = 16
       },
       objects = {}
     },

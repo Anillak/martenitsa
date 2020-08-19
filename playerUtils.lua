@@ -12,7 +12,7 @@ function checkNeighbour(segment, neighbour)
   if neighbour.x == segment.x and neighbour.y == nextYPosition(segment.y) then
     return "down"
   end
-  errorWithLogging("Player segment (" .. segment.x .. ", " .. segment.y .. ") has a neighbour (" .. neighbour.x .. ", " .. neighbour.y .. ") too far away from it)")
+  errorWithLogging("Player segment (" .. segment.x .. ", " .. segment.y .. ") has a neighbour (" .. neighbour.x .. ", " .. neighbour.y .. ") too far away from it")
 end
 
 function getSpriteAccordingToNeighbors(i, neighbours, n)

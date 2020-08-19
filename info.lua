@@ -5,6 +5,8 @@ local bgReal = love.graphics.newImage('asset/bg-real2.png')
 local pp = love.graphics.newImage('asset/info1.png')
 local corn = love.graphics.newImage('asset/info2.png')
 local stroke = love.graphics.newImage('asset/info3.png')
+local logo = love.graphics.newImage('asset/logo.png')
+local ravnecLogo = love.graphics.newImage('asset/ravnec-logo.png')
 
 function Info:init()
   self.level = 0
@@ -39,6 +41,9 @@ function Info:draw()
     love.graphics.draw(stroke, getCenteredHorizontalPosition(300), 300)
   elseif self.level == 3 then
     love.graphics.draw(pp, getCenteredHorizontalPosition(300), 320)
+  elseif self.level == 8 then
+    love.graphics.draw(logo, getCenteredHorizontalPosition(64), 160)
+    love.graphics.draw(ravnecLogo, getCenteredHorizontalPosition(160), 280)
   end
 
   local width = 680
@@ -95,8 +100,9 @@ function Info:draw()
     love.graphics.printf(levelText, getCenteredHorizontalPosition(width), 170, width, "left")
   elseif self.level == 8 then
     love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 16))
-    local levelText = "Thank you for playing Martenitsa!"
-    love.graphics.printf(levelText, getCenteredHorizontalPosition(width), 70, width, "center")
+    love.graphics.printf("Thank you for playing Martenitsa!", getCenteredHorizontalPosition(width), 70, width, "center")
+    love.graphics.printf("Developed by Margarita Ganeva", getCenteredHorizontalPosition(width), 130, width, "center")
+    love.graphics.printf("Intro music by Ravnec Folklore Band", getCenteredHorizontalPosition(width), 250, width, "center")
   end
 
   love.graphics.setColor(1, 1, 1)
