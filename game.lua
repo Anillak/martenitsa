@@ -40,8 +40,6 @@ function Game:enter(previous, level)
 end
 
 function Game:move()
-  player:update()
-
   if player:isDead() then
     log("Player died in level " .. self.currentLevel)
     scissors.stop()
@@ -58,7 +56,7 @@ function Game:move()
     end
     Timer.after(1, function() Gamestate.switch(Victory, self.currentLevel) end)
   else
-    goal:check(player)
+    player:update()
     player:eat(knots.get())
     player:maybeHit(walls)
     player:open(doors.get())
@@ -77,7 +75,7 @@ end
 
 function Game:update(dt)
   map:update(dt)
-  goal:update(dt)
+  goal:update(dt, player)
   knots.update(dt)
   doors.update(dt)
   scissors.update(dt)

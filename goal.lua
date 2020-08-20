@@ -20,9 +20,6 @@ function Checkpoint:draw()
     self.x * TILE_SIZE,
     self.y * TILE_SIZE)
 end
-function Checkpoint:print() return " " .. self.x .. " " .. self.y end
-function Checkpoint:check() self.covered = true end
-function Checkpoint:uncheck() self.covered = false end
 
 local Goal = {}
 
@@ -46,15 +43,19 @@ function Goal:new(map)
   return o
 end
 
-function Goal:update(dt)
+function Goal:update(dt, player)
   for _,checkpoint in ipairs(self) do
     checkpoint:update(dt)
   end
   completed = 0
   for _,checkpoint in ipairs(self) do
-    if checkpoint.covered then
-      completed = completed + 1
+    local pressed = false
+    for _,segment in ipairs(player.segments) do
+      if hit(segment, checkpoint) then
+        pressed = true
+      end
     end
+    if pressed then completed = completed + 1 end
   end
   if completed == #self then
     self.complete = true
@@ -75,20 +76,6 @@ end
 
 function Goal:isPossible(knotsAmount, playerLenght, gameGoal)
   return knotsAmount + playerLenght >= gameGoal
-end
-
-function Goal:check(player)
-  assertWithLogging(player, "No Player trying to win!")
-  for _,checkpoint in ipairs(self) do
-    local pressed = false
-    for _,segment in ipairs(player.segments) do
-      if hit(segment, checkpoint) then
-        pressed = true
-      end
-    end
-    if pressed then checkpoint:check()
-    else checkpoint:uncheck() end
-  end
 end
 
 return Goal

@@ -1,6 +1,16 @@
 - bugs
   - resizing
   - scissor and other animations bleeding
+  - check if wrong condition bug applies for buttons too - NEXT
+- instructions how to win in the beginning?
+- add wall indication on the other side
+- better wall ends that are actual walls
+- slow piano versions of folklore songs
+- sound effects for
+  - moving
+  - turning
+  - parts of the matrenitsa dying
+  - when need to reset
 - create levels
   - finish level 8 - NEXT
   - randomize assets in levels
@@ -10,3 +20,8 @@
   - grass
   - water 
   - fix door's, rocks' and scissors' "grass"
+
+
+todo later
+- remove esc shortcut (make it back to menu?)
+- cleanup info shortcuts
