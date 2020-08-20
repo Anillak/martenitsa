@@ -1,11 +1,9 @@
 - bugs
   - resizing
   - scissor and other animations bleeding
-- show hidden knots more
 - pause the game while door is opening?
+  - same colours for keys and doors, futuristic doors
 - instructions how to win in the beginning?
-- add wall indication on the other side
-- better wall ends that are actual walls
 - slow piano versions of folklore songs
 - sound effects for
   - moving
