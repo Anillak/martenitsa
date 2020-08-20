@@ -169,12 +169,6 @@ function Player:getCutBy(scissors)
   end
 end
 
-function Player:open(doors)
-  for _,d in ipairs(doors) do
-    d:checkIfOpenBy(self)
-  end
-end
-
 function Player:maybeReach(goal)
   self.won = self.bound and goal:isComplete()
 end

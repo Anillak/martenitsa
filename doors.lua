@@ -58,8 +58,19 @@ function Door:new(o, x, y, n)
    return o
 end
 
-function Door:update(dt)
-  self.animation:update(dt)
+function Door:draw()
+  for _,key in ipairs(self) do
+    key:draw()
+  end
+
+  self.animation:draw(
+    sprites.door,
+    self.x * TILE_SIZE,
+    self.y * TILE_SIZE)
+end
+
+function Door:update(dt, player)
+  self:checkIfKeysPressedBy(player)
   if self.open ~= true then
     self.open = true
     for _,key in ipairs(self) do
@@ -72,20 +83,10 @@ function Door:update(dt)
       sounds.doorOpen:play()
     end
   end
+  self.animation:update(dt)
 end
 
-function Door:draw()
-  for _,key in ipairs(self) do
-    key:draw()
-  end
-
-  self.animation:draw(
-    sprites.door,
-    self.x * TILE_SIZE,
-    self.y * TILE_SIZE)
-end
-
-function Door:checkIfOpenBy(p)
+function Door:checkIfKeysPressedBy(p)
   for _,key in ipairs(self) do
     local pressed = false
     for _,segment in ipairs(p.segments) do
@@ -127,9 +128,9 @@ function D.load(map)
   end
 end
 
-function D.update(dt)
+function D.update(dt, player)
   for _,d in ipairs(D.doors) do
-    d:update(dt)
+    d:update(dt, player)
   end
 end
 

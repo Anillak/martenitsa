@@ -1,7 +1,8 @@
 - bugs
   - resizing
   - scissor and other animations bleeding
-  - check if wrong condition bug applies for buttons too - NEXT
+- show hidden knots more
+- pause the game while door is opening?
 - instructions how to win in the beginning?
 - add wall indication on the other side
 - better wall ends that are actual walls
