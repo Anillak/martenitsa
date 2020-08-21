@@ -833,6 +833,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["Color"] = "Yellow",
             ["Number"] = 2
           }
         }
@@ -891,6 +892,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["Color"] = "Yellow",
             ["Door"] = 2
           }
         },
@@ -906,6 +908,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["Color"] = "Yellow",
             ["Door"] = 2
           }
         }

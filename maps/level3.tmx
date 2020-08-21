@@ -200,7 +200,7 @@
   </object>
   <object id="206" x="320" y="416" width="32" height="32">
    <properties>
-    <property name="Color" value="Blue"/>
+    <property name="Color" value="White"/>
     <property name="Number" type="int" value="2"/>
    </properties>
   </object>
@@ -218,13 +218,13 @@
   </object>
   <object id="207" x="928" y="160" width="32" height="32">
    <properties>
-    <property name="Color" value="Blue"/>
+    <property name="Color" value="White"/>
     <property name="Door" type="int" value="2"/>
    </properties>
   </object>
   <object id="208" x="928" y="384" width="32" height="32">
    <properties>
-    <property name="Color" value="Blue"/>
+    <property name="Color" value="White"/>
     <property name="Door" type="int" value="2"/>
    </properties>
   </object>

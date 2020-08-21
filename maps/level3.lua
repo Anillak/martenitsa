@@ -2044,7 +2044,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["Color"] = "Blue",
+            ["Color"] = "White",
             ["Number"] = 2
           }
         }
@@ -2103,7 +2103,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["Color"] = "Blue",
+            ["Color"] = "White",
             ["Door"] = 2
           }
         },
@@ -2119,7 +2119,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["Color"] = "Blue",
+            ["Color"] = "White",
             ["Door"] = 2
           }
         }

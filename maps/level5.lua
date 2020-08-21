@@ -1280,6 +1280,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["Color"] = "Green",
             ["Number"] = 1
           }
         }
@@ -1308,6 +1309,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["Color"] = "Green",
             ["Door"] = 1
           }
         },
@@ -1323,6 +1325,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["Color"] = "Green",
             ["Door"] = 1
           }
         }
