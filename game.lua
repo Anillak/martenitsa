@@ -24,7 +24,6 @@ function Game:enter(previous, level)
   doors.load(map)
   scissors.load(map)
   goal = Goal:new(map)
-
   assertWithLogging(map.layers["level"], "Map doesn't have level properties")
   local x = map.layers["level"].properties["x"]
   local y = map.layers["level"].properties["y"]
@@ -89,10 +88,12 @@ function Game:draw()
   map:drawLayer(map.layers["tilesover"])
   knots.draw()
   goal:draw()
-  doors.draw()
   scissors.draw()
+  doors.drawKeys()
   player:draw()
+  -- from here on everything will be drawn over the player
   map:drawLayer(map.layers["elements"])
+  doors.draw()
   map:drawLayer(map.layers["over"])
   scissors.drawSecond()
   effects.draw()

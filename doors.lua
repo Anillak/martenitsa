@@ -1,12 +1,14 @@
 local Key = {}
 
-function Key:new(o, x, y, door)
+function Key:new(o, x, y, door, c)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
    o.x = x
    o.y = y
-   o.sprite = sprites.keyReleased
+
+   if c then o.color = c else o.color = "Red" end
+   o.sprite = sprites["keyReleased" .. o.color]
    o.pressed = false
    o.door = door
 
@@ -27,7 +29,7 @@ function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
   if self.pressed ~= true then
     self.pressed = true
-    self.sprite = sprites.keyPressed
+    self.sprite = sprites["keyPressed" .. self.color]
     sounds.buttonPress:play()
   end
 end
@@ -35,7 +37,7 @@ function Key:release()
   if self.door.open == false then
     if self.pressed ~= false then
       self.pressed = false
-      self.sprite = sprites.keyReleased
+      self.sprite = sprites["keyReleased" .. self.color]
       sounds.buttonRelease:play()
     end
   end
@@ -43,30 +45,35 @@ end
 
 local Door = {}
 
-function Door:new(o, x, y, n)
+function Door:new(o, x, y, n, c)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
    o.x = x
    o.y = y
    o.n = n
+   local color = c
+   if not c then color = "Red" end
+   o.sprite = sprites["door"..color]
    o.open = false
-   o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
-   o.animation = Anim8.newAnimation(o.grid('1-4', 1), 0.2, "pauseAtEnd")
+   o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE*3, TILE_SIZE*12, TILE_SIZE*3)
+   o.animation = Anim8.newAnimation(o.grid('1-12', 1), 0.1, "pauseAtEnd")
    o.animation:pauseAtStart()
 
    return o
 end
 
 function Door:draw()
+  self.animation:draw(
+    self.sprite,
+    self.x * TILE_SIZE,
+    self.y * TILE_SIZE - TILE_SIZE*2)
+end
+
+function Door:drawKeys()
   for _,key in ipairs(self) do
     key:draw()
   end
-
-  self.animation:draw(
-    sprites.door,
-    self.x * TILE_SIZE,
-    self.y * TILE_SIZE)
 end
 
 function Door:update(dt, player)
@@ -99,8 +106,8 @@ function Door:checkIfKeysPressedBy(p)
   end
 end
 
-function Door:addKey(x, y)
-  k = Key:new({}, x, y, self)
+function Door:addKey(x, y, c)
+  k = Key:new({}, x, y, self, c)
   table.insert(self, k)
 end
 
@@ -115,13 +122,15 @@ function D.load(map)
   for _,o in ipairs(map.layers["doors"].objects) do
     local n = o.properties["Number"]
     assertWithLogging(n, "Door doesn't have a number")
-    local door = Door:new({}, o.x/TILE_SIZE, o.y/TILE_SIZE, n)
+    local c = o.properties["Color"]
+    local door = Door:new({}, o.x/TILE_SIZE, o.y/TILE_SIZE, n, c)
     Signal.emit('create door', door.x, door.y)
     for _,k in ipairs(map.layers["keys"].objects) do
       local d = k.properties["Door"]
       assertWithLogging(d, "Key is not assigned to a door")
+      local c = o.properties["Color"]
       if n == d then
-        door:addKey(k.x/TILE_SIZE, k.y/TILE_SIZE)
+        door:addKey(k.x/TILE_SIZE, k.y/TILE_SIZE, c)
       end
     end
     table.insert(D.doors, door)
@@ -137,6 +146,12 @@ end
 function D.draw()
   for _,d in ipairs(D.doors) do
     d:draw()
+  end
+end
+
+function D.drawKeys()
+  for _,d in ipairs(D.doors) do
+    d:drawKeys()
   end
 end
 

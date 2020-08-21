@@ -2,20 +2,19 @@
   - resizing
   - scissor and other animations bleeding
 - pause the game while door is opening?
-  - same colours for keys and doors, futuristic doors
-- instructions how to win in the beginning?
+  - same colours for keys and doors, futuristic doors - NEXT
+- instructions how to win in the beginning? - NEXT
 - slow piano versions of folklore songs
-- sound effects for
+- sound effects for - NEXT
   - moving
   - turning
   - parts of the matrenitsa dying
   - when need to reset
 - create levels
   - finish level 8 - NEXT
-  - randomize assets in levels
 - assets to create
   - здравец
-  - forest - NEXT
+  - forest
   - grass
   - water 
   - fix door's, rocks' and scissors' "grass"
