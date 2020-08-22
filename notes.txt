@@ -1,7 +1,6 @@
 - bugs
   - resizing
   - scissor and other animations bleeding
-- instructions how to win in the beginning? - NEXT
 - sound effects for - NEXT
   - moving
   - turning
