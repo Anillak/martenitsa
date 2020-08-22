@@ -15,7 +15,9 @@ function Player:new(o, x, y, length, direction)
    o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
 
    for i=1,length do
-     o.segments[i] = self:createSegment(x-i, y)
+     local next
+     if direction ~= "left" then next = x-i else next = x+i end
+     o.segments[i] = self:createSegment(next, y)
    end
 
    o:composeSegments()

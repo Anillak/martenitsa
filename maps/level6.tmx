@@ -43,6 +43,7 @@
  </layer>
  <objectgroup id="13" name="level">
   <properties>
+   <property name="direction" value="left"/>
    <property name="goal" type="int" value="14"/>
    <property name="length" type="int" value="4"/>
    <property name="x" type="int" value="31"/>
@@ -251,19 +252,19 @@
     <property name="Door" type="int" value="1"/>
    </properties>
   </object>
-  <object id="227" x="832" y="512" width="32" height="32">
+  <object id="227" x="192" y="320" width="32" height="32">
    <properties>
     <property name="Color" value="Yellow"/>
     <property name="Door" type="int" value="2"/>
    </properties>
   </object>
-  <object id="228" x="864" y="640" width="32" height="32">
+  <object id="228" x="128" y="320" width="32" height="32">
    <properties>
     <property name="Color" value="Yellow"/>
     <property name="Door" type="int" value="2"/>
    </properties>
   </object>
-  <object id="229" x="768" y="608" width="32" height="32">
+  <object id="229" x="192" y="384" width="32" height="32">
    <properties>
     <property name="Color" value="Yellow"/>
     <property name="Door" type="int" value="2"/>
@@ -283,23 +284,23 @@
   </object>
   <object id="233" x="128" y="384" width="32" height="32">
    <properties>
-    <property name="Color" value="Green"/>
-    <property name="Door" type="int" value="4"/>
+    <property name="Color" value="Yellow"/>
+    <property name="Door" type="int" value="2"/>
    </properties>
   </object>
-  <object id="234" x="192" y="384" width="32" height="32">
+  <object id="234" x="768" y="608" width="32" height="32">
    <properties>
     <property name="Color" value="Green"/>
     <property name="Door" type="int" value="4"/>
    </properties>
   </object>
-  <object id="235" x="192" y="320" width="32" height="32">
+  <object id="235" x="832" y="512" width="32" height="32">
    <properties>
     <property name="Color" value="Green"/>
     <property name="Door" type="int" value="4"/>
    </properties>
   </object>
-  <object id="236" x="128" y="320" width="32" height="32">
+  <object id="236" x="864" y="640" width="32" height="32">
    <properties>
     <property name="Color" value="Green"/>
     <property name="Door" type="int" value="4"/>

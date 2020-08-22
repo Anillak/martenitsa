@@ -43,6 +43,7 @@
  </layer>
  <objectgroup id="13" name="level">
   <properties>
+   <property name="direction" value="left"/>
    <property name="goal" type="int" value="14"/>
    <property name="length" type="int" value="4"/>
    <property name="x" type="int" value="11"/>

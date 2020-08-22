@@ -2,7 +2,6 @@
   - resizing
   - scissor and other animations bleeding
 - instructions how to win in the beginning? - NEXT
-- slow piano versions of folklore songs
 - sound effects for - NEXT
   - moving
   - turning
@@ -10,12 +9,15 @@
   - when need to reset
 - create levels
   - finish level 8 - NEXT
+  - adjust rocks drawing (before or after player)
 - assets to create
   - здравец
   - forest
   - grass
   - water 
   - fix door's, rocks' and scissors' "grass"
+- slow piano versions of folklore songs
+- add transitions between screens
 
 
 todo later

@@ -193,6 +193,7 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {
+        ["direction"] = "right",
         ["goal"] = 14,
         ["length"] = 5,
         ["x"] = 6,
@@ -1280,7 +1281,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["Color"] = "Green",
+            ["Color"] = "Red",
             ["Number"] = 1
           }
         }
@@ -1309,7 +1310,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["Color"] = "Green",
+            ["Color"] = "Red",
             ["Door"] = 1
           }
         },
@@ -1325,7 +1326,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["Color"] = "Green",
+            ["Color"] = "Red",
             ["Door"] = 1
           }
         }

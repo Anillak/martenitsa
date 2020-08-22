@@ -6,6 +6,7 @@ function Game:init()
   effects = require 'effects'
   walls = require 'walls'
   Player = require 'player'
+  tutorial = require 'tutorial'
   knots = require 'knots'
   Goal = require 'goal'
   doors = require 'doors'
@@ -23,14 +24,16 @@ function Game:enter(previous, level)
   knots.load(map)
   doors.load(map)
   scissors.load(map)
+  tutorial.load(level)
   goal = Goal:new(map)
   assertWithLogging(map.layers["level"], "Map doesn't have level properties")
   local x = map.layers["level"].properties["x"]
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
+  local direction = map.layers["level"].properties["direction"]
   self.required = map.layers["level"].properties["goal"]
   self.possible = true
-  player = Player:new({}, x, y, length, "right")
+  player = Player:new({}, x, y, length, direction)
   self.currentLevel = level
   if level > 1 then
     sounds.birds:play()
@@ -56,6 +59,7 @@ function Game:move()
     Timer.after(1, function() Gamestate.switch(Victory, self.currentLevel) end)
   else
     player:update()
+    tutorial.update()
     player:eat(knots.get())
     player:maybeHit(walls)
     player:composeSegments()
@@ -90,6 +94,7 @@ function Game:draw()
   goal:draw()
   scissors.draw()
   doors.drawKeys()
+  tutorial.draw()
   player:draw()
   -- from here on everything will be drawn over the player
   map:drawLayer(map.layers["elements"])

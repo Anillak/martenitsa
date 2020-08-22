@@ -113,6 +113,7 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {
+        ["direction"] = "right",
         ["goal"] = 14,
         ["length"] = 6,
         ["x"] = 9,
