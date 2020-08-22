@@ -7,7 +7,7 @@ function Shadow:new(o, x, y, length, direction)
    self.__index = self
    o.segments = {}
    o.direction = {direction}
-   o.doneCount = 5
+   o.doneCount = 1
 
    local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
    o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
@@ -47,6 +47,9 @@ function Shadow:update()
     table.insert(self.segments, 1, self:createSegment(newX, newY))
     table.remove(self.segments)
     self:composeSegments()
+    if self.doneCount < 5 then
+      self.doneCount = self.doneCount + 1
+    end
   else
     self.doneCount = self.doneCount - 1
   end
@@ -111,11 +114,99 @@ function Shadow:addDirection(direction)
   table.insert(self.direction, direction)
 end
 
-local Tutorial = {}
-local shadows = {}
+local Text = {}
 
-function Tutorial.endCondition()
-  local shadow = Shadow:new({}, 22, 9, 14, "left")
+function Text:new(o, x, y, text)
+   o = o or {}
+   setmetatable(o, self)
+   self.__index = self
+   o.x = x
+   o.y = y
+   o.text = text
+   o.doneCount = 1
+   o.hiding = false
+   return o
+end
+
+function Text:draw()
+  love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 16))
+  love.graphics.setColor(0,0,0,(self.doneCount/10))
+  love.graphics.printf(self.text, self.x, self.y, 300, "center")
+  love.graphics.setColor(1,1,1,1)
+end
+
+function Text:update()
+  if self.hiding then
+    self.doneCount = self.doneCount - 1
+  else
+    self.doneCount = self.doneCount + 1
+    if self.doneCount == 15 then self.hiding = true end
+  end
+
+end
+
+function Text:isAlive()
+  return self.doneCount > 0
+end
+
+Arrow = {}
+
+function Arrow:new(o, x, y)
+   o = o or {}
+   setmetatable(o, self)
+   self.__index = self
+   o.x = x
+   o.y = y
+   o.doneCount = 1
+   o.hiding = false
+   return o
+end
+
+function Arrow:draw()
+  local arrow = love.graphics.newImage('asset/arrow.png')
+  love.graphics.setColor(1,1,1,(self.doneCount/10))
+  love.graphics.draw(arrow, self.x, self.y)
+  love.graphics.setColor(1,1,1,1)
+end
+
+function Arrow:update()
+  if self.hiding then
+    self.doneCount = self.doneCount - 1
+  else
+    self.doneCount = self.doneCount + 1
+    if self.doneCount == 15 then self.hiding = true end
+  end
+
+end
+
+function Arrow:isAlive()
+  return self.doneCount > 0
+end
+
+local Tutorial = {}
+local steps = {}
+
+local function eatKnotsText()
+  return Text:new({}, 200, 600, "Eat the knots to grow longer.")
+end
+
+local function eatKnotsArrow()
+  return Arrow:new({}, 150, 580)
+end
+
+local function endConditionText()
+  return Text:new({}, 830, 400, "Wrap yourself around the checkoints to finish the level.")
+end
+
+local function endConditionArrow()
+  return Arrow:new({}, 730, 400)
+end
+
+local function endCondition()
+  local shadow = Shadow:new({}, 25, 9, 14, "left")
+  shadow:addDirection("left")
+  shadow:addDirection("left")
+  shadow:addDirection("left")
   shadow:addDirection("left")
   shadow:addDirection("left")
   shadow:addDirection("left")
@@ -134,21 +225,34 @@ function Tutorial.endCondition()
 end
 
 function Tutorial.load(level)
-  shadows = {}
+  steps = {}
   if level == 1 then
-    table.insert(shadows, Tutorial.endCondition())
+    Timer.after(1, function()
+      table.insert(steps, eatKnotsText())
+      table.insert(steps, eatKnotsArrow())
+    end)
+    Timer.after(8, function()
+      table.insert(steps, endCondition())
+      table.insert(steps, endConditionText())
+      table.insert(steps, endConditionArrow())
+    end)
   end
 end
 
 function Tutorial.draw()
-  for _,s in ipairs(shadows) do
-    if s:isAlive() then s:draw() end
+  for _,s in ipairs(steps) do
+    s:draw()
   end
 end
 
 function Tutorial.update()
-  for _,s in ipairs(shadows) do
-    if s:isAlive() then s:update() end
+  for i=#steps,1,-1 do
+    if not steps[i]:isAlive() then
+      table.remove(steps, i)
+    end
+  end
+  for _,s in ipairs(steps) do
+    s:update()
   end
 end
 
