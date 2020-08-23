@@ -1,5 +1,5 @@
 - bugs
-  - resizing
+  - resizing - test this
   - scissor and other animations bleeding
 - sound effects for - NEXT
   - moving
@@ -7,7 +7,7 @@
   - parts of the matrenitsa dying
   - when need to reset
 - create levels
-  - finish level 8 - NEXT
+  - finish level 7
   - adjust rocks drawing (before or after player)
 - assets to create
   - здравец
