@@ -22,7 +22,6 @@ function love.keyreleased(key)
 end
 
 function love.load()
-  console = ""
   require 'save'
   saveData = {}
   saveData.level = 1
