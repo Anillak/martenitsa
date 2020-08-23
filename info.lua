@@ -20,11 +20,18 @@ function Info:enter(previous, level)
     Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
     Buttons:add("level", 915, 600, "Continue", false, Game, level+1)
     Buttons:setActive(Buttons.level)
+  elseif level == LEVELS_AMOUNT then
+    sounds.credits:play()
+    Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
+    Buttons:setActive(Buttons.menu)
   else
     Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
     Buttons:setActive(Buttons.menu)
   end
+end
 
+function Info:leave()
+  sounds.credits:pause()
 end
 
 function Info:update(dt)
@@ -102,7 +109,7 @@ function Info:draw()
     love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 16))
     love.graphics.printf("Thank you for playing Martenitsa!", getCenteredHorizontalPosition(width), 70, width, "center")
     love.graphics.printf("Developed by Margarita Ganeva", getCenteredHorizontalPosition(width), 130, width, "center")
-    love.graphics.printf("Intro music by Ravnec Folklore Band", getCenteredHorizontalPosition(width), 250, width, "center")
+    love.graphics.printf("Music by Ravnec Folklore Band", getCenteredHorizontalPosition(width), 250, width, "center")
   end
 
   love.graphics.setColor(1, 1, 1)

@@ -1,6 +1,7 @@
 sounds = {}
 sounds.intro = love.audio.newSource("asset/intro.wav", "static")
 sounds.victory = love.audio.newSource("asset/victory.wav", "static")
+sounds.credits = love.audio.newSource("asset/credits.ogg", "static")
 sounds.menuPress = love.audio.newSource("asset/menu-press.wav", "static")
 sounds.menuMove = love.audio.newSource("asset/menu-move.wav", "static")
 sounds.scissors = love.audio.newSource("asset/scissors.wav", "static")

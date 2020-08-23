@@ -56,7 +56,11 @@ function Game:move()
       saveData.level = newLevel
       love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     end
-    Timer.after(1, function() Gamestate.switch(Victory, self.currentLevel) end)
+    if self.currentLevel == 8 then
+      Timer.after(1, function() Gamestate.switch(Info, self.currentLevel) end)
+    else
+      Timer.after(1, function() Gamestate.switch(Victory, self.currentLevel) end)
+    end
   else
     player:update()
     tutorial.update()

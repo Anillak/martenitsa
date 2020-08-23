@@ -5,7 +5,7 @@
 - sound effects for - NEXT
   - moving
   - turning
-  - parts of the matrenitsa dying
+  - parts of the martenitsa dying
   - when need to reset
 - assets to create
   - здравец
@@ -14,7 +14,6 @@
   - water 
   - fix door's, rocks' and scissors' "grass"
 - slow piano versions of folklore songs
-- add transitions between screens - NEXT
 
 
 todo later
