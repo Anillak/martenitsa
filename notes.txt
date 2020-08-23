@@ -1,14 +1,12 @@
 - bugs
   - resizing - test this
   - scissor and other animations bleeding
+  - adjust rocks drawing (before or after player)
 - sound effects for - NEXT
   - moving
   - turning
   - parts of the matrenitsa dying
   - when need to reset
-- create levels
-  - finish level 7
-  - adjust rocks drawing (before or after player)
 - assets to create
   - здравец
   - forest
@@ -16,7 +14,7 @@
   - water 
   - fix door's, rocks' and scissors' "grass"
 - slow piano versions of folklore songs
-- add transitions between screens
+- add transitions between screens - NEXT
 
 
 todo later

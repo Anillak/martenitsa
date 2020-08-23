@@ -151,7 +151,7 @@ end
 
 Arrow = {}
 
-function Arrow:new(o, x, y)
+function Arrow:new(o, x, y, flipped)
    o = o or {}
    setmetatable(o, self)
    self.__index = self
@@ -159,11 +159,17 @@ function Arrow:new(o, x, y)
    o.y = y
    o.doneCount = 1
    o.hiding = false
+   o.flipped = flipped
    return o
 end
 
 function Arrow:draw()
-  local arrow = love.graphics.newImage('asset/arrow.png')
+  local arrow
+  if not self.flipped then
+    arrow = love.graphics.newImage('asset/arrow.png')
+  else
+    arrow = love.graphics.newImage('asset/arrow-flip.png')
+  end
   love.graphics.setColor(1,1,1,(self.doneCount/10))
   love.graphics.draw(arrow, self.x, self.y)
   love.graphics.setColor(1,1,1,1)
@@ -191,7 +197,7 @@ local function eatKnotsText()
 end
 
 local function eatKnotsArrow()
-  return Arrow:new({}, 150, 580)
+  return Arrow:new({}, 150, 580, false)
 end
 
 local function endConditionText()
@@ -199,7 +205,7 @@ local function endConditionText()
 end
 
 local function endConditionArrow()
-  return Arrow:new({}, 730, 400)
+  return Arrow:new({}, 730, 400, false)
 end
 
 local function endCondition()
@@ -224,6 +230,10 @@ local function endCondition()
   return shadow
 end
 
+local function resetArrow()
+  return Arrow:new({}, 1100, 20, true)
+end
+
 function Tutorial.load(level)
   steps = {}
   if level == 1 then
@@ -237,6 +247,8 @@ function Tutorial.load(level)
       table.insert(steps, endConditionArrow())
     end)
   end
+
+  Signal.register('show r', function() table.insert(steps, resetArrow()) end)
 end
 
 function Tutorial.draw()

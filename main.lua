@@ -12,6 +12,7 @@ FONT_SECOND = "asset/Lato-Regular.ttf"
 LEVELS_AMOUNT = 8
 
 function love.keyreleased(key)
+  -- remove later
   if key == "escape" then
    love.event.quit()
   end

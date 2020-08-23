@@ -94,7 +94,6 @@ function Game:draw()
   goal:draw()
   scissors.draw()
   doors.drawKeys()
-  tutorial.draw()
   player:draw()
   -- from here on everything will be drawn over the player
   map:drawLayer(map.layers["elements"])
@@ -102,6 +101,7 @@ function Game:draw()
   map:drawLayer(map.layers["over"])
   scissors.drawSecond()
   effects.draw()
+  tutorial.draw()
   if doDrawConsole then
     drawConsole()
   end
@@ -116,6 +116,7 @@ function Game:keyreleased(key)
     log("Player reset " .. self.currentLevel)
     Gamestate.switch(Game, self.currentLevel)
   end
+  -- remove later
   if key == 'c' then
     doDrawConsole = not doDrawConsole
   end
