@@ -246,7 +246,7 @@ return {
         ["direction"] = "down",
         ["goal"] = 14,
         ["length"] = 5,
-        ["x"] = 7,
+        ["x"] = 6,
         ["y"] = 17
       },
       objects = {}
