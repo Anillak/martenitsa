@@ -14,9 +14,15 @@ function Checkpoint:new(o, x, y)
 end
 
 function Checkpoint:update(dt) self.animation:update(dt) end
-function Checkpoint:draw()
+function Checkpoint:draw(unlocked, possible)
+  local sprite
+  if unlocked and possible then
+    sprite = sprites.checkpointDone
+  else
+    sprite = sprites.checkpoint
+  end
   self.animation:draw(
-    sprites.checkpoint,
+    sprite,
     self.x * TILE_SIZE,
     self.y * TILE_SIZE)
 end
@@ -35,6 +41,8 @@ function Goal:new(map)
   setmetatable(o, self)
   self.__index = self
   o.complete = false
+  o.unlocked = false
+  o.possible = true
 
   for i,c in ipairs(map.layers["checkpoints"].objects) do
     createCheckpoint(o, c.x/TILE_SIZE, c.y/TILE_SIZE)
@@ -43,7 +51,10 @@ function Goal:new(map)
   return o
 end
 
-function Goal:update(dt, player)
+function Goal:update(dt, player, knotsAmount)
+  if knotsAmount == 0 then
+    self.unlocked = true
+  end
   for _,checkpoint in ipairs(self) do
     checkpoint:update(dt)
   end
@@ -66,7 +77,7 @@ end
 
 function Goal:draw()
   for _,checkpoint in ipairs(self) do
-    checkpoint:draw()
+    checkpoint:draw(self.unlocked, self.possible)
   end
 end
 
@@ -75,7 +86,8 @@ function Goal:isComplete()
 end
 
 function Goal:isPossible(knotsAmount, playerLenght, gameGoal)
-  return knotsAmount + playerLenght >= gameGoal
+  self.possible = knotsAmount + playerLenght >= gameGoal
+  return self.possible
 end
 
 return Goal

@@ -81,7 +81,7 @@ end
 
 function Game:update(dt)
   map:update(dt)
-  goal:update(dt, player)
+  goal:update(dt, player, knots.available())
   knots.update(dt)
   doors.update(dt, player)
   scissors.update(dt)
