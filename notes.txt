@@ -1,5 +1,4 @@
 - bugs
-  - resizing - test this
   - scissor and other animations bleeding
   - adjust rocks drawing (before or after player)
 - sound effects for - NEXT

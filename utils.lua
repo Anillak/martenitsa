@@ -11,9 +11,9 @@ function getCenteredHorizontalPosition(width)
 end
 
 function resetToDraw()
+  love.graphics.translate(0, BORDERS)
   love.graphics.scale(SCALE)
   love.graphics.setBackgroundColor(1, 1, 1)
-  love.graphics.translate(0, BORDERS)
   love.graphics.setColor(1, 1, 1)
 end
 
