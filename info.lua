@@ -17,8 +17,8 @@ function Info:enter(previous, level)
   self.level = level
   Buttons = B:new()
   if level ~= LEVELS_AMOUNT then
-    Buttons:add("menu", 170, 600, "Go to Menu", false, Menu)
-    Buttons:add("level", 915, 600, "Continue", false, Game, level+1)
+    Buttons:add("menu", 200, 600, "Go to Menu", false, Menu)
+    Buttons:add("level", 885, 600, "Continue", false, Game, level+1)
     Buttons:setActive(Buttons.level)
   elseif level == LEVELS_AMOUNT then
     sounds.credits:play()
