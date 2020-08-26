@@ -46,20 +46,23 @@ function Game:move()
     log("Player died in level " .. self.currentLevel)
     scissors.stop()
     Timer.clear()
+    player:stops()
+    sounds.dying:play()
     Timer.after(2, function() Gamestate.switch(Game, self.currentLevel) end)
   elseif player:isWon() then
     log("Player won in level " .. self.currentLevel)
     scissors.stop()
     Timer.clear()
+    player:stops()
     local newLevel = self.currentLevel + 1
     if saveData.level < newLevel then
       saveData.level = newLevel
       love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     end
     if self.currentLevel == 8 then
-      Timer.after(1, function() Gamestate.switch(Info, self.currentLevel) end)
+      Timer.after(0.2, function() Gamestate.switch(Info, self.currentLevel) end)
     else
-      Timer.after(1, function() Gamestate.switch(Victory, self.currentLevel) end)
+      Timer.after(0.2, function() Gamestate.switch(Victory, self.currentLevel) end)
     end
   else
     player:update()
@@ -77,6 +80,11 @@ function Game:move()
       end
     end
   end
+end
+
+function Game:leave()
+  sounds.birds:pause()
+  player:stops()
 end
 
 function Game:update(dt)

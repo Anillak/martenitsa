@@ -19,8 +19,8 @@ function Player:new(o, x, y, length, direction)
      if direction ~= "left" then next = x-i else next = x+i end
      o.segments[i] = self:createSegment(next, y)
    end
-
    o:composeSegments()
+   o:starts()
    return o
 end
 
@@ -187,23 +187,35 @@ function Player:length()
   return #self.segments
 end
 
+function Player:starts()
+  sounds.walking:play()
+end
+
+function Player:stops()
+  sounds.walking:pause()
+end
+
 function Player:keyPress(key)
   if (key == "right" or key == "d")
     and self.direction[#self.direction] ~= "right"
     and self.direction[#self.direction] ~= "left" then
       table.insert(self.direction, "right")
+      sounds.turning:play()
   elseif (key == "left" or key == "a")
     and self.direction[#self.direction] ~= "left"
     and self.direction[#self.direction] ~= "right" then
       table.insert(self.direction, "left")
+      sounds.turning:play()
   elseif (key == "down" or key == "s")
     and self.direction[#self.direction] ~= "down"
     and self.direction[#self.direction] ~= "up" then
       table.insert(self.direction, "down")
+      sounds.turning:play()
   elseif (key == "up" or key == "w")
     and self.direction[#self.direction] ~= "up"
     and self.direction[#self.direction] ~= "down" then
       table.insert(self.direction, "up")
+      sounds.turning:play()
   end
 end
 

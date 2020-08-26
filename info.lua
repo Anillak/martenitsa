@@ -13,7 +13,6 @@ function Info:init()
 end
 
 function Info:enter(previous, level)
-  sounds.birds:pause()
   self.level = level
   Buttons = B:new()
   if level ~= LEVELS_AMOUNT then
