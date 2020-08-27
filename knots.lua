@@ -1,4 +1,5 @@
 local Knot = {}
+local randomize = {{2, true}, {1, false}, {3, true}, {3, false}, {2, false}, {1, true}}
 
 function Knot:new(o, x, y)
    o = o or {}
@@ -8,9 +9,14 @@ function Knot:new(o, x, y)
    o.y = y
 
    o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*3)
-   local row = math.random(1, 3)
+   local random = math.random(1, 6)
+   local row = randomize[random][1]
    local time = math.random(4, 6)
    o.animation = Anim8.newAnimation(o.grid('1-2',row), {time, 0.5})
+   local flipped = randomize[random][2]
+   if flipped == 1 then
+     o.animation = o.animation:clone():flipH()
+   end
 
    return o
 end
