@@ -211,7 +211,7 @@
   <properties>
    <property name="Number" type="int" value="1"/>
   </properties>
-  <object id="176" x="608" y="96" width="32" height="32">
+  <object id="176" x="832" y="96" width="32" height="32">
    <properties>
     <property name="Number" type="int" value="1"/>
    </properties>
@@ -228,7 +228,7 @@
     <property name="Number" type="int" value="3"/>
    </properties>
   </object>
-  <object id="221" x="832" y="96" width="32" height="32">
+  <object id="221" x="608" y="96" width="32" height="32">
    <properties>
     <property name="Color" value="Green"/>
     <property name="Number" type="int" value="4"/>

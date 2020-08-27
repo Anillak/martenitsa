@@ -56,9 +56,21 @@ function Door:new(o, x, y, n, c)
    if not c then color = "Red" end
    o.sprite = sprites["door"..color]
    o.open = false
-   o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE*3, TILE_SIZE*12, TILE_SIZE*3)
-   o.animation = Anim8.newAnimation(o.grid('1-12', 1), 0.1, "pauseAtEnd")
-   o.animation:pauseAtStart()
+   local grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE*3, TILE_SIZE*12, TILE_SIZE*3)
+   local anim = Anim8.newAnimation(grid('1-12', 1), 0.1, "pauseAtEnd")
+   anim:pauseAtStart()
+   local initanim = Anim8.newAnimation(grid('12-1', 1), 0.1, "pauseAtEnd")
+   initanim:pauseAtStart()
+   o.animation = initanim
+
+   local delay = (n-1)*1.5
+   Timer.after(delay, function()
+     sounds.doorClose:play()
+     o.animation:resume()
+     Timer.after(1.20, function()
+       o.animation = anim
+     end)
+   end)
 
    return o
 end
