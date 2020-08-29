@@ -49,7 +49,7 @@ function Info:draw()
     love.graphics.draw(pp, getCenteredHorizontalPosition(300), 320)
   elseif self.level == 8 then
     love.graphics.draw(logo, getCenteredHorizontalPosition(64), 160)
-    love.graphics.draw(ravnecLogo, getCenteredHorizontalPosition(160), 280)
+    love.graphics.draw(ravnecLogo, getCenteredHorizontalPosition(126), 280)
   end
 
   local width = 680
@@ -95,14 +95,14 @@ function Info:draw()
     local titleText = "Bulgarian legends"
     love.graphics.printf(titleText, getCenteredHorizontalPosition(width), 70, width, "left")
     love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 20))
-    local levelText = "Other myths tell another story about Khan Asparoukh, founder of the First Bulgarian Kingdom.\n\nAccording to this legend, the Bulgarians reached land beyond the Danube and decided to settle there. Khan Asparoukh was happy at his find and wanted to offer the pagan God, Tangra, a gift to bless the new kingdom. By tradition, a sacrificial fire must be lit with a sprig of dry dill, but there was no dill around.\n\nWhile pondering how to please Tangra, a falcon perched on Asparoukh's shoulder. The bird had a sprig of dill tied to its leg with a white woollen thread, half tinged red. The dill had been sent by Asparoukh's sister Houba, who had dreamt of her brother's dilemma. During the long flight, the falcon's wing was rubbed sore and soaked part of the thread in blood. Asparoukh lit the sacrificial fire and attached the thread onto his clothing to bring him health."
+    local levelText = "According to another legend about Khan Asparoukh, founder of the First Bulgarian Kingdom, the Bulgarians reached a land beyond the Danube and decided to settle there. Khan Asparoukh was happy with his find and wanted the pagan god Tangra to bless the new kingdom, so he decided to offer him a gift. By tradition, a sacrificial fire had to be lit with a sprig of dry dill, but there was no dill around.\n\nWhile Asparoukh was pondering how to please Tangra, a falcon perched on his shoulder. The bird had a sprig of dill tied to its leg with a white woollen thread, half tinged with red. The dill had been sent by Asparoukh's sister Houba, who had dreamt of her brother's dilemma. During the long flight, the falcon's wing got sore and part of the thread was soaked in blood. Asparoukh lit the sacrificial fire and attached the thread onto his clothing, so it would bring him good health."
     love.graphics.printf(levelText, getCenteredHorizontalPosition(width), 140, width, "left")
   elseif self.level == 7 then
     love.graphics.setFont(love.graphics.newFont(FONT, 24))
     local titleText = "Around the world"
     love.graphics.printf(titleText, getCenteredHorizontalPosition(width), 70, width, "left")
     love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 20))
-    local levelText = "Bulgaria is not the only country in the world celebrating the advent of March and the coming of spring. Some countries even have traditions that include giving and wearing of a martenitsa.\n\nRomania also celebrates the first day of March with a celebration known as martisor. Men offer women a jewel or decoration tied to a red and white string. Anyone who wears it will be powerful and healthy for the coming year and it is traditionally worn for 12 days.\n\nMoldova's celebration is very similar to that of Romania, except that people give each other a gold or silver brooch on a red and white string, which they pin to their lapel.\n\nIn Greece, people braid bracelets called martis from red and white string and give them out to children on 1st of March. Martis are worn until the midnight mass of the Greek Orthodox Easter. On this day, bonfires are lit and the bracelets are removed and thrown into the fires."
+    local levelText = "Bulgaria is not the only country in the world celebrating the advent of March and the coming of spring. Some countries even have traditions that include giving and wearing of martenitsas.\n\nRomania also commemorates the first day of March with a celebration known as martisor. Men offer women a jewel or some other adornment tied to a red and white string. It is traditionally worn for 12 days and it gives the wearer strength and good health for the coming year.\n\nMoldova's celebration is very similar to that of Romania, except that people give each other a gold or silver brooch on a red and white string, which they pin to their lapel.\n\nIn Greece, people braid bracelets called martis, made from red and white strings, and give them out to children on March 1st. Martis are worn until the midnight mass of the Greek Orthodox Easter. On this day, bonfires are lit and the bracelets are removed and thrown into the fires."
     love.graphics.printf(levelText, getCenteredHorizontalPosition(width), 140, width, "left")
   elseif self.level == 8 then
     love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 16))
