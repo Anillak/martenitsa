@@ -1,12 +1,12 @@
 - bugs
   - scissor and other animations bleeding
   - adjust rocks drawing (before or after player)
+  - fix level 8 doors opening while keys are already pushed (maybe activate buttons when doors are up)
 - add a state to the scissors
 - assets to create
-  - здравец
+  - здравец (moving grass type)
   - forest
-  - grass
-  - water 
+  - scissors
   - fix door's, rocks' and scissors' "grass"
 - slow piano versions of folklore songs
 
