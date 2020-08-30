@@ -8,9 +8,17 @@ function Key:new(o, x, y, door, c)
    o.y = y
 
    if c then o.color = c else o.color = "Red" end
-   o.sprite = sprites["keyReleased" .. o.color]
    o.pressed = false
    o.door = door
+   o.active = false
+
+   Signal.register('activate door',
+     function(n)
+       if n==o.door.n then
+         o.active = true
+         sounds.buttonRelease:play()
+        end
+     end)
 
    return o
 end
@@ -21,15 +29,19 @@ function Key:update(dt)
   end
 end
 function Key:draw()
-  love.graphics.draw(self.sprite,
+  local sprite
+  if self.active and not self.pressed then
+    sprite = sprites["keyReleased" .. self.color]
+  else
+    sprite = sprites["keyPressed" .. self.color]
+  end
+  love.graphics.draw(sprite,
     self.x * TILE_SIZE,
     self.y * TILE_SIZE)
 end
-function Key:print() return " " .. self.x .. " " .. self.y end
 function Key:press()
   if self.pressed ~= true then
     self.pressed = true
-    self.sprite = sprites["keyPressed" .. self.color]
     sounds.buttonPress:play()
   end
 end
@@ -37,7 +49,6 @@ function Key:release()
   if self.door.open == false then
     if self.pressed ~= false then
       self.pressed = false
-      self.sprite = sprites["keyReleased" .. self.color]
       sounds.buttonRelease:play()
     end
   end
@@ -69,6 +80,7 @@ function Door:new(o, x, y, n, c)
      o.animation:resume()
      Timer.after(1.20, function()
        o.animation = anim
+       Signal.emit('activate door', n)
      end)
    end)
 
@@ -107,14 +119,14 @@ end
 
 function Door:checkIfKeysPressedBy(p)
   for _,key in ipairs(self) do
-    local pressed = false
-    for _,segment in ipairs(p.segments) do
-      if hit(segment, key) then
-        pressed = true
+    if key.active then
+      local pressed = false
+      for _,segment in ipairs(p.segments) do
+        if hit(segment, key) then pressed = true end
       end
+      if pressed then key:press()
+      else key:release() end
     end
-    if pressed then key:press()
-    else key:release() end
   end
 end
 

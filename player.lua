@@ -182,7 +182,7 @@ function Player:length()
 end
 
 function Player:starts()
-  sounds.walking:play()
+  if not sounds.walking:isPlaying() then sounds.walking:play() end
 end
 
 function Player:stops()

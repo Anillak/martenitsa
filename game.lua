@@ -35,9 +35,7 @@ function Game:enter(previous, level)
   self.possible = true
   player = Player:new({}, x, y, length, direction)
   self.currentLevel = level
-  if level > 1 then
-    sounds.birds:play()
-  end
+  sounds.birds:play()
   Timer.every(0.2, function() self:move() end)
 end
 
@@ -59,12 +57,15 @@ function Game:move()
       saveData.level = newLevel
       love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     end
-    if self.currentLevel == 8 then
-      Timer.after(0.2, function() Gamestate.switch(Info, self.currentLevel) end)
-    else
-      Timer.after(0.2, function() Gamestate.switch(Victory, self.currentLevel) end)
-    end
+    Timer.after(0.2, function()
+      if self.currentLevel == 8 then
+        Gamestate.switch(Info, self.currentLevel)
+      else
+        Gamestate.switch(Victory, self.currentLevel)
+      end
+    end)
   else
+    player:starts()
     player:update()
     tutorial.update()
     player:eat(knots.get())
@@ -119,6 +120,7 @@ end
 
 function Game:keyreleased(key)
   if key == 'p' then
+    player:stops()
     Gamestate.push(Pause)
   end
   if key == 'r' then
