@@ -3,15 +3,13 @@
   - address the bleeding animations on resize
   - fix the scissors' grass
   - add new state
-- rocks - NEXT
-  - redraw parts of the assets
-  - adjust rocks drawing (before or after player)
-  - fix their grass
 - assets to create
   - здравец (moving grass type)
   - forest
 - implement high scores button - NEXT
 - slow piano versions of folklore songs
+- more rocks
+- fix flowers (create them with tiles)
 
 
 todo later

@@ -1,7 +1,7 @@
 return {
-  version = "1.2",
+  version = "1.4",
   luaversion = "5.1",
-  tiledversion = "1.3.5",
+  tiledversion = "1.4.2",
   orientation = "orthogonal",
   renderorder = "right-down",
   width = 40,
@@ -23,6 +23,7 @@ return {
       image = "assets/[M]Kokitche.png",
       imagewidth = 256,
       imageheight = 192,
+      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -48,6 +49,7 @@ return {
       image = "assets/[M]Grass.png",
       imagewidth = 288,
       imageheight = 192,
+      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -78,6 +80,7 @@ return {
       image = "assets/[M]Narcis.png",
       imagewidth = 192,
       imageheight = 192,
+      objectalignment = "unspecified",
       tileoffset = {
         x = 0,
         y = 0
@@ -96,12 +99,12 @@ return {
   layers = {
     {
       type = "tilelayer",
-      id = 1,
-      name = "tiles",
       x = 0,
       y = 0,
       width = 40,
       height = 22,
+      id = 1,
+      name = "tiles",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -112,12 +115,12 @@ return {
     },
     {
       type = "tilelayer",
-      id = 12,
-      name = "tilesover",
       x = 0,
       y = 0,
       width = 40,
       height = 22,
+      id = 12,
+      name = "tilesover",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -128,12 +131,12 @@ return {
     },
     {
       type = "tilelayer",
-      id = 6,
-      name = "elements",
       x = 0,
       y = 0,
       width = 40,
       height = 22,
+      id = 6,
+      name = "elements",
       visible = false,
       opacity = 1,
       offsetx = 0,
@@ -144,12 +147,12 @@ return {
     },
     {
       type = "tilelayer",
-      id = 14,
-      name = "over",
       x = 0,
       y = 0,
       width = 40,
       height = 22,
+      id = 14,
+      name = "over",
       visible = false,
       opacity = 1,
       offsetx = 0,
@@ -160,13 +163,13 @@ return {
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 13,
       name = "level",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {
         ["direction"] = "right",
         ["goal"] = 14,
@@ -178,25 +181,25 @@ return {
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 3,
       name = "walls",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {}
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 2,
       name = "knots",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {
         {
@@ -307,13 +310,13 @@ return {
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 7,
       name = "checkpoints",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {
         {
@@ -372,37 +375,37 @@ return {
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 8,
       name = "scissors",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {}
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 9,
       name = "doors",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {}
     },
     {
       type = "objectgroup",
+      draworder = "topdown",
       id = 11,
       name = "keys",
       visible = true,
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      draworder = "topdown",
       properties = {},
       objects = {}
     }

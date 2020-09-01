@@ -107,11 +107,14 @@ function Game:draw()
   goal:draw()
   scissors.draw()
   doors.drawKeys()
+  map:drawLayer(map.layers["elements"])
   player:draw()
   -- from here on everything will be drawn over the player
-  map:drawLayer(map.layers["elements"])
-  doors.draw()
   map:drawLayer(map.layers["over"])
+  doors.draw()
+  if map.layers["forest"] then
+    map:drawLayer(map.layers["forest"])
+  end
   scissors.drawSecond()
   effects.draw()
   tutorial.draw()
