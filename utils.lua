@@ -1,3 +1,5 @@
+local scoreImage = love.graphics.newImage('sprites/score.png')
+
 function distanceBetween(x1, y1, x2, y2)
   return math.sqrt((y2 - y1)^2 + (x2 - x1)^2)
 end
@@ -22,6 +24,14 @@ function drawBorders()
   love.graphics.rectangle("fill", 0, -BORDERS, ORIGINAL_GAME_X, BORDERS)
   love.graphics.rectangle("fill", 0, ORIGINAL_GAME_Y, ORIGINAL_GAME_X, BORDERS)
   love.graphics.setColor(1, 1, 1)
+end
+
+function drawScore(score)
+  love.graphics.setColor(1, 1, 1)
+  love.graphics.draw(scoreImage, 5, 8)
+  love.graphics.setColor(0.5, 0, 0)
+  love.graphics.setFont(love.graphics.newFont(FONT, 12))
+  love.graphics.print(math.ceil(score), 26, 7)
 end
 
 function log(message)

@@ -24,7 +24,7 @@ end
 
 function love.load()
   require 'save'
-  saveData = {}
+  saveData = {9999,9999,9999,9999,9999,9999,9999,9999}
   saveData.level = 1
   if love.filesystem.getInfo("martenitsaSaveData.lua") then
     local data = love.filesystem.load("martenitsaSaveData.lua")
@@ -43,6 +43,7 @@ function love.load()
   require 'game'
   require 'controls'
   require 'levels'
+  require 'scores'
   require 'victory'
   require 'info'
   require 'pause'

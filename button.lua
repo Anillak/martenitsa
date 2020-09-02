@@ -37,21 +37,21 @@ function Button:draw()
   if self.inactive then
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.buttonInactive, self.x, self.y)
-    love.graphics.setColor(0, 0, 0)
   elseif self.active then
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.buttonActive, self.x, self.y)
     love.graphics.setColor(0, 0, 0)
-  elseif self.hovered then
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(sprites.buttonHover, self.x, self.y)
-    love.graphics.setColor(1, 0.7, 0)
   else
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.button, self.x, self.y)
     love.graphics.setColor(0.6, 0, 0)
   end
-  love.graphics.printf(self.label, self.x, self.y + 13, width, "center")
+  if self.inactive then
+    love.graphics.draw(sprites.lock, self.x + width / 2 - 16, self.y + 11)
+  else
+    love.graphics.printf(self.label, self.x, self.y + 13, width, "center")
+  end
+
   love.graphics.setColor(1, 1, 1)
 end
 

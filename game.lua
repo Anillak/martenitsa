@@ -26,16 +26,21 @@ function Game:enter(previous, level)
   scissors.load(map)
   tutorial.load(level)
   goal = Goal:new(map)
+
   assertWithLogging(map.layers["level"], "Map doesn't have level properties")
   local x = map.layers["level"].properties["x"]
   local y = map.layers["level"].properties["y"]
   local length = map.layers["level"].properties["length"]
   local direction = map.layers["level"].properties["direction"]
+  player = Player:new({}, x, y, length, direction)
+
   self.required = map.layers["level"].properties["goal"]
   self.possible = true
-  player = Player:new({}, x, y, length, direction)
   self.currentLevel = level
+  self.score = 9999
+
   sounds.birds:play()
+
   Timer.every(0.2, function() self:move() end)
 end
 
@@ -53,10 +58,13 @@ function Game:move()
     Timer.clear()
     player:stops()
     local newLevel = self.currentLevel + 1
+    if saveData[self.currentLevel] > self.score then
+      saveData[self.currentLevel] = self.score
+    end
     if saveData.level < newLevel then
       saveData.level = newLevel
-      love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     end
+    love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     Timer.after(0.2, function()
       if self.currentLevel == 8 then
         Gamestate.switch(Info, self.currentLevel)
@@ -97,6 +105,7 @@ function Game:update(dt)
   player:animationUpdate(dt)
   Timer.update(dt)
   effects.update(dt)
+  self.score = self.score - dt*10
 end
 
 function Game:draw()
@@ -118,6 +127,7 @@ function Game:draw()
   scissors.drawSecond()
   effects.draw()
   tutorial.draw()
+  drawScore(self.score)
   drawBorders()
 end
 

@@ -12,10 +12,11 @@ function Menu:enter(previous, active)
   sounds.birds:pause()
   Buttons = B:new()
   local position = 510
-  Buttons:add("start", position, 240, "Start", false, Game, 1)
-  Buttons:add("continue", position, 300, "Continue", (not (saveData.level > 1)), Levels)
-  Buttons:add("controls", position, 360, "Controls", false, Controls)
-  Buttons:add("exit", position, 420, "Exit", false)
+  Buttons:add("start", position, 230, "Start", false, Game, 1)
+  Buttons:add("continue", position, 285, "Continue", (not (saveData.level > 1)), Levels)
+  Buttons:add("scores", position, 340, "Scores", (not (saveData.level > 8)), Scores)
+  Buttons:add("controls", position, 395, "Controls", false, Controls)
+  Buttons:add("exit", position, 450, "Exit", false)
   if not active then
     Buttons:setActive(Buttons.start)
   else

@@ -1,4 +1,4 @@
-- scissors
+- scissors - NEXT
   - new assets
   - address the bleeding animations on resize
   - fix the scissors' grass
@@ -6,11 +6,12 @@
 - assets to create
   - здравец (moving grass type)
   - forest
-- implement high scores button - NEXT
+  - more rocks
+  - rocks shade
+  - fix flowers (create them with tiles)
+- sounds to record - NEXT
+  - when checkpoint ready
 - slow piano versions of folklore songs
-- more rocks
-- fix flowers (create them with tiles)
-
 
 todo later
 - remove esc shortcut (make it back to menu?)
