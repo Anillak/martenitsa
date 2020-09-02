@@ -42,6 +42,11 @@ function E.load()
       effects.showR.x = 1238
       effects.showR.y = 10
     end)
+
+  effects.coin = Effect:new({}, sprites.coin, 8, 1, 1, 0.1)
+  effects.coin.active = true
+  effects.coin.x = 5
+  effects.coin.y = 7
 end
 
 function E.update(dt)
