@@ -4,11 +4,11 @@
   - fix the scissors' grass
   - add new state
 - assets to create
-  - здравец (moving grass type)
   - forest
   - more rocks
   - rocks shade
   - fix flowers (create them with tiles)
+  - здравец (moving grass type)
 - sounds to record - NEXT
   - when checkpoint ready
 - slow piano versions of folklore songs

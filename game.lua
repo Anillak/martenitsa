@@ -37,7 +37,7 @@ function Game:enter(previous, level)
   self.required = map.layers["level"].properties["goal"]
   self.possible = true
   self.currentLevel = level
-  self.score = 9999
+  self.score = 99
 
   sounds.birds:play()
 
@@ -105,7 +105,11 @@ function Game:update(dt)
   player:animationUpdate(dt)
   Timer.update(dt)
   effects.update(dt)
-  self.score = self.score - dt*10
+  if self.score > 0 then
+    self.score = self.score - dt*10
+    if self.score < 0 then self.score = 0 end
+  end
+
 end
 
 function Game:draw()
