@@ -35,7 +35,7 @@ function Scores:draw()
     love.graphics.setColor(0.5, 0, 0)
     love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 24))
     local score = math.ceil(saveData[i])
-    love.graphics.print(score, 660, 120 + i*40)
+    love.graphics.print(score, 670, 120 + i*40)
   end
 
   Buttons:draw()

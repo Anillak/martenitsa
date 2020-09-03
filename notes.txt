@@ -4,7 +4,10 @@
   - fix the scissors' grass
   - add new state
 - assets to create
+  - better martenitsa
   - forest
+  - dirt asset looks repetitive
+  - add darker grass
   - more rocks
   - rocks shade
   - doors shade?

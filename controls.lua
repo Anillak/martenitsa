@@ -59,7 +59,7 @@ function Controls:draw()
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(love.graphics.newFont(FONT, 16))
 
-  love.graphics.printf("Move the martenitsa with the arrows", 610, 120, 200, "left")
+  love.graphics.printf("Move the martenitsa with the arrows", 610, 120, 160, "left")
   love.graphics.printf("Gather knots to get long enough to wrap it around the checkpoints", 530, 200, 200, "left")
   love.graphics.printf("You can press M to go back to the menu", 550, 300, 200, "left")
   love.graphics.printf("Press R to reset the level when you are stuck", 560, 370, 200, "left")
