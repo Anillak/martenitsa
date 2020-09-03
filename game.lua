@@ -60,7 +60,7 @@ function Game:move()
     Timer.clear()
     player:stops()
     local newLevel = self.currentLevel + 1
-    if saveData[self.currentLevel] > self.score then
+    if saveData[self.currentLevel] < self.score then
       saveData[self.currentLevel] = self.score
     end
     if saveData.level < newLevel then

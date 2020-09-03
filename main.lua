@@ -24,7 +24,7 @@ end
 
 function love.load()
   require 'save'
-  saveData = {9999,9999,9999,9999,9999,9999,9999,9999}
+  saveData = {0,0,0,0,0,0,0,0}
   saveData.level = 1
   if love.filesystem.getInfo("martenitsaSaveData.lua") then
     local data = love.filesystem.load("martenitsaSaveData.lua")
