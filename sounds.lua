@@ -12,6 +12,7 @@ sounds.buttonRelease = love.audio.newSource("asset/button-release.wav", "static"
 sounds.doorOpen = love.audio.newSource("asset/rock-move.wav", "static")
 sounds.doorClose = love.audio.newSource("asset/rock-init.wav", "static")
 sounds.knotEat = love.audio.newSource("asset/knot-eat.wav", "static")
+sounds.coins = love.audio.newSource("asset/coins.wav", "static")
 sounds.walking = love.audio.newSource("asset/walking2.wav", "static")
 sounds.walking:setLooping(true)
 sounds.turning = love.audio.newSource("asset/turning.wav", "static")

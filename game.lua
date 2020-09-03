@@ -1,5 +1,7 @@
 Game = {}
 
+local levelsInitialScores = {330,400,500,600,450,620,340,430}
+
 function Game:init()
   Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
@@ -37,7 +39,7 @@ function Game:enter(previous, level)
   self.required = map.layers["level"].properties["goal"]
   self.possible = true
   self.currentLevel = level
-  self.score = 99
+  self.score = levelsInitialScores[level]
 
   sounds.birds:play()
 
@@ -107,7 +109,10 @@ function Game:update(dt)
   effects.update(dt)
   if self.score > 0 then
     self.score = self.score - dt*10
-    if self.score < 0 then self.score = 0 end
+    if self.score < 0 then
+      self.score = 0
+      sounds.coins:play()
+    end
   end
 
 end
