@@ -13,8 +13,6 @@
   - doors shade?
   - fix flowers (create them with tiles)
   - здравец (moving grass type)
-- sounds to record - NEXT
-  - when checkpoint ready
 - slow piano versions of folklore songs
 
 todo later

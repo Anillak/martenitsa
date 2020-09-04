@@ -34,6 +34,14 @@ local function createCheckpoint(goal, x, y)
   table.insert(goal, c)
 end
 
+local function goalLock()
+  sounds.lock:play()
+end
+
+local function goalUnlock()
+  sounds.unlock:play()
+end
+
 function Goal:new(map)
   assertWithLogging(map, "The goal needs a map.")
   assertWithLogging(map.layers["checkpoints"].objects, "No checkpoints defined in the map")
@@ -53,6 +61,7 @@ end
 
 function Goal:update(dt, player, knotsAmount)
   if knotsAmount == 0 then
+    if self.possible and not self.unlocked then goalUnlock() end
     self.unlocked = true
   end
   for _,checkpoint in ipairs(self) do
@@ -86,7 +95,9 @@ function Goal:isComplete()
 end
 
 function Goal:isPossible(knotsAmount, playerLenght, gameGoal)
-  self.possible = knotsAmount + playerLenght >= gameGoal
+  local possible = knotsAmount + playerLenght >= gameGoal
+  if self.possible and not possible and self.unlocked then goalLock() end
+  self.possible = possible
   return self.possible
 end
 
