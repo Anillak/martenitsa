@@ -40,7 +40,6 @@ function Button:draw()
   elseif self.active then
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.buttonActive, self.x, self.y)
-    love.graphics.setColor(0, 0, 0)
   else
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.button, self.x, self.y)

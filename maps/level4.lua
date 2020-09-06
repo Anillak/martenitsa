@@ -165,7 +165,7 @@ return {
       },
       properties = {},
       terrains = {},
-      tilecount = 432,
+      tilecount = 252,
       tiles = {}
     }
   },
@@ -568,7 +568,7 @@ return {
           type = "",
           shape = "rectangle",
           x = 1152,
-          y = 384,
+          y = 416,
           width = 32,
           height = 32,
           rotation = 0,

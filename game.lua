@@ -107,6 +107,10 @@ function Game:update(dt)
   player:animationUpdate(dt)
   Timer.update(dt)
   effects.update(dt)
+  if self.currentLevel == 1 and knots.available() == 0 then
+    Signal.emit('show end condition')
+    Signal.clear('show end condition')
+  end
   if self.score > 0 then
     self.score = self.score - dt*10
     if self.score < 0 then

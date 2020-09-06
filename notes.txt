@@ -14,7 +14,9 @@
   - fix flowers (create them with tiles)
   - здравец (moving grass type)
 - slow piano versions of folklore songs
+- see what can be done for slowly loaded levels - NEXT
 
 todo later
 - remove esc shortcut (make it back to menu?)
 - cleanup info shortcuts
+- think about how to have continue selected when going back to menu from the game
