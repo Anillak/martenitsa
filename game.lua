@@ -40,15 +40,32 @@ function Game:enter(previous, level)
   self.possible = true
   self.currentLevel = level
   self.score = levelsInitialScores[level]
+  self.deaths = saveData.deaths[level]
 
   sounds.birds:play()
 
   Timer.every(0.2, function() self:move() end)
 end
 
+local function saveDeaths(level, count)
+  log("Player died in level " .. level)
+  count = count + 1
+  saveData.deaths[level] = count
+end
+
+local function saveOnLevelEnd(currentLevel, score)
+  local newLevel = currentLevel + 1
+  if saveData[currentLevel] < score then
+    saveData[currentLevel] = score
+  end
+  if saveData.level < newLevel then
+    saveData.level = newLevel
+  end
+end
+
 function Game:move()
   if player:isDead() then
-    log("Player died in level " .. self.currentLevel)
+    saveDeaths(self.deaths, self.currentLevel)
     scissors.stop()
     Timer.clear()
     player:stops()
@@ -59,13 +76,7 @@ function Game:move()
     scissors.stop()
     Timer.clear()
     player:stops()
-    local newLevel = self.currentLevel + 1
-    if saveData[self.currentLevel] < self.score then
-      saveData[self.currentLevel] = self.score
-    end
-    if saveData.level < newLevel then
-      saveData.level = newLevel
-    end
+    saveOnLevelEnd(self.currentLevel, self.score)
     love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     Timer.after(0.2, function()
       if self.currentLevel == 8 then

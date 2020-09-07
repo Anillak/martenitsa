@@ -22,14 +22,28 @@ function love.keyreleased(key)
   end
 end
 
-function love.load()
-  require 'save'
-  saveData = {0,0,0,0,0,0,0,0}
-  saveData.level = 1
+local function createSaveData()
   if love.filesystem.getInfo("martenitsaSaveData.lua") then
     local data = love.filesystem.load("martenitsaSaveData.lua")
     data()
   end
+  if not saveData then
+    saveData = {}
+  end
+  if not saveData.scores then
+    saveData.scores = {0,0,0,0,0,0,0,0}
+  end
+  if not saveData.deaths then
+    saveData.deaths = {0,0,0,0,0,0,0,0}
+  end
+  if not saveData.level then
+    saveData.level = 1
+  end
+end
+
+function love.load()
+  require 'save'
+  createSaveData()
 
   Timer = require 'lib/hump-master/timer'
   Gamestate = require "lib/hump-master/gamestate"
