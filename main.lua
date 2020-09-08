@@ -48,6 +48,7 @@ function love.load()
   Timer = require 'lib/hump-master/timer'
   Gamestate = require "lib/hump-master/gamestate"
   Anim8 = require 'lib/anim8-master/anim8'
+  B = require "button"
   require 'sprites'
   require 'sounds'
   require 'utils'

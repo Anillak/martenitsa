@@ -1,5 +1,4 @@
 Controls = {}
-local B = require "button"
 local Buttons
 
 function Controls:init()
@@ -28,7 +27,6 @@ function Controls:enter(previous)
 end
 
 function Controls:update(dt)
-  Buttons:update(dt)
   self.m_anim:update(dt)
   self.r_anim:update(dt)
   self.p_anim:update(dt)
@@ -68,6 +66,10 @@ function Controls:draw()
   love.graphics.setColor(1, 1, 1)
   Buttons:draw()
   drawBorders()
+end
+
+function Controls:leave()
+  Buttons:clear()
 end
 
 function Controls:keyreleased(key, code)

@@ -28,10 +28,6 @@ function Button:onClick()
   end
 end
 
-function Button:update(dt)
-
-end
-
 function Button:draw()
   love.graphics.setFont(love.graphics.newFont(FONT, 20))
   if self.inactive then
@@ -77,12 +73,6 @@ end
 
 function Buttons.getCenteredHorizontalPosition()
   return ORIGINAL_GAME_X/2 - width/2
-end
-
-function Buttons:update(dt)
-  for _,b in pairs(self) do
-    b:update(dt)
-  end
 end
 
 function Buttons:draw()
@@ -171,6 +161,11 @@ function Buttons:keypressed(key, code)
   if key == 'return' then
     sounds.menuPress:play()
   end
+end
+
+function Buttons:clear()
+  for _,b in pairs(self) do b = nil end
+  for _,i in pairs(self.indices) do i = nil end
 end
 
 return Buttons

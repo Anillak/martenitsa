@@ -1,5 +1,4 @@
 Victory = {}
-local B = require "button"
 local Buttons
 
 function Victory:init()
@@ -16,8 +15,11 @@ function Victory:enter(from, level)
 end
 
 function Victory:update(dt)
-  Buttons:update(dt)
   self.victory_anim:update(dt)
+end
+
+function Victory:leave()
+  Buttons:clear()
 end
 
 function Victory:draw()

@@ -1,5 +1,4 @@
 Menu = {}
-local B = require "button"
 local Buttons
 
 function Menu:init()
@@ -26,7 +25,11 @@ function Menu:enter(previous, active)
 end
 
 function Menu:update(dt)
-  Buttons:update(dt)
+
+end
+
+function Menu:leave()
+  Buttons:clear()
 end
 
 function Menu:draw()

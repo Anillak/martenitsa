@@ -268,4 +268,9 @@ function Tutorial.update()
   end
 end
 
+function Tutorial.clear()
+  for _,s in pairs(steps) do s = nil end
+  Signal.clear()
+end
+
 return Tutorial

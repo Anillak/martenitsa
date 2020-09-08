@@ -1,5 +1,4 @@
 Levels = {}
-local B = require "button"
 local Buttons
 
 function Levels:init()
@@ -23,7 +22,11 @@ function Levels:enter()
 end
 
 function Levels:update(dt)
-  Buttons:update(dt)
+
+end
+
+function Levels:leave()
+  Buttons:clear()
 end
 
 function Levels:draw()

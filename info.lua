@@ -1,5 +1,4 @@
 Info = {}
-local B = require "button"
 local Buttons
 local bgReal = love.graphics.newImage('asset/bg-real2.png')
 local pp = love.graphics.newImage('asset/info1.png')
@@ -31,10 +30,11 @@ end
 
 function Info:leave()
   sounds.credits:pause()
+  Buttons:clear()
 end
 
 function Info:update(dt)
-  Buttons:update(dt)
+
 end
 
 function Info:draw()

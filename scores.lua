@@ -1,5 +1,4 @@
 Scores = {}
-local B = require "button"
 local Buttons
 
 function Scores:init()
@@ -14,7 +13,11 @@ function Scores:enter()
 end
 
 function Scores:update(dt)
-  Buttons:update(dt)
+
+end
+
+function Scores:leave()
+  Buttons:clear()
 end
 
 local function drawTable(title, saveItem, offset)

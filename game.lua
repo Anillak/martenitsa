@@ -117,6 +117,8 @@ function Game:leave()
   doors.clear()
   knots.clear()
   walls.clear()
+  effects.clear()
+  tutorial.clear()
   love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
 end
 
