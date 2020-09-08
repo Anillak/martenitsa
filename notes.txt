@@ -21,3 +21,4 @@ todo later
 - cleanup info shortcuts
 - think about how to have continue selected when going back to menu from the game
 - windows process in named love 11.3
+- controller support

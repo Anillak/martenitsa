@@ -17,10 +17,26 @@ function resetToDraw()
   love.graphics.setColor(1, 1, 1)
 end
 
+local function drawConsole()
+  love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 10))
+  love.graphics.setColor(0, 0, 0)
+  love.graphics.rectangle("fill", 0, GRID_Y*TILE_SIZE-25, GRID_X*TILE_SIZE, 25)
+  love.graphics.setColor(1, 1, 1)
+  pfs = "PFS: " .. love.timer.getFPS()
+  cs = "    Cell size: " .. TILE_SIZE
+  sr = "    Scale ratio: " .. SCALE
+  res = "    Resolution: " .. GAME_X .. "x" .. GAME_Y
+  b = "    Borders: " .. BORDERS
+  gc = "    Memory: " .. collectgarbage('count') .. "kb"
+  text = pfs .. cs .. sr .. res ..b ..gc
+  love.graphics.print(text, 10, GRID_Y*TILE_SIZE-20)
+end
+
 function drawBorders()
   love.graphics.setColor(0, 0, 0)
   love.graphics.rectangle("fill", 0, -BORDERS, ORIGINAL_GAME_X, BORDERS)
   love.graphics.rectangle("fill", 0, ORIGINAL_GAME_Y, ORIGINAL_GAME_X, BORDERS)
+  drawConsole()
   love.graphics.setColor(1, 1, 1)
 end
 

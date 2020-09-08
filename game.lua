@@ -54,10 +54,12 @@ local function saveDeaths(level, count)
 end
 
 local function saveOnLevelEnd(currentLevel, score)
-  local newLevel = currentLevel + 1
-  if saveData[currentLevel] < score then
-    saveData[currentLevel] = score
+  assert(currentLevel, "currentLevel not set")
+  assert(score, "score not set")
+  if saveData.scores[currentLevel] < score then
+    saveData.scores[currentLevel] = score
   end
+  local newLevel = currentLevel + 1
   if saveData.level < newLevel then
     saveData.level = newLevel
   end
