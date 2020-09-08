@@ -79,7 +79,6 @@ function Game:move()
     Timer.clear()
     player:stops()
     saveOnLevelEnd(self.currentLevel, self.score)
-    love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
     Timer.after(0.2, function()
       if self.currentLevel == 8 then
         Gamestate.switch(Info, self.currentLevel)
@@ -118,6 +117,7 @@ function Game:leave()
   doors.clear()
   knots.clear()
   walls.clear()
+  love.filesystem.write("martenitsaSaveData.lua", table.show(saveData, "saveData"))
 end
 
 function Game:update(dt)

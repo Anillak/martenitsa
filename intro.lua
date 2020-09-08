@@ -1,5 +1,4 @@
 Intro = {}
-local video
 
 function Intro:init()
   self.background = love.graphics.newImage('asset/bg-real.png')
@@ -22,6 +21,10 @@ function Intro:draw()
     Gamestate.switch(Menu)
   end
   drawBorders()
+end
+
+function Intro:leave()
+  self.video = nil
 end
 
 function Intro:keyreleased(key, code)
