@@ -67,4 +67,10 @@ function K.available()
   return #K.knots
 end
 
+function K.clear()
+  for _,k in ipairs(K.knots) do
+    k = nil
+  end
+end
+
 return K

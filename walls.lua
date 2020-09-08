@@ -58,4 +58,10 @@ function W.isWall(x, y)
   return W.walls.indices[x][y][1], W.walls.indices[x][y][2]
 end
 
+function W.clear()
+  for _,w in ipairs(W.walls) do
+    w = nil
+  end
+end
+
 return W

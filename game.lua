@@ -67,7 +67,7 @@ end
 
 function Game:move()
   if player:isDead() then
-    saveDeaths(self.deaths, self.currentLevel)
+    saveDeaths(self.currentLevel, self.deaths)
     scissors.stop()
     Timer.clear()
     player:stops()
@@ -107,8 +107,17 @@ function Game:move()
 end
 
 function Game:leave()
-  sounds.birds:pause()
   player:stops()
+  sounds.birds:pause()
+  Signal.clear()
+  Timer.clear()
+  player = nil
+  map = nil
+  goal = nil
+  scissors.clear()
+  doors.clear()
+  knots.clear()
+  walls.clear()
 end
 
 function Game:update(dt)

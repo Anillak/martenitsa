@@ -140,6 +140,7 @@ function S.drawSecond()
 end
 
 function S.stop()
+  Timer.clear()
   for _,s in ipairs(S.scissors) do
     s.animation:pause()
   end
@@ -147,6 +148,12 @@ end
 
 function S.get()
   return S.scissors
+end
+
+function S.clear()
+  for _,s in ipairs(S.scissors) do
+    s = nil
+  end
 end
 
 return S

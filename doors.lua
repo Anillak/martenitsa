@@ -135,6 +135,12 @@ function Door:addKey(x, y, c)
   table.insert(self, k)
 end
 
+function Door:clear()
+  for _,key in ipairs(self) do
+    key = nil
+  end
+end
+
 D = {}
 
 function D.load(map)
@@ -176,6 +182,13 @@ end
 function D.drawKeys()
   for _,d in ipairs(D.doors) do
     d:drawKeys()
+  end
+end
+
+function D.clear()
+  for _,d in ipairs(D.doors) do
+    d:clear()
+    d = nil
   end
 end
 
