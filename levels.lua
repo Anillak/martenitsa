@@ -1,5 +1,4 @@
 Levels = {}
-local Buttons
 
 function Levels:init()
   self.background = love.graphics.newImage('asset/levels-bg.jpg')
@@ -19,10 +18,6 @@ function Levels:enter()
   end
   Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "continue")
   Buttons:setActive(Buttons[1])
-end
-
-function Levels:update(dt)
-
 end
 
 function Levels:leave()

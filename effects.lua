@@ -67,7 +67,6 @@ end
 
 function E.clear()
   for _,e in pairs(effects) do e = nil end
-  Signal.clear()
 end
 
 return E

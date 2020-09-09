@@ -1,3 +1,5 @@
+- see what can be done for slowly loaded levels - NEXT
+  - start the level on a trigger
 - scissors - NEXT
   - new assets
   - address the bleeding animations on resize
@@ -14,7 +16,6 @@
   - fix flowers (create them with tiles)
   - здравец (moving grass type)
 - slow piano versions of folklore songs
-- see what can be done for slowly loaded levels - NEXT
 
 todo later
 - remove esc shortcut (make it back to menu?)

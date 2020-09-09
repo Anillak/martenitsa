@@ -25,6 +25,7 @@ end
 
 function Intro:leave()
   self.video = nil
+  self.background = nil
 end
 
 function Intro:keyreleased(key, code)

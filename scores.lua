@@ -1,5 +1,4 @@
 Scores = {}
-local Buttons
 
 function Scores:init()
   self.background = love.graphics.newImage('asset/bg-real2.png')
@@ -10,10 +9,6 @@ function Scores:enter()
   Buttons = B:new()
   Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "scores")
   Buttons:setActive(Buttons.menu)
-end
-
-function Scores:update(dt)
-
 end
 
 function Scores:leave()

@@ -1,5 +1,4 @@
 Menu = {}
-local Buttons
 
 function Menu:init()
   self.background = love.graphics.newImage('asset/bg-real.png')
@@ -21,10 +20,6 @@ function Menu:enter(previous, active)
   else
     Buttons:setActive(Buttons[active])
   end
-
-end
-
-function Menu:update(dt)
 
 end
 

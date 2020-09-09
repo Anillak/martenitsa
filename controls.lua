@@ -1,5 +1,4 @@
 Controls = {}
-local Buttons
 
 function Controls:init()
   self.background = love.graphics.newImage('asset/bg-real.png')

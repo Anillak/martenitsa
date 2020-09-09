@@ -1,5 +1,4 @@
 Victory = {}
-local Buttons
 
 function Victory:init()
   local size = TILE_SIZE*4

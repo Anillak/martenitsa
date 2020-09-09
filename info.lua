@@ -1,14 +1,13 @@
 Info = {}
-local Buttons
-local bgReal = love.graphics.newImage('asset/bg-real2.png')
-local pp = love.graphics.newImage('asset/info1.png')
-local corn = love.graphics.newImage('asset/info2.png')
-local stroke = love.graphics.newImage('asset/info3.png')
-local logo = love.graphics.newImage('asset/logo.png')
-local ravnecLogo = love.graphics.newImage('asset/ravnec-logo.png')
 
 function Info:init()
   self.level = 0
+  self.bgReal = love.graphics.newImage('asset/bg-real2.png')
+  self.pp = love.graphics.newImage('asset/info1.png')
+  self.corn = love.graphics.newImage('asset/info2.png')
+  self.stroke = love.graphics.newImage('asset/info3.png')
+  self.logo = love.graphics.newImage('asset/logo.png')
+  self.ravnecLogo = love.graphics.newImage('asset/ravnec-logo.png')
 end
 
 function Info:enter(previous, level)
@@ -33,23 +32,19 @@ function Info:leave()
   Buttons:clear()
 end
 
-function Info:update(dt)
-
-end
-
 function Info:draw()
   resetToDraw()
-  love.graphics.draw(bgReal, 0, 0)
+  love.graphics.draw(self.bgReal, 0, 0)
 
   if self.level == 1 then
-    love.graphics.draw(corn, getCenteredHorizontalPosition(227), 380)
+    love.graphics.draw(self.corn, getCenteredHorizontalPosition(227), 380)
   elseif self.level == 2 then
-    love.graphics.draw(stroke, getCenteredHorizontalPosition(300), 320)
+    love.graphics.draw(self.stroke, getCenteredHorizontalPosition(300), 320)
   elseif self.level == 3 then
-    love.graphics.draw(pp, getCenteredHorizontalPosition(300), 320)
+    love.graphics.draw(self.pp, getCenteredHorizontalPosition(300), 320)
   elseif self.level == 8 then
-    love.graphics.draw(logo, getCenteredHorizontalPosition(64), 160)
-    love.graphics.draw(ravnecLogo, getCenteredHorizontalPosition(126), 280)
+    love.graphics.draw(self.logo, getCenteredHorizontalPosition(64), 160)
+    love.graphics.draw(self.ravnecLogo, getCenteredHorizontalPosition(126), 280)
   end
 
   local width = 680

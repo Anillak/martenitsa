@@ -16,7 +16,7 @@ function Game:init()
 end
 
 function Game:enter(previous, level)
-  Signal.clear()
+  Signal.clearPattern('.*')
   Timer.clear()
   assertWithLogging(level, "Game needs a level to load.")
   local mapPath = string.format("maps/level%d.lua", level)
@@ -39,6 +39,7 @@ function Game:enter(previous, level)
   self.required = map.layers["level"].properties["goal"]
   self.possible = true
   self.currentLevel = level
+  self.tutorial = self.currentLevel == 1
   self.score = levelsInitialScores[level]
   self.deaths = saveData.deaths[level]
 
@@ -108,7 +109,7 @@ end
 function Game:leave()
   player:stops()
   sounds.birds:pause()
-  Signal.clear()
+  Signal.clearPattern('.*')
   Timer.clear()
   player = nil
   map = nil
@@ -131,9 +132,14 @@ function Game:update(dt)
   player:animationUpdate(dt)
   Timer.update(dt)
   effects.update(dt)
-  if self.currentLevel == 1 and knots.available() == 0 then
+  if self.tutorial then
+    Signal.emit('show eat knots')
+    Signal.clear('show eat knots')
+  end
+  if self.tutorial and knots.available() == 0 then
     Signal.emit('show end condition')
     Signal.clear('show end condition')
+    self.tutorial = false
   end
   if self.score > 0 then
     self.score = self.score - dt*10

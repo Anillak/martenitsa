@@ -237,7 +237,7 @@ end
 function Tutorial.load(level)
   steps = {}
   if level == 1 then
-    Timer.after(1, function()
+    Signal.register('show eat knots', function()
       table.insert(steps, eatKnotsText())
       table.insert(steps, eatKnotsArrow())
     end)
@@ -270,7 +270,6 @@ end
 
 function Tutorial.clear()
   for _,s in pairs(steps) do s = nil end
-  Signal.clear()
 end
 
 return Tutorial
