@@ -2,14 +2,13 @@
   - start the level on a trigger
 - assets to create
   - better martenitsa
-  - forest
-  - dirt asset looks repetitive
+  - fix flowers (create them with tiles)
+  - здравец (moving grass type)
   - add darker grass
   - more rocks
   - rocks shade
   - doors shade?
-  - fix flowers (create them with tiles)
-  - здравец (moving grass type)
+  - dirt asset looks repetitive
 - slow piano versions of folklore songs
 
 todo later

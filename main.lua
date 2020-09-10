@@ -17,9 +17,6 @@ function love.keyreleased(key)
   if key == "escape" then
    love.event.quit()
   end
-  if key == 'm' then
-    return Gamestate.switch(Menu)
-  end
 end
 
 local function createSaveData()

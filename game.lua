@@ -175,6 +175,9 @@ function Game:draw()
 end
 
 function Game:keyreleased(key)
+  if key == 'm' then
+    return Gamestate.switch(Menu)
+  end
   if key == 'p' then
     player:stops()
     Gamestate.push(Pause)
