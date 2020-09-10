@@ -2,7 +2,6 @@
   - start the level on a trigger
 - assets to create
   - better martenitsa
-  - fix flowers (create them with tiles)
   - здравец (moving grass type)
   - add darker grass
   - more rocks
