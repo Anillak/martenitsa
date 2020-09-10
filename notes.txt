@@ -4,8 +4,6 @@
   - better martenitsa
   - здравец (moving grass type)
   - add darker grass
-  - more rocks
-  - rocks shade
   - doors shade?
   - dirt asset looks repetitive
 - slow piano versions of folklore songs
