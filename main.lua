@@ -46,17 +46,10 @@ function love.load()
   B = require "button"
   require 'assets'
   require 'utils'
-  require 'logo'
-  require 'intro'
-  require 'menu'
-  require 'game'
-  require 'controls'
-  require 'levels'
-  require 'scores'
-  require 'victory'
-  require 'info'
-  require 'pause'
+  Menu = require 'menu'
+  Game = require 'game'
 
+  local Logo = require 'logo'
   Gamestate.registerEvents()
   Gamestate.switch(Logo)
   logSystem()

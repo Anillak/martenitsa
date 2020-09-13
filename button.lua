@@ -1,4 +1,4 @@
-Button = {}
+local Button = {}
 local width = 197
 local height = 53
 
@@ -50,7 +50,7 @@ function Button:draw()
   love.graphics.setColor(1, 1, 1)
 end
 
-Buttons = {}
+local Buttons = {}
 
 function Buttons:new(o)
   o = o or {}
@@ -95,7 +95,7 @@ function Buttons:getActive()
 end
 
 local function next(t, key)
-  index = 0
+  local index = 0
   for i,v in ipairs(t) do
     if v == key then index = i+1 end
   end
@@ -106,7 +106,7 @@ local function next(t, key)
 end
 
 local function previous(t, key)
-  index = 0
+  local index = 0
   for i,v in ipairs(t) do
     if v == key then index = i-1 end
   end

@@ -1,4 +1,8 @@
-Menu = {}
+local Menu = {}
+local Controls = require 'controls'
+local Levels = require 'levels'
+local Scores = require 'scores'
+local Buttons
 
 function Menu:init()
   self.background = love.graphics.newImage('asset/bg-real.png')
@@ -8,6 +12,7 @@ end
 
 function Menu:enter(previous, active)
   sounds.birds:pause()
+
   Buttons = B:new()
   local position = 510
   Buttons:add("start", position, 230, "Start", false, Game, 1)
@@ -37,13 +42,11 @@ function Menu:draw()
 end
 
 function Menu:keyreleased(key, code)
-  -- remove later
-  if key == "1" or key == "2" or key == "3" or key == "4" or key == "5" or key == "6" or key == "7" or key == "8" then
-    Gamestate.switch(Info, tonumber(key))
-  end
   Buttons:keyreleased(key, code)
 end
 
 function Menu:keypressed(key, code)
   Buttons:keypressed(key, code)
 end
+
+return Menu

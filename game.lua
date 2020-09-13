@@ -1,5 +1,6 @@
 Game = {}
-
+local Victory = require 'victory'
+local Pause = require 'pause'
 local levelsInitialScores = {330,400,500,600,450,620,340,430}
 
 function Game:init()
@@ -191,3 +192,5 @@ end
 function Game:keypressed(key)
   player:keyPress(key)
 end
+
+return Game

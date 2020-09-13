@@ -1,4 +1,5 @@
-Levels = {}
+local Levels = {}
+local Buttons
 
 function Levels:init()
   self.background = love.graphics.newImage('asset/levels-bg.jpg')
@@ -38,3 +39,5 @@ end
 function Levels:keypressed(key, code)
   Buttons:keypressed(key, code)
 end
+
+return Levels

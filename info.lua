@@ -1,4 +1,5 @@
-Info = {}
+local Info = {}
+local Buttons
 
 function Info:init()
   self.level = 0
@@ -118,3 +119,5 @@ end
 function Info:keypressed(key, code)
   Buttons:keypressed(key, code)
 end
+
+return Info

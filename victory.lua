@@ -1,4 +1,6 @@
-Victory = {}
+local Victory = {}
+local Info = require 'info'
+local Buttons
 
 function Victory:init()
   local size = TILE_SIZE*4
@@ -36,3 +38,5 @@ end
 function Victory:keypressed(key, code)
   Buttons:keypressed(key, code)
 end
+
+return Victory

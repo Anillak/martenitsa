@@ -1,4 +1,5 @@
-Controls = {}
+local Controls = {}
+local Buttons
 
 function Controls:init()
   self.background = love.graphics.newImage('asset/bg-real.png')
@@ -17,11 +18,12 @@ function Controls:init()
 
   local k_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*3)
   self.k_anim = Anim8.newAnimation(k_grid('1-2',3), {2, 0.5})
+
+  Buttons = B:new()
+  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "controls")
 end
 
 function Controls:enter(previous)
-  Buttons = B:new()
-  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "controls")
   Buttons:setActive(Buttons.menu)
 end
 
@@ -67,10 +69,6 @@ function Controls:draw()
   drawBorders()
 end
 
-function Controls:leave()
-  Buttons:clear()
-end
-
 function Controls:keyreleased(key, code)
   Buttons:keyreleased(key, code)
 end
@@ -78,3 +76,5 @@ end
 function Controls:keypressed(key, code)
   Buttons:keypressed(key, code)
 end
+
+return Controls

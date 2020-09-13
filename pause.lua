@@ -1,4 +1,4 @@
-Pause = {}
+local Pause = {}
 
 function Pause:init()
   self.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
@@ -31,3 +31,5 @@ function Pause:keyreleased(key)
     return Gamestate.pop()
   end
 end
+
+return Pause

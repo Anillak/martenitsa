@@ -1,18 +1,15 @@
-Scores = {}
+local Scores = {}
+local Buttons
 
 function Scores:init()
   self.background = love.graphics.newImage('asset/bg-real2.png')
   self.image = love.graphics.newImage('asset/info1.png')
+  Buttons = B:new()
+  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "scores")
 end
 
 function Scores:enter()
-  Buttons = B:new()
-  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "scores")
   Buttons:setActive(Buttons.menu)
-end
-
-function Scores:leave()
-  Buttons:clear()
 end
 
 local function drawTable(title, saveItem, offset)
@@ -52,3 +49,5 @@ end
 function Scores:keypressed(key, code)
   Buttons:keypressed(key, code)
 end
+
+return Scores
