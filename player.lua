@@ -25,7 +25,7 @@ function Player:new(o, x, y, length, direction)
 end
 
 function Player:createSegment(x, y)
-  segment = {}
+  local segment = {}
   segment.x = x
   segment.y = y
   segment.sprite = "playerHead"
@@ -129,7 +129,7 @@ function Player:draw()
 end
 
 function Player:maybeHit(walls)
-  isWall, isWater = walls.isWall(self.segments[1].x, self.segments[1].y)
+  local isWall, isWater = walls.isWall(self.segments[1].x, self.segments[1].y)
   if isWall then
     self.dead = true
     if isWater then
@@ -145,7 +145,7 @@ function Player:maybeHit(walls)
 end
 
 function Player:eat(knots)
-  collected = -1
+  local collected = -1
   for i,knot in ipairs(knots) do
     if hit(self.segments[1], knot) then
       collected = i
