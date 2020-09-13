@@ -2,9 +2,11 @@
   - start the level on a trigger
 - assets to create
   - better martenitsa - NEXT
+  - Crocus (минзухар)
+  - butterfly animation
   - здравец (moving grass type)
   - make levels nicer where possible
-  - dirt asset looks repetitive
+  - dirt asset looks repetitive (look at those inspiration rocks)
 - slow piano versions of folklore songs
 
 todo later
