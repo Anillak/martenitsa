@@ -8,8 +8,6 @@ CELL_SIZE = math.min(GAME_X / GRID_X, GAME_Y / GRID_Y)
 BORDERS = (GAME_Y - GRID_Y*CELL_SIZE) / 2
 TILE_SIZE = 32
 SCALE = CELL_SIZE/TILE_SIZE
-FONT = "asset/Coda-Regular.ttf"
-FONT_SECOND = "asset/Lato-Regular.ttf"
 LEVELS_AMOUNT = 8
 
 function love.keyreleased(key)
@@ -46,8 +44,7 @@ function love.load()
   Gamestate = require "lib/hump-master/gamestate"
   Anim8 = require 'lib/anim8-master/anim8'
   B = require "button"
-  require 'sprites'
-  require 'sounds'
+  require 'assets'
   require 'utils'
   require 'logo'
   require 'intro'

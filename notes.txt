@@ -1,9 +1,9 @@
 - see what can be done for slowly loaded levels - NEXT
   - start the level on a trigger
 - assets to create
-  - better martenitsa
+  - better martenitsa - NEXT
   - здравец (moving grass type)
-  - add darker grass
+  - make levels nicer where possible
   - dirt asset looks repetitive
 - slow piano versions of folklore songs
 

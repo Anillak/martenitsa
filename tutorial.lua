@@ -129,7 +129,7 @@ function Text:new(o, x, y, text)
 end
 
 function Text:draw()
-  love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 16))
+  love.graphics.setFont(fonts.tutorial)
   love.graphics.setColor(0,0,0,(self.doneCount/10))
   love.graphics.printf(self.text, self.x, self.y, 300, "center")
   love.graphics.setColor(1,1,1,1)

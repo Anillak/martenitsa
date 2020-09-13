@@ -1,3 +1,4 @@
+-- SPRITES
 sprites = {}
 sprites.button = love.graphics.newImage('sprites/button.png')
 sprites.buttonActive = love.graphics.newImage('sprites/button_active.png')
@@ -44,3 +45,47 @@ sprites.playerCurve = love.graphics.newImage('sprites/player_curve.png')
 sprites.playerCurveCut = love.graphics.newImage('sprites/player_curve_cut.png')
 sprites.playerCurveAlt = love.graphics.newImage('sprites/player_curve_2.png')
 sprites.playerCurveAltCut = love.graphics.newImage('sprites/player_curve_2_cut.png')
+
+-- SOUNDS
+
+sounds = {}
+sounds.intro = love.audio.newSource("asset/intro.wav", "static")
+sounds.victory = love.audio.newSource("asset/victory.wav", "static")
+sounds.credits = love.audio.newSource("asset/credits.ogg", "static")
+sounds.menuPress = love.audio.newSource("asset/menu-press.wav", "static")
+sounds.menuMove = love.audio.newSource("asset/menu-move.wav", "static")
+sounds.scissors = love.audio.newSource("asset/scissors.wav", "static")
+sounds.waterHit = love.audio.newSource("asset/water-hit.wav", "static")
+sounds.wallHit = love.audio.newSource("asset/wall-hit.wav", "static")
+sounds.buttonPress = love.audio.newSource("asset/button-press.wav", "static")
+sounds.buttonRelease = love.audio.newSource("asset/button-release.wav", "static")
+sounds.doorOpen = love.audio.newSource("asset/rock-move.wav", "static")
+sounds.doorClose = love.audio.newSource("asset/rock-init.wav", "static")
+sounds.lock = love.audio.newSource("asset/lock.wav", "static")
+sounds.unlock = love.audio.newSource("asset/unlock.wav", "static")
+sounds.knotEat = love.audio.newSource("asset/knot-eat.wav", "static")
+sounds.coins = love.audio.newSource("asset/coins.wav", "static")
+sounds.walking = love.audio.newSource("asset/walking2.wav", "static")
+sounds.walking:setLooping(true)
+sounds.turning = love.audio.newSource("asset/turning.wav", "static")
+sounds.dying = love.audio.newSource("asset/dying.wav", "static")
+sounds.birds = love.audio.newSource("asset/birds.wav", "static")
+sounds.birds:setLooping(true)
+
+-- FONTS
+FONT = "asset/Coda-Regular.ttf"
+FONT_SECOND = "asset/Lato-Regular.ttf"
+fonts = {}
+fonts.button = love.graphics.newFont(FONT, 20)
+fonts.controls = love.graphics.newFont(FONT, 16)
+fonts.pause = love.graphics.newFont(FONT, 30)
+fonts.pauseDesc = love.graphics.newFont(FONT, 16)
+fonts.infoTitle = love.graphics.newFont(FONT, 28)
+fonts.infoText = love.graphics.newFont(FONT_SECOND, 20)
+fonts.infoText2 = love.graphics.newFont(FONT_SECOND, 18)
+fonts.credits = love.graphics.newFont(FONT_SECOND, 16)
+fonts.scoresTitle = love.graphics.newFont(FONT, 30)
+fonts.scoresTable = love.graphics.newFont(FONT_SECOND, 24)
+fonts.tutorial = love.graphics.newFont(FONT_SECOND, 16)
+fonts.levelScore = love.graphics.newFont(FONT, 12)
+fonts.console = love.graphics.newFont(FONT_SECOND, 10)

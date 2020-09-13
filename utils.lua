@@ -18,7 +18,7 @@ function resetToDraw()
 end
 
 local function drawConsole()
-  love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 10))
+  love.graphics.setFont(fonts.console)
   love.graphics.setColor(0, 0, 0)
   love.graphics.rectangle("fill", 0, GRID_Y*TILE_SIZE-25, GRID_X*TILE_SIZE, 25)
   love.graphics.setColor(1, 1, 1)
@@ -36,13 +36,13 @@ function drawBorders()
   love.graphics.setColor(0, 0, 0)
   love.graphics.rectangle("fill", 0, -BORDERS, ORIGINAL_GAME_X, BORDERS)
   love.graphics.rectangle("fill", 0, ORIGINAL_GAME_Y, ORIGINAL_GAME_X, BORDERS)
-  --drawConsole()
+  drawConsole()
   love.graphics.setColor(1, 1, 1)
 end
 
 function drawScore(score)
   love.graphics.setColor(0.5, 0, 0)
-  love.graphics.setFont(love.graphics.newFont(FONT, 12))
+  love.graphics.setFont(fonts.levelScore)
   love.graphics.print(math.ceil(score), 20, 7)
 end
 

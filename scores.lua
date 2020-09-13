@@ -16,19 +16,19 @@ function Scores:leave()
 end
 
 local function drawTable(title, saveItem, offset)
-  love.graphics.setFont(love.graphics.newFont(FONT, 30))
+  love.graphics.setFont(fonts.scoresTitle)
   love.graphics.setColor(0, 0, 0)
   local width = 200
   local titleText = title
   love.graphics.printf(titleText, offset, 100, width, "center")
   for i=1,LEVELS_AMOUNT do
-    love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 24))
+    love.graphics.setFont(fonts.scoresTable)
     local itemText = "Level " .. i .. ":"
     love.graphics.print(itemText, offset + 30, 150 + i*40)
   end
   for i=1,LEVELS_AMOUNT do
     love.graphics.setColor(0.5, 0, 0)
-    love.graphics.setFont(love.graphics.newFont(FONT_SECOND, 24))
+    love.graphics.setFont(fonts.scoresTable)
     local display = math.ceil(saveData[saveItem][i])
     love.graphics.print(display, offset + 130, 150 + i*40)
   end

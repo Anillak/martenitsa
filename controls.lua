@@ -54,7 +54,7 @@ function Controls:draw()
   self.c_anim:draw(sprites.checkpoint, 740, 215)
 
   love.graphics.setColor(0, 0, 0)
-  love.graphics.setFont(love.graphics.newFont(FONT, 16))
+  love.graphics.setFont(fonts.controls)
 
   love.graphics.printf("Move the martenitsa with the arrows", 610, 120, 160, "left")
   love.graphics.printf("Gather knots to get long enough to wrap it around the checkpoints", 530, 200, 200, "left")

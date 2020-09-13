@@ -29,7 +29,7 @@ function Button:onClick()
 end
 
 function Button:draw()
-  love.graphics.setFont(love.graphics.newFont(FONT, 20))
+  love.graphics.setFont(fonts.button)
   if self.inactive then
     love.graphics.setColor(1, 1, 1)
     love.graphics.draw(sprites.buttonInactive, self.x, self.y)
