@@ -104,7 +104,7 @@ end
 
 function Scissors:print() return " " .. self.x .. " " .. self.y end
 
-S = {}
+local S = {}
 
 local function create(x, y, i)
   local s = Scissors:new({}, x, y, i)

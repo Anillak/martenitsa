@@ -141,7 +141,7 @@ function Door:clear()
   end
 end
 
-D = {}
+local D = {}
 
 function D.load(map)
   assertWithLogging(map, "Doors needs a map to load.")

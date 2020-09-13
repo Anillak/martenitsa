@@ -39,10 +39,10 @@ end
 function love.load()
   require 'save'
   createSaveData()
-
   Timer = require 'lib/hump-master/timer'
   Gamestate = require "lib/hump-master/gamestate"
   Anim8 = require 'lib/anim8-master/anim8'
+  Signal = require 'lib/hump-master/signal'
   B = require "button"
   require 'assets'
   require 'utils'

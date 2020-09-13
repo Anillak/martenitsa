@@ -2,9 +2,17 @@ Game = {}
 local Victory = require 'victory'
 local Pause = require 'pause'
 local levelsInitialScores = {330,400,500,600,450,620,340,430}
+local Sti
+local effects
+local walls
+local Player
+local tutorial
+local knots
+local Goal
+local doors
+local scissors
 
 function Game:init()
-  Signal = require 'lib/hump-master/signal'
   Sti = require 'lib/sti-master/sti'
   effects = require 'effects'
   walls = require 'walls'

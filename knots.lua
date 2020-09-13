@@ -30,7 +30,7 @@ function Knot:draw()
 end
 function Knot:print() return " " .. self.x .. " " .. self.y end
 
-K = {}
+local K = {}
 
 local function create(x, y)
   local k = Knot:new({}, x, y)

@@ -1,4 +1,4 @@
-Effect = {}
+local Effect = {}
 
 function Effect:new(o, asset, width, height, row, time)
    o = o or {}
@@ -15,7 +15,7 @@ function Effect:new(o, asset, width, height, row, time)
    return o
 end
 
-E = {}
+local E = {}
 local effects = {}
 
 function E.load()

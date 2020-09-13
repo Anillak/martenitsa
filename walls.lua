@@ -1,4 +1,4 @@
-Wall = {}
+local Wall = {}
 
 function Wall:new(o, x, y)
    o = o or {}
@@ -10,7 +10,7 @@ function Wall:new(o, x, y)
    return o
 end
 
-W = {}
+local W = {}
 
 local function create(x, y, isWater)
   wall = Wall:new({}, x, y)
