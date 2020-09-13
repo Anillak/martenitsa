@@ -19,7 +19,6 @@ function Info:enter(previous, level)
     Buttons:add("level", 685, 600, "Continue", false, Game, level+1)
     Buttons:setActive(Buttons.level)
   elseif level == LEVELS_AMOUNT then
-    sounds.credits:play()
     Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
     Buttons:setActive(Buttons.menu)
   else

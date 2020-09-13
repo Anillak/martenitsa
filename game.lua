@@ -1,4 +1,4 @@
-Game = {}
+local Game = {}
 local Victory = require 'victory'
 local Pause = require 'pause'
 local levelsInitialScores = {330,400,500,600,450,620,340,430}
@@ -90,11 +90,7 @@ function Game:move()
     player:stops()
     saveOnLevelEnd(self.currentLevel, self.score)
     Timer.after(0.2, function()
-      if self.currentLevel == 8 then
-        Gamestate.switch(Info, self.currentLevel)
-      else
-        Gamestate.switch(Victory, self.currentLevel)
-      end
+      Gamestate.switch(Victory, self.currentLevel)
     end)
   else
     player:starts()
