@@ -2,7 +2,8 @@ local Pause = {}
 
 function Pause:init()
   self.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
-  self.p_anim = Anim8.newAnimation(self.grid('1-2', 3), 0.5)
+  self.esc_anim = Anim8.newAnimation(self.grid('1-2', 3), 0.5)
+  self.m_anim = Anim8.newAnimation(self.grid('1-2', 1), 0.5)
 end
 
 function Pause:enter(from)
@@ -10,7 +11,8 @@ function Pause:enter(from)
 end
 
 function Pause:update(dt)
-  self.p_anim:update(dt)
+  self.esc_anim:update(dt)
+  self.m_anim:update(dt)
 end
 
 function Pause:draw()
@@ -22,13 +24,18 @@ function Pause:draw()
   love.graphics.printf('PAUSE', 0, ORIGINAL_GAME_Y/2 - 30, ORIGINAL_GAME_X, 'center')
   love.graphics.setFont(fonts.pauseDesc)
   love.graphics.printf('Press                 again to continue', 0, ORIGINAL_GAME_Y/2 + 20, ORIGINAL_GAME_X, 'center')
-  self.p_anim:draw(sprites.controls, 583, 365)
+  love.graphics.printf('If you want to go back to the menu press', 0, ORIGINAL_GAME_Y/2 + 50, ORIGINAL_GAME_X, 'center')
+  self.esc_anim:draw(sprites.controls, 583, 365)
+  self.m_anim:draw(sprites.controls, 790, 395)
   drawBorders()
 end
 
 function Pause:keyreleased(key)
-  if key == 'p' then
+  if key == 'escape' then
     return Gamestate.pop()
+  end
+  if key == 'm' then
+    return Gamestate.switch(Menu)
   end
 end
 

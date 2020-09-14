@@ -1,5 +1,3 @@
-- see what can be done for slowly loaded levels - NEXT
-  - start the level on a trigger
 - assets to create
   - better martenitsa - NEXT
   - Crocus (минзухар)
@@ -10,8 +8,6 @@
 - slow piano versions of folklore songs
 
 todo later
-- remove esc shortcut (make it back to menu?)
-- cleanup info shortcuts
 - think about how to have continue selected when going back to menu from the game
 - windows process in named love 11.3
 - controller support

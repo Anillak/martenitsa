@@ -10,13 +10,6 @@ TILE_SIZE = 32
 SCALE = CELL_SIZE/TILE_SIZE
 LEVELS_AMOUNT = 8
 
-function love.keyreleased(key)
-  -- remove later
-  if key == "escape" then
-   love.event.quit()
-  end
-end
-
 local function createSaveData()
   if love.filesystem.getInfo("martenitsaSaveData.lua") then
     local data = love.filesystem.load("martenitsaSaveData.lua")
