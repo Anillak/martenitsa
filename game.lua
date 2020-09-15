@@ -1,7 +1,7 @@
 local Game = {}
 local Victory = require 'victory'
 local Pause = require 'pause'
-local levelsInitialScores = {330,400,500,600,450,620,340,430}
+local levelsInitialScores = {300,380,440,480,450,560,300,380}
 local Sti
 local effects
 local walls
