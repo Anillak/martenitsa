@@ -1,7 +1,5 @@
 - assets to create
   - better martenitsa - NEXT
-  - Crocus (минзухар)
-  - butterfly animation
   - здравец (moving grass type)
   - make levels nicer where possible
   - dirt asset looks repetitive (look at those inspiration rocks)
@@ -9,5 +7,4 @@
 
 todo later
 - think about how to have continue selected when going back to menu from the game
-- windows process in named love 11.3
 - controller support
