@@ -1,5 +1,7 @@
 local Info = {}
 local Buttons
+local width = 680
+local baseY
 
 function Info:init()
   self.level = 0
@@ -19,8 +21,9 @@ function Info:enter(previous, level)
     Buttons:add("level", 685, 600, "Continue", false, Game, level+1)
     Buttons:setActive(Buttons.level)
   elseif level == LEVELS_AMOUNT then
-    Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
+    Buttons:add("menu", 850, 600, "Go to Menu", false, Menu)
     Buttons:setActive(Buttons.menu)
+    baseY = 704
   else
     Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
     Buttons:setActive(Buttons.menu)
@@ -30,6 +33,12 @@ end
 function Info:leave()
   sounds.credits:pause()
   Buttons:clear()
+end
+
+function Info:update(dt)
+  if self.level == 8 then
+    baseY = baseY - dt*40
+  end
 end
 
 function Info:draw()
@@ -43,11 +52,10 @@ function Info:draw()
   elseif self.level == 3 then
     love.graphics.draw(self.pp, getCenteredHorizontalPosition(300), 320)
   elseif self.level == 8 then
-    love.graphics.draw(self.logo, getCenteredHorizontalPosition(64), 160)
-    love.graphics.draw(self.ravnecLogo, getCenteredHorizontalPosition(126), 280)
+    love.graphics.draw(self.logo, getCenteredHorizontalPosition(64), baseY + 95)
+    love.graphics.draw(self.ravnecLogo, getCenteredHorizontalPosition(126), baseY + 210)
   end
 
-  local width = 680
   love.graphics.setColor(0, 0, 0)
 
   if self.level == 1 then
@@ -101,9 +109,14 @@ function Info:draw()
     love.graphics.printf(levelText, getCenteredHorizontalPosition(width), 140, width, "left")
   elseif self.level == 8 then
     love.graphics.setFont(fonts.credits)
-    love.graphics.printf("Thank you for playing Martenitsa!", getCenteredHorizontalPosition(width), 70, width, "center")
-    love.graphics.printf("Developed by Margarita Ganeva", getCenteredHorizontalPosition(width), 130, width, "center")
-    love.graphics.printf("Music by Ravnec Folklore Band", getCenteredHorizontalPosition(width), 250, width, "center")
+    love.graphics.printf("Thank you for playing Martenitsa!", getCenteredHorizontalPosition(width), baseY, width, "center")
+    love.graphics.printf("Developed by Margarita Ganeva", getCenteredHorizontalPosition(width), baseY + 60, width, "center")
+    love.graphics.printf("Music by Ravnec Folklore Band", getCenteredHorizontalPosition(width), baseY + 180, width, "center")
+    love.graphics.printf("Big thanks to", getCenteredHorizontalPosition(width), baseY + 320, width, "center")
+    love.graphics.setFont(fonts.creditsNames)
+    love.graphics.printf("Veliko Dragiev\nBerend Krebs\nIvan Kasarov\nLyubomir Gizdov\nStefan Manolov\nAnna Velcheva\nDimitar Panov\nKristina Stoyanova\nPeko Atanasov\nIva Popova\nKristina Stefanova\nStanislav Bozhkov\n", getCenteredHorizontalPosition(width), baseY + 350, width, "center")
+    love.graphics.setFont(fonts.credits)
+    love.graphics.printf("for the testing, advising and the overall support", getCenteredHorizontalPosition(width), baseY + 600, width, "center")
   end
 
   love.graphics.setColor(1, 1, 1)
