@@ -1,5 +1,4 @@
 - assets to create
-  - better martenitsa - NEXT
   - здравец (moving grass type)
 - slow piano versions of folklore songs
 
