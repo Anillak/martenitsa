@@ -1,5 +1,6 @@
 local Player = {}
 require 'playerUtils'
+local drawAliveTimer
 
 function Player:new(o, x, y, length, direction)
    o = o or {}
@@ -9,10 +10,12 @@ function Player:new(o, x, y, length, direction)
    o.bound = false
    o.won = false
    o.dead = false
+   o.drawDead = false
    o.direction = {direction}
+   drawAliveTimer = 5
 
    local grid_dead = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*4, TILE_SIZE)
-   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.8, 0.5, 0.5, 0.8})
+   o.animation_dead = Anim8.newAnimation(grid_dead('1-4',1), {0.5, 0.5, 0.5, 0.8})
 
    for i=1,length do
      local next
@@ -57,8 +60,14 @@ function Player:update()
 end
 
 function Player:animationUpdate(dt)
-  if self.dead then
+  if self.drawDead then
     self.animation_dead:update(dt)
+  end
+  if self.dead then
+    drawAliveTimer = drawAliveTimer - dt*10
+  end
+  if drawAliveTimer < 0 then
+    self.drawDead = true
   end
 end
 
@@ -120,7 +129,7 @@ function Player:draw()
     i = #self.segments-j+1
     local segment = self.segments[i]
 
-    if not self.dead then
+    if not self.drawDead then
       drawAlivePlayer(segment)
     else
       drawDeadPlayer(self.animation_dead, segment)
