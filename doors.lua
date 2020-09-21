@@ -108,7 +108,6 @@ function Door:update(dt, player)
       key:update(dt)
     end
     if self.open then
-      log("Player opened door number " .. self.n)
       Signal.emit('open door', self.x, self.y)
       self.animation:resume()
       sounds.doorOpen:play()

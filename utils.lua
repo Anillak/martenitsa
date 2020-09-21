@@ -44,7 +44,7 @@ function drawBorders()
 end
 
 function drawScore(score)
-  love.graphics.setColor(0.5, 0, 0)
+  love.graphics.setColor(1, 1, 1)
   love.graphics.setFont(fonts.levelScore)
   love.graphics.print(math.ceil(score), 20, 7)
 end

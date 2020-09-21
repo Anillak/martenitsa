@@ -58,7 +58,6 @@ function Game:enter(previous, level)
 end
 
 local function saveDeaths(level, count)
-  log("Player died in level " .. level)
   count = count + 1
   saveData.deaths[level] = count
 end
@@ -84,7 +83,6 @@ function Game:move()
     sounds.dying:play()
     Timer.after(2, function() Gamestate.switch(Game, self.currentLevel) end)
   elseif player:isWon() then
-    log("Player won in level " .. self.currentLevel)
     scissors.stop()
     Timer.clear()
     player:stops()
@@ -107,7 +105,6 @@ function Game:move()
     if not goal:isPossible(knots.available(), player:length(), self.required) then
       if self.possible then
         self.possible = false
-        log("Not possible to finish level " .. self.currentLevel)
         Signal.emit('show r')
       end
     end
@@ -191,7 +188,6 @@ function Game:keyreleased(key)
     Gamestate.push(Pause)
   end
   if key == 'r' then
-    log("Player reset " .. self.currentLevel)
     Gamestate.switch(Game, self.currentLevel)
   end
 end
