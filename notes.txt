@@ -4,4 +4,5 @@
 
 todo later
 - think about how to have continue selected when going back to menu from the game
+- scissor cutting producing knots
 - controller support

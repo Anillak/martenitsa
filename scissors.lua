@@ -43,12 +43,6 @@ function Scissors:update(dt)
   if #self.deadSegments > 0 then
     self.animation_dead:resume()
     self.animation_dead:update(dt)
-
-    Timer.after(2, function()
-      for k,v in pairs(self.deadSegments) do
-        table.remove(self.deadSegments)
-      end
-    end)
   end
 end
 
@@ -79,6 +73,15 @@ function Scissors:drawBottom()
     self.y * TILE_SIZE)
 end
 
+local function scheduleSegmentsCleanup(deadSegments, animation)
+  animation:pauseAtStart()
+  Timer.after(2, function()
+    for _,_ in pairs(deadSegments) do
+      table.remove(deadSegments)
+    end
+  end)
+end
+
 function Scissors:cutPlayer(p)
   cutTail = -1
   for i,segment in ipairs(p.segments) do
@@ -99,6 +102,7 @@ function Scissors:cutPlayer(p)
       if i == 1 then s.sprite = "playerTail" end
       table.insert(self.deadSegments, s)
     end
+    scheduleSegmentsCleanup(self.deadSegments, self.animation_dead)
   end
 end
 
