@@ -2,7 +2,7 @@ local Info = {}
 local Buttons
 local width = 680
 local baseY
-local namesCount = 13
+local namesCount = 17
 local namesHeight = 20
 
 function Info:init()
@@ -126,7 +126,7 @@ function Info:draw()
     love.graphics.printf("Music by Ravnec Folklore Band", getCenteredHorizontalPosition(width), baseY + 180, width, "center")
     love.graphics.printf("Big thanks to", getCenteredHorizontalPosition(width), baseY + 325, width, "center")
     love.graphics.setFont(fonts.creditsNames)
-    love.graphics.printf("Veliko Dragiev\nBerend Krebs\nIvan Kasarov\nLyubomir Gizdov\nStefan Manolov\nAnna Velcheva\nDimitar Panov\nBogdan Kurtev\nKristina Stoyanova\nPeko Atanasov\nIva Popova\nKristina Stefanova\nStanislav Bozhkov\n", getCenteredHorizontalPosition(width), baseY + 355, width, "center")
+    love.graphics.printf("Veliko Dragiev\nBerend Krebs\nIvan Kasarov\nLyubomir Gizdov\nStefan Manolov\nAnna Velcheva\nDimitar Panov\nBogdan Kurtev\nKristina Stoyanova\nPeko Atanasov\nIva Popova\nRahul Anand\nJoshua Batchelor\nSuhail Ahmed\nAngus Thomsen\nKristina Stefanova\nStanislav Bozhkov\n", getCenteredHorizontalPosition(width), baseY + 355, width, "center")
     love.graphics.setFont(fonts.credits)
     love.graphics.printf("for the testing, advising and the overall support", getCenteredHorizontalPosition(width), baseY + namesCount*namesHeight + 350, width, "center")
     love.graphics.printf("All graphics are drawn with", getCenteredHorizontalPosition(width), baseY + namesCount*namesHeight + 400, width, "center")
