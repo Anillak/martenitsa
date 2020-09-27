@@ -2,7 +2,6 @@
 - controller support
 - survival mode
   - unlock
-  - access though menu/levels
   - show scores
   - scissor cutting producing knots
 - assets to create

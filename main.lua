@@ -33,6 +33,9 @@ local function createSaveData()
   if not saveData.level then
     saveData.level = 1
   end
+  if not saveData.survival then
+    saveData.survival = false
+  end
 end
 
 function love.load()

@@ -16,11 +16,12 @@ function Menu:enter(previous, active)
 
   Buttons = B:new()
   local position = 510
-  Buttons:add("start", position, 230, "Start", false, Game, 1)
-  Buttons:add("continue", position, 285, "Continue", (not (saveData.level > 1)), Levels)
-  Buttons:add("scores", position, 340, "Scores", (not (saveData.level > 8)), Scores)
-  Buttons:add("controls", position, 395, "Controls", false, Controls)
-  Buttons:add("exit", position, 450, "Exit", false)
+  Buttons:add("start", position, 210, "New Game", false, Game, 1)
+  Buttons:add("continue", position, 265, "Continue", (not (saveData.level > 1)), Levels)
+  Buttons:add("scores", position, 320, "Scores", (not (saveData.level > 8)), Scores)
+  Buttons:add("survival", position, 375, "Survival Mode", (not saveData.survival), Survival)
+  Buttons:add("controls", position, 430, "Controls", false, Controls)
+  Buttons:add("exit", position, 485, "Exit", false)
   if not active then
     Buttons:setActive(Buttons.start)
   else
@@ -44,10 +45,6 @@ end
 
 function Menu:keyreleased(key, code)
   Buttons:keyreleased(key, code)
-  -- to remove
-  if key == 's' then
-    Gamestate.switch(Survival)
-  end
 end
 
 function Menu:keypressed(key, code)
