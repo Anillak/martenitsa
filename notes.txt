@@ -2,7 +2,6 @@
 - controller support
 - survival mode
   - unlock
-  - show scores
   - scissor cutting producing knots
 - assets to create
   - здравец (moving grass type)

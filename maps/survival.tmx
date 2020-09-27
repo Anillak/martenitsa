@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="789">
+<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="40" height="22" tilewidth="32" tileheight="32" infinite="0" nextlayerid="18" nextobjectid="802">
  <editorsettings>
   <export target="survival.lua" format="lua"/>
  </editorsettings>
@@ -129,8 +129,6 @@
   <object id="715" x="192" y="288" width="32" height="32"/>
   <object id="716" x="128" y="320" width="32" height="32"/>
   <object id="717" x="160" y="320" width="32" height="32"/>
-  <object id="718" x="1088" y="320" width="32" height="32"/>
-  <object id="719" x="1056" y="320" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="17" name="forbidden">
   <object id="759" x="160" y="384" width="32" height="32"/>
@@ -156,6 +154,19 @@
   <object id="780" x="512" y="128" width="32" height="32"/>
   <object id="781" x="544" y="192" width="32" height="32"/>
   <object id="782" x="544" y="160" width="32" height="32"/>
+  <object id="789" x="1056" y="320" width="32" height="32"/>
+  <object id="790" x="1088" y="320" width="32" height="32"/>
+  <object id="791" x="1184" y="192" width="32" height="32"/>
+  <object id="792" x="1184" y="256" width="32" height="32"/>
+  <object id="793" x="1024" y="128" width="32" height="32"/>
+  <object id="794" x="896" y="128" width="32" height="32"/>
+  <object id="795" x="832" y="160" width="32" height="32"/>
+  <object id="796" x="768" y="256" width="32" height="32"/>
+  <object id="797" x="768" y="192" width="32" height="32"/>
+  <object id="798" x="832" y="320" width="32" height="32"/>
+  <object id="799" x="928" y="320" width="32" height="32"/>
+  <object id="800" x="1120" y="288" width="32" height="32"/>
+  <object id="801" x="1088" y="160" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="walls" opacity="0.97">
   <object id="595" x="448" y="512" width="32" height="32"/>

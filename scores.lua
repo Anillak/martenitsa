@@ -23,12 +23,14 @@ local function drawTable(title, saveItem, offset)
     local itemText = "Level " .. i .. ":"
     love.graphics.print(itemText, offset + 30, 150 + i*40)
   end
+  love.graphics.print("Survival: ", offset + 30, 510)
   for i=1,LEVELS_AMOUNT do
     love.graphics.setColor(0.5, 0, 0)
     love.graphics.setFont(fonts.scoresTable)
     local display = math.ceil(saveData[saveItem][i])
     love.graphics.print(display, offset + 130, 150 + i*40)
   end
+  love.graphics.print(saveData[saveItem]["survival"], offset + 130, 510)
 end
 
 function Scores:draw()
