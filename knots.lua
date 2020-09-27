@@ -9,6 +9,7 @@ function Knot:new(o, x, y)
    o.y = y
 
    o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*3)
+   math.randomseed(os.time())
    local random = math.random(1, 6)
    local row = randomize[random][1]
    local time = math.random(4, 6)
@@ -32,7 +33,7 @@ function Knot:print() return " " .. self.x .. " " .. self.y end
 
 local K = {}
 
-local function create(x, y)
+function K.create(x, y)
   local k = Knot:new({}, x, y)
   table.insert(K.knots, k)
 end
@@ -43,7 +44,7 @@ function K.load(map)
   K.knots = {}
 
   for i,o in ipairs(map.layers["knots"].objects) do
-    create(o.x/TILE_SIZE, o.y/TILE_SIZE)
+    K.create(o.x/TILE_SIZE, o.y/TILE_SIZE)
   end
 end
 

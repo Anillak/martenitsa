@@ -98,6 +98,15 @@ function Player:findNeighbours(i, segment)
   return neighbours
 end
 
+function Player:isOnPlayer(x, y)
+  for i,segment in ipairs(self.segments) do
+    if segment.x == x and segment.y == y then
+      return true
+    end
+  end
+  return false
+end
+
 local function drawAlivePlayer(segment)
   love.graphics.draw(
     sprites[segment.sprite],

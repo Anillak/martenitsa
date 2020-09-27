@@ -21,8 +21,14 @@ local function createSaveData()
   if not saveData.scores then
     saveData.scores = {0,0,0,0,0,0,0,0}
   end
+  if not saveData.scores.survival then
+    saveData.scores.survival = 0
+  end
   if not saveData.deaths then
     saveData.deaths = {0,0,0,0,0,0,0,0}
+  end
+  if not saveData.deaths.survival then
+    saveData.deaths.survival = 0
   end
   if not saveData.level then
     saveData.level = 1

@@ -24,10 +24,10 @@ function W.load(map)
   W.walls = {}
   W.walls.indices = {}
 
-  for i = 0, (ORIGINAL_GAME_X/TILE_SIZE)-1 do
+  for i = 0, GRID_X-1 do
     local row = {}
     W.walls.indices[i] = row
-    for j = 0, (ORIGINAL_GAME_Y/TILE_SIZE)-1 do
+    for j = 0, GRID_Y-1 do
       row[j] = {false, false}
     end
   end

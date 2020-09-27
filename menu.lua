@@ -1,4 +1,5 @@
 local Menu = {}
+local Survival = require 'survival'
 local Controls = require 'controls'
 local Levels = require 'levels'
 local Scores = require 'scores'
@@ -43,6 +44,10 @@ end
 
 function Menu:keyreleased(key, code)
   Buttons:keyreleased(key, code)
+  -- to remove
+  if key == 's' then
+    Gamestate.switch(Survival)
+  end
 end
 
 function Menu:keypressed(key, code)

@@ -1,8 +1,9 @@
+- linux support
+- controller support
+- survival mode
+  - unlock
+  - access though menu/levels
+  - show scores
+  - scissor cutting producing knots
 - assets to create
   - здравец (moving grass type)
-- slow piano versions of folklore songs
-
-todo later
-- think about how to have continue selected when going back to menu from the game
-- scissor cutting producing knots
-- controller support
