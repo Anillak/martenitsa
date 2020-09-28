@@ -9,7 +9,6 @@ function Knot:new(o, x, y)
    o.y = y
 
    o.grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*3)
-   math.randomseed(os.time())
    local random = math.random(1, 6)
    local row = randomize[random][1]
    local time = math.random(4, 6)
