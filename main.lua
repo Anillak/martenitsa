@@ -34,7 +34,8 @@ local function createSaveData()
     saveData.level = 1
   end
   if not saveData.survival then
-    saveData.survival = false
+    saveData.survival = {true, false, false, false, false, false, false, false}
+    saveData.survival.complete = 0
   end
 end
 

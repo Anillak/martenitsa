@@ -18,7 +18,7 @@ function Menu:enter(previous, active)
   local position = 510
   Buttons:add("start", position, 210, "New Game", false, Game, 1)
   Buttons:add("continue", position, 265, "Continue", (not (saveData.level > 1)), Levels)
-  Buttons:add("survival", position, 320, "Survival Mode", (not saveData.survival), Survival)
+  Buttons:add("survival", position, 320, "Survival Mode", (saveData.survival.complete ~= 7), Survival)
   Buttons:add("scores", position, 375, "Scores", (not (saveData.level > 8)), Scores)
   Buttons:add("controls", position, 430, "Controls", false, Controls)
   Buttons:add("exit", position, 485, "Exit", false)

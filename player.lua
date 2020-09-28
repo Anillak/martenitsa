@@ -175,6 +175,16 @@ function Player:eat(knots)
   end
 end
 
+function Player:collect(secrets, level)
+  for i,secret in ipairs(secrets) do
+    if hit(self.segments[1], secret) then
+      table.remove(secrets, i)
+      saveData.survival[level] = true
+      saveData.survival.complete = saveData.survival.complete + 1
+    end
+  end
+end
+
 function Player:getCutBy(scissors)
   for i,s in ipairs(scissors) do
     s:cutPlayer(self)

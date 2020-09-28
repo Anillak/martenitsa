@@ -1,7 +1,4 @@
 - linux support
 - controller support
-- survival mode
-  - unlock
-  - scissor cutting producing knots
 - assets to create
   - здравец (moving grass type)

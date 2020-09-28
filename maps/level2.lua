@@ -8,8 +8,8 @@ return {
   height = 22,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 17,
-  nextobjectid = 240,
+  nextlayerid = 18,
+  nextobjectid = 241,
   properties = {},
   tilesets = {
     {
@@ -2069,6 +2069,32 @@ return {
       offsety = 0,
       properties = {},
       objects = {}
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 17,
+      name = "secrets",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 240,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 320,
+          y = 0,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
     },
     {
       type = "objectgroup",

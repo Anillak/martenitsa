@@ -8,8 +8,8 @@ return {
   height = 22,
   tilewidth = 32,
   tileheight = 32,
-  nextlayerid = 16,
-  nextobjectid = 386,
+  nextlayerid = 17,
+  nextobjectid = 387,
   properties = {},
   tilesets = {
     {
@@ -2362,6 +2362,32 @@ return {
             ["Color"] = "Blue",
             ["Number"] = 1
           }
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 16,
+      name = "secrets",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      properties = {},
+      objects = {
+        {
+          id = 386,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 64,
+          y = 576,
+          width = 32,
+          height = 32,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },

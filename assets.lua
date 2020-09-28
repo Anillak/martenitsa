@@ -28,6 +28,7 @@ sprites.keyReleasedYellow = love.graphics.newImage('sprites/key_released_yellow.
 sprites.keyPressedWhite = love.graphics.newImage('sprites/key_pressed_white.png')
 sprites.keyReleasedWhite = love.graphics.newImage('sprites/key_released_white.png')
 
+sprites.secret = love.graphics.newImage('sprites/knot.png')
 sprites.knot = love.graphics.newImage('sprites/knot.png')
 sprites.lock = love.graphics.newImage('sprites/lock.png')
 sprites.logo = love.graphics.newImage('sprites/logo.png')

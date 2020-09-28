@@ -8,6 +8,7 @@ local walls
 local Player
 local tutorial
 local knots
+local secrets
 local Goal
 local doors
 local scissors
@@ -19,6 +20,7 @@ function Game:init()
   Player = require 'player'
   tutorial = require 'tutorial'
   knots = require 'knots'
+  secrets = require 'secrets'
   Goal = require 'goal'
   doors = require 'doors'
   scissors = require 'scissors'
@@ -33,6 +35,7 @@ function Game:enter(previous, level)
   effects.load()
   walls.load(map)
   knots.load(map)
+  secrets.load(map)
   doors.load(map)
   scissors.load(map)
   tutorial.load(level)
@@ -98,6 +101,9 @@ function Game:move()
     player:update()
     tutorial.update()
     player:eat(knots.get())
+    if not saveData.survival[self.currentLevel] then
+      player:collect(secrets.get(), self.currentLevel)
+    end
     player:maybeHit(walls)
     player:composeSegments()
     player:getCutBy(scissors.get())
@@ -122,6 +128,7 @@ function Game:leave()
   scissors.clear()
   doors.clear()
   knots.clear()
+  secrets.clear()
   walls.clear()
   effects.clear()
   tutorial.clear()
@@ -132,6 +139,7 @@ function Game:update(dt)
   map:update(dt)
   goal:update(dt, player, knots.available())
   knots.update(dt)
+  secrets.update(dt)
   doors.update(dt, player)
   scissors.update(dt)
   player:animationUpdate(dt)
@@ -165,6 +173,7 @@ function Game:draw()
   doors.drawKeys()
   map:drawLayer(map.layers["elements"])
   knots.draw()
+  secrets.draw()
   player:draw()
   -- from here on everything will be drawn over the player
   map:drawLayer(map.layers["over"])
