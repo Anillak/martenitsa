@@ -37,10 +37,10 @@ function S.create(x, y)
   table.insert(S.secrets, s)
 end
 
-function S.load(map)
+function S.load(map, level)
   assertWithLogging(map, "Secrets needs a map to load.")
   S.secrets = {}
-  if map.layers["secrets"] then
+  if map.layers["secrets"] and not saveData.survival[level] then
     for i,o in ipairs(map.layers["secrets"].objects) do
       S.create(o.x/TILE_SIZE, o.y/TILE_SIZE)
     end
