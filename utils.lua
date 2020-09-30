@@ -11,7 +11,7 @@ function getCenteredHorizontalPosition(width)
 end
 
 function resetToDraw()
-  love.graphics.translate(0, BORDERS)
+  love.graphics.translate(SIDE_BORDERS, BORDERS)
   love.graphics.scale(SCALE)
   love.graphics.setBackgroundColor(1, 1, 1)
   love.graphics.setColor(1, 1, 1)
@@ -37,6 +37,8 @@ end
 
 function drawBorders()
   love.graphics.setColor(0, 0, 0)
+  love.graphics.rectangle("fill", -SIDE_BORDERS, 0, SIDE_BORDERS, ORIGINAL_GAME_Y)
+  love.graphics.rectangle("fill", ORIGINAL_GAME_X, 0, SIDE_BORDERS, ORIGINAL_GAME_Y)
   love.graphics.rectangle("fill", 0, -BORDERS, ORIGINAL_GAME_X, BORDERS)
   love.graphics.rectangle("fill", 0, ORIGINAL_GAME_Y, ORIGINAL_GAME_X, BORDERS)
   --drawConsole()
@@ -70,4 +72,5 @@ function logSystem()
   log("Cell size: " .. CELL_SIZE)
   log("Scale ratio: " .. SCALE)
   log("Borders: " .. BORDERS)
+  log("Side Borders: " .. SIDE_BORDERS)
 end

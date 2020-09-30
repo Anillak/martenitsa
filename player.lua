@@ -177,7 +177,7 @@ end
 
 function Player:collect(secrets, level)
   for i,secret in ipairs(secrets) do
-    if hit(self.segments[1], secret)
+    if hit(self.segments[1], secret) then
       sounds.secretCollect:play()
       table.remove(secrets, i)
       saveData.survival[level] = true
