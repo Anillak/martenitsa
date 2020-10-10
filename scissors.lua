@@ -96,6 +96,7 @@ function Scissors:cutPlayer(p)
   end
   if cutTail ~= -1 and p.dead == false then
     for i=1,cutTail do
+      log("got cut")
       local s = table.remove(p.segments)
       if i == 1 then s.sprite = "playerTail" end
       table.insert(self.deadSegments, s)

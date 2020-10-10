@@ -69,7 +69,7 @@ local function saveOnLevelEnd(currentLevel, score)
   assert(currentLevel, "currentLevel not set")
   assert(score, "score not set")
   if secrets.available() == 0 then
-    saveData.survival[level] = true
+    saveData.survival[currentLevel] = true
     saveData.survival.complete = saveData.survival.complete + 1
   end
   if saveData.scores[currentLevel] < score then

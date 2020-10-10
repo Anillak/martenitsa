@@ -1,7 +1,9 @@
 - linux support
 - controller support
 - web support
-- different sounds when collecting secrets
+- different sounds when collecting secrets - NEXT
+- finish survival level - NEXT
+  - calculate the distance between keys and scissor timers
 
 Maybe do
 - zen mode

@@ -9,6 +9,7 @@ local doors
 local scissors
 local possible
 local layer
+local moveTimer
 
 function Survival:init()
   Sti = require 'lib/sti-master/sti'
@@ -54,7 +55,7 @@ function Survival:enter(previous)
 
   sounds.birds:play()
 
-  Timer.every(0.25, function() self:move() end)
+  moveTimer = Timer.every(0.25, function() self:move() end)
 end
 
 local function saveDeaths(count)
@@ -73,7 +74,8 @@ local function generateKnot()
   math.randomseed(os.time())
   random = math.random(0, #possible[layer])
   knots.create(possible[layer][random][1], possible[layer][random][2])
-  layer = layer + 1
+  layer = (layer % 5) + 1
+  log("ate a knot")
 end
 
 function Survival:move()
@@ -122,6 +124,12 @@ function Survival:update(dt)
   player:animationUpdate(dt)
   Timer.update(dt)
   effects.update(dt)
+  local newSpeed = math.max(0.1, 0.3 - player:length()*0.01)
+  if newSpeed ~= moveTimer.limit then
+    log("old speed " .. moveTimer.limit)
+    moveTimer.limit = newSpeed
+    log("updated speed to " .. newSpeed)
+  end
 end
 
 function Survival:draw()
