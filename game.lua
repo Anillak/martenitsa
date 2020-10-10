@@ -68,6 +68,10 @@ end
 local function saveOnLevelEnd(currentLevel, score)
   assert(currentLevel, "currentLevel not set")
   assert(score, "score not set")
+  if secrets.available() == 0 then
+    saveData.survival[level] = true
+    saveData.survival.complete = saveData.survival.complete + 1
+  end
   if saveData.scores[currentLevel] < score then
     saveData.scores[currentLevel] = score
   end
@@ -101,7 +105,7 @@ function Game:move()
     player:update()
     tutorial.update()
     player:eat(knots.get())
-    player:collect(secrets.get(), self.currentLevel)
+    player:collect(secrets.get())
     player:maybeHit(walls)
     player:composeSegments()
     player:getCutBy(scissors.get())

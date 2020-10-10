@@ -1,4 +1,8 @@
 - linux support
 - controller support
-- assets to create
-  - здравец (moving grass type)
+- web support
+- different sounds when collecting secrets
+
+Maybe do
+- zen mode
+- use custom app icons

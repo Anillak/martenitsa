@@ -175,12 +175,10 @@ function Player:eat(knots)
   end
 end
 
-function Player:collect(secrets, level)
+function Player:collect(secrets)
   for i,secret in ipairs(secrets) do
     if hit(self.segments[1], secret) then
       table.remove(secrets, i)
-      saveData.survival[level] = true
-      saveData.survival.complete = saveData.survival.complete + 1
       sounds.secretCollect:play()
     end
   end
