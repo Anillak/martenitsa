@@ -8,7 +8,7 @@ local knots
 local doors
 local scissors
 local possible
-local forbidden
+local layer
 
 function Survival:init()
   Sti = require 'lib/sti-master/sti'
@@ -20,29 +20,13 @@ function Survival:init()
   scissors = require 'scissors'
 end
 
-local function loadForbidden(map)
-  assertWithLogging(map.layers["forbidden"], "Map doesn't have forbidden properties")
-  local forbidden = {}
-  for i = 0, GRID_X-1 do
-    local row = {}
-    forbidden[i] = row
-    for j = 0, GRID_Y-1 do
-      row[j] = false
-    end
-  end
-  for _,o in ipairs(map.layers["forbidden"].objects) do
-    forbidden[o.x/TILE_SIZE][o.y/TILE_SIZE] = true
-  end
-  return forbidden
-end
-
 local function getPossibleKnots()
-  local possible = {}
-  for x=0,GRID_X-1 do
-    for y=0,GRID_Y-1 do
-      if not walls.isWall(x, y) and not forbidden[x][y] then
-        table.insert(possible, {x, y})
-      end
+  local possible = {{}, {}, {}, {}, {}}
+  for i=1,5 do
+    local line = "line"..i
+    assertWithLogging(map.layers[line], "Map doesn't have properties for layer " .. line)
+    for _,o in ipairs(map.layers[line].objects) do
+      table.insert(possible[i], {o.x/TILE_SIZE, o.y/TILE_SIZE})
     end
   end
   return possible
@@ -57,7 +41,6 @@ function Survival:enter(previous)
   knots.load(map)
   doors.load(map)
   scissors.load(map)
-  forbidden = loadForbidden(map)
   possible = getPossibleKnots()
   assertWithLogging(map.layers["level"], "Map doesn't have level properties")
   local x = map.layers["level"].properties["x"]
@@ -66,11 +49,12 @@ function Survival:enter(previous)
   local direction = map.layers["level"].properties["direction"]
   player = Player:new({}, x, y, length, direction)
 
+  layer = 1
   self.deaths = saveData.deaths["survival"]
 
   sounds.birds:play()
 
-  Timer.every(0.15, function() self:move() end)
+  Timer.every(0.25, function() self:move() end)
 end
 
 local function saveDeaths(count)
@@ -87,8 +71,9 @@ end
 
 local function generateKnot()
   math.randomseed(os.time())
-  random = math.random(0, #possible)
-  knots.create(possible[random][1], possible[random][2])
+  random = math.random(0, #possible[layer])
+  knots.create(possible[layer][random][1], possible[layer][random][2])
+  layer = layer + 1
 end
 
 function Survival:move()
