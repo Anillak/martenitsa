@@ -1,5 +1,4 @@
 - linux support
-- controller support
 - web support
 - different sounds when collecting secrets - NEXT
 - finish survival level - NEXT
@@ -8,3 +7,4 @@
 Maybe do
 - zen mode
 - use custom app icons
+- controller support
