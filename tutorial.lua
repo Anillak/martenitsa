@@ -193,7 +193,7 @@ local Tutorial = {}
 local steps = {}
 
 local function eatKnotsText()
-  return Text:new({}, 200, 600, "Eat the knots to grow longer.")
+  return Text:new({}, 200, 600, localization.tutorial.eat[LANGUAGE])
 end
 
 local function eatKnotsArrow()
@@ -201,7 +201,7 @@ local function eatKnotsArrow()
 end
 
 local function endConditionText()
-  return Text:new({}, 830, 400, "Wrap yourself around the checkoints to finish the level.")
+  return Text:new({}, 830, 400, localization.tutorial.wrap[LANGUAGE])
 end
 
 local function endConditionArrow()

@@ -2,13 +2,12 @@ local Button = {}
 local width = 197
 local height = 53
 
-function Button:new(o, key, x, y, label, inactive, state, args)
+function Button:new(o, key, x, y, inactive, state, args)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   o.x = x
   o.y = y
-  o.label = label
   o.state = state
   o.key = key
   o.inactive = inactive
@@ -21,7 +20,7 @@ end
 
 function Button:onClick()
   if not self.inactive then
-    if self.label == "Exit" then
+    if self.key == "exit" then
       love.event.quit()
     end
     Gamestate.switch(self.state, self.args)
@@ -44,7 +43,7 @@ function Button:draw()
   if self.inactive then
     love.graphics.draw(sprites.lock, self.x + width / 2 - 16, self.y + 11)
   else
-    love.graphics.printf(self.label, self.x, self.y + 13, width, "center")
+    love.graphics.printf(localization.menu[self.key][LANGUAGE], self.x, self.y + 13, width, "center")
   end
 
   love.graphics.setColor(1, 1, 1)
@@ -61,8 +60,8 @@ function Buttons:new(o)
   return o
 end
 
-function Buttons:add(key, x, y, label, inactive, state, args)
-  local button = Button:new({}, key, x, y, label, inactive, state, args)
+function Buttons:add(key, x, y, inactive, state, args)
+  local button = Button:new({}, key, x, y, inactive, state, args)
   self[key] = button
   self.indices[#self.indices + 1] = key
 end
@@ -149,6 +148,9 @@ function Buttons:keyreleased(key, code)
   end
   if key == 'return' then
     self.active:onClick()
+  end
+  if key == 'l' then
+    switchLanguages()
   end
 end
 

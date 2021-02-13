@@ -51,6 +51,14 @@ function drawScore(score)
   love.graphics.print(math.ceil(score), 20, 7)
 end
 
+function switchLanguages()
+  if LANGUAGE == "en" then
+    LANGUAGE = "bg"
+  elseif LANGUAGE == "bg" then
+    LANGUAGE = "en"
+  end
+end
+
 function log(message)
   love.filesystem.append("log.lua", os.date() .. ": ")
   love.filesystem.append("log.lua", message)

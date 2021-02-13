@@ -10,7 +10,7 @@ end
 
 function Victory:enter(from, level, screenshot)
   Buttons = B:new()
-  Buttons:add("continue", 542, 350, "Continue", false, Info, level)
+  Buttons:add("continue", 542, 350, false, Info, level)
   Buttons:setActive(Buttons.continue)
   if level == 8 then
     sounds.credits:play()

@@ -10,10 +10,11 @@ SIDE_BORDERS = (GAME_X - GRID_X*CELL_SIZE) / 2
 TILE_SIZE = 32
 SCALE = CELL_SIZE/TILE_SIZE
 LEVELS_AMOUNT = 8
+LANGUAGE = "en"
 
 local function createSaveData()
-  if love.filesystem.getInfo("martenitsaSaveData.lua") then
-    local data = love.filesystem.load("martenitsaSaveData.lua")
+  local data = love.filesystem.load("martenitsaSaveData.lua")
+  if data then
     data()
   end
   if not saveData then
@@ -49,6 +50,7 @@ function love.load()
   Signal = require 'lib/hump-master/signal'
   B = require "button"
   require 'assets'
+  require 'localization'
   require 'utils'
   Menu = require 'menu'
   Game = require 'game'

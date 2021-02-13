@@ -75,8 +75,8 @@ sounds.birds = love.audio.newSource("asset/birds.wav", "static")
 sounds.birds:setLooping(true)
 
 -- FONTS
-local FONT = "asset/Coda-Regular.ttf"
-local FONT_SECOND = "asset/Lato-Regular.ttf"
+local FONT = "asset/Play-Regular.ttf"
+local FONT_SECOND = "asset/Roboto-Regular.ttf"
 fonts = {}
 fonts.button = love.graphics.newFont(FONT, 20)
 fonts.controls = love.graphics.newFont(FONT, 16)

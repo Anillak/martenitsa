@@ -1,10 +1,15 @@
-- linux support
+- different sounds when collecting secrets
+- switch bulgarian language
 - web support
-- different sounds when collecting secrets - NEXT
-- finish survival level - NEXT
+- linux support
+- finish survival level
   - calculate the distance between keys and scissor timers
 
 Maybe do
 - zen mode
 - use custom app icons
-- controller support
+
+
+cat love-11.3-win64/love.exe martenitsa.love > martenitsa.exe
+git tag -a 2020.10.18 44f98ff -m "Unlock survival on level completion"
+git push origin --tags

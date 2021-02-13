@@ -15,9 +15,9 @@ function Levels:enter()
     local level = i+1
     local positionY = self.positions[level]
     local inactive = level > saveData.level
-    Buttons:add(level, positionX, positionY, level, inactive, Game, level)
+    Buttons:add(level, positionX, positionY, inactive, Game, level)
   end
-  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "continue")
+  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, false, Menu, "continue")
   Buttons:setActive(Buttons[1])
 end
 

@@ -24,15 +24,15 @@ function Info:enter(previous, level)
   self.level = level
   Buttons = B:new()
   if level ~= LEVELS_AMOUNT then
-    Buttons:add("menu", 400, 600, "Go to Menu", false, Menu)
-    Buttons:add("level", 685, 600, "Continue", false, Game, level+1)
+    Buttons:add("menu", 400, 600, false, Menu)
+    Buttons:add("level", 685, 600, false, Game, level+1)
     Buttons:setActive(Buttons.level)
   elseif level == LEVELS_AMOUNT then
-    Buttons:add("menu", 850, 600, "Go to Menu", false, Menu)
+    Buttons:add("menu", 850, 600, false, Menu)
     Buttons:setActive(Buttons.menu)
     baseY = 704
   else
-    Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu)
+    Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, false, Menu)
     Buttons:setActive(Buttons.menu)
   end
 end
@@ -70,6 +70,7 @@ function Info:draw()
 
   love.graphics.setColor(0, 0, 0)
 
+  -- localization
   if self.level == 1 then
     love.graphics.setFont(fonts.infoTitle)
     local titleText = "Introduction"

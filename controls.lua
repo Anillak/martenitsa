@@ -20,7 +20,7 @@ function Controls:init()
   self.k_anim = Anim8.newAnimation(k_grid('1-2',3), {2, 0.5})
 
   Buttons = B:new()
-  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, "Go to Menu", false, Menu, "controls")
+  Buttons:add("menu", Buttons.getCenteredHorizontalPosition(), 600, false, Menu, "controls")
 end
 
 function Controls:enter(previous)
@@ -58,11 +58,11 @@ function Controls:draw()
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(fonts.controls)
 
-  love.graphics.printf("Move the martenitsa with the arrows", 610, 120, 160, "left")
-  love.graphics.printf("Gather knots to get long enough to wrap it around the checkpoints", 530, 200, 200, "left")
-  love.graphics.printf("You can press M to go back to the menu", 550, 300, 200, "left")
-  love.graphics.printf("Press R to reset the level when you are stuck", 560, 370, 200, "left")
-  love.graphics.printf("To pause the level at any time press ESC", 540, 440, 200, "left")
+  love.graphics.printf(localization.controls.move[LANGUAGE], 610, 120, 180, "left")
+  love.graphics.printf(localization.controls.gather[LANGUAGE], 530, 200, 200, "left")
+  love.graphics.printf(localization.controls.menu[LANGUAGE], 550, 300, 200, "left")
+  love.graphics.printf(localization.controls.reset[LANGUAGE], 560, 370, 200, "left")
+  love.graphics.printf(localization.controls.pause[LANGUAGE], 540, 440, 200, "left")
 
   love.graphics.setColor(1, 1, 1)
   Buttons:draw()
