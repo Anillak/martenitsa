@@ -47,6 +47,10 @@ sprites.playerCurveCut = love.graphics.newImage('sprites/player_curve_cut.png')
 sprites.playerCurveAlt = love.graphics.newImage('sprites/player_curve_2.png')
 sprites.playerCurveAltCut = love.graphics.newImage('sprites/player_curve_2_cut.png')
 
+-- LOGO
+sprites.martenitsaMenu = love.graphics.newImage('asset/name.png')
+sprites.martenitsaCredits = love.graphics.newImage('asset/martenitsa-logo.png')
+
 -- SOUNDS
 
 sounds = {}

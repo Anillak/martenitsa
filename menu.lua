@@ -8,7 +8,6 @@ local Buttons
 function Menu:init()
   self.background = love.graphics.newImage('asset/bg-real.png')
   self.intro = love.graphics.newImage('asset/intro.jpg')
-  self.name = love.graphics.newImage('asset/name.png')
 
   local b_grid = Anim8.newGrid(TILE_SIZE, TILE_SIZE, TILE_SIZE*2, TILE_SIZE*8)
   self.l_anim = Anim8.newAnimation(b_grid('1-2', 8), 0.5)
@@ -44,7 +43,7 @@ end
 function Menu:draw()
   resetToDraw()
   love.graphics.draw(self.intro, 0, 0)
-  love.graphics.draw(self.name, 370, 60)
+  love.graphics.draw(sprites.martenitsaMenu, 370, 60)
   love.graphics.draw(self.background, 0, 0)
   Buttons:draw()
 
