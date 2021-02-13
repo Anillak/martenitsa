@@ -54,12 +54,12 @@ end
 function switchLanguages()
   if LANGUAGE == "en" then
     LANGUAGE = "bg"
-    sprites.martenitsaMenu = love.graphics.newImage('asset/name-bg.png')
-    sprites.martenitsaCredits = love.graphics.newImage('asset/martenitsa-logo-bg.png')
+    sprites.martenitsaMenu = sprites.martenitsaMenuBg
+    sprites.martenitsaCredits = sprites.martenitsaCreditsBg
   elseif LANGUAGE == "bg" then
     LANGUAGE = "en"
-    sprites.martenitsaMenu = love.graphics.newImage('asset/name.png')
-    sprites.martenitsaCredits = love.graphics.newImage('asset/martenitsa-logo.png')
+    sprites.martenitsaMenu = sprites.martenitsaMenuEn
+    sprites.martenitsaCredits = sprites.martenitsaCreditsEn
   end
 end
 

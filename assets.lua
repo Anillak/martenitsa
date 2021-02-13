@@ -47,9 +47,16 @@ sprites.playerCurveCut = love.graphics.newImage('sprites/player_curve_cut.png')
 sprites.playerCurveAlt = love.graphics.newImage('sprites/player_curve_2.png')
 sprites.playerCurveAltCut = love.graphics.newImage('sprites/player_curve_2_cut.png')
 
+sprites.arrow = love.graphics.newImage('asset/arrow.png')
+sprites.arrowFlipped = love.graphics.newImage('asset/arrow-flip.png')
+
 -- LOGO
-sprites.martenitsaMenu = love.graphics.newImage('asset/name.png')
-sprites.martenitsaCredits = love.graphics.newImage('asset/martenitsa-logo.png')
+sprites.martenitsaMenuEn = love.graphics.newImage('asset/name.png')
+sprites.martenitsaCreditsEn = love.graphics.newImage('asset/martenitsa-logo.png')
+sprites.martenitsaMenuBg = love.graphics.newImage('asset/name-bg.png')
+sprites.martenitsaCreditsBg = love.graphics.newImage('asset/martenitsa-logo-bg.png')
+sprites.martenitsaMenu = sprites.martenitsaMenuEn
+sprites.martenitsaCredits = sprites.martenitsaCreditsEn
 
 -- SOUNDS
 
@@ -69,7 +76,7 @@ sounds.doorClose = love.audio.newSource("asset/rock-init.wav", "static")
 sounds.lock = love.audio.newSource("asset/lock.wav", "static")
 sounds.unlock = love.audio.newSource("asset/unlock.wav", "static")
 sounds.knotEat = love.audio.newSource("asset/knot-eat.wav", "static")
-sounds.secretCollect = love.audio.newSource("asset/knot-eat.wav", "static")
+sounds.secretCollect = love.audio.newSource("asset/secret-eat.wav", "static")
 sounds.coins = love.audio.newSource("asset/coins.wav", "static")
 sounds.walking = love.audio.newSource("asset/walking.wav", "static")
 sounds.walking:setLooping(true)

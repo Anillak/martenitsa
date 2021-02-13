@@ -166,9 +166,9 @@ end
 function Arrow:draw()
   local arrow
   if not self.flipped then
-    arrow = love.graphics.newImage('asset/arrow.png')
+    arrow = sprites.arrow
   else
-    arrow = love.graphics.newImage('asset/arrow-flip.png')
+    arrow = sprites.arrowFlipped
   end
   love.graphics.setColor(1,1,1,(self.doneCount/10))
   love.graphics.draw(arrow, self.x, self.y)
