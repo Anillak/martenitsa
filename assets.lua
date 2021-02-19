@@ -59,7 +59,6 @@ sprites.martenitsaMenu = sprites.martenitsaMenuEn
 sprites.martenitsaCredits = sprites.martenitsaCreditsEn
 
 -- SOUNDS
-
 sounds = {}
 sounds.intro = love.audio.newSource("asset/intro.wav", "static")
 sounds.victory = love.audio.newSource("asset/victory.wav", "static")
